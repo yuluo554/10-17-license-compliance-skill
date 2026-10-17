@@ -1,0 +1,461 @@
+{
+  "format": "licaudit-spdx-snapshot",
+  "format_version": 1,
+  "license_list_version": "3.29.0",
+  "captured_on": "2026-10-17",
+  "license_total_ids": 740,
+  "exception_total_ids": 86,
+  "text_ids": [
+    "0BSD",
+    "AGPL-3.0",
+    "AGPL-3.0-only",
+    "AGPL-3.0-or-later",
+    "Apache-1.1",
+    "Apache-2.0",
+    "Artistic-2.0",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "BSD-3-Clause-Clear",
+    "BSL-1.0",
+    "BUSL-1.1",
+    "Beerware",
+    "CC0-1.0",
+    "CDDL-1.0",
+    "CDDL-1.1",
+    "EPL-1.0",
+    "EPL-2.0",
+    "Elastic-2.0",
+    "GPL-2.0",
+    "GPL-2.0-only",
+    "GPL-2.0-or-later",
+    "GPL-3.0",
+    "GPL-3.0-only",
+    "GPL-3.0-or-later",
+    "ISC",
+    "LGPL-2.1",
+    "LGPL-2.1-only",
+    "LGPL-2.1-or-later",
+    "LGPL-3.0-only",
+    "LGPL-3.0-or-later",
+    "MIT",
+    "MIT-0",
+    "MPL-1.1",
+    "MPL-2.0",
+    "MS-PL",
+    "MS-RL",
+    "NCSA",
+    "OpenSSL",
+    "PHP-3.01",
+    "PSF-2.0",
+    "PostgreSQL",
+    "Python-2.0",
+    "SSPL-1.0",
+    "UPL-1.0",
+    "Unlicense",
+    "WTFPL",
+    "Zlib"
+  ],
+  "exception_text_ids": [],
+  "files": {
+    "licenses.json": {
+      "url": "https://spdx.org/licenses/licenses.json",
+      "http_status": 200,
+      "download_bytes": 339359,
+      "snapshot_bytes": 338450,
+      "sha256": "242f8cf55e99849304ad1ca27c4f9dba76a8d04d6ddab297c22c37a53b59a42c",
+      "captured_on": "2026-10-17"
+    },
+    "exceptions.json": {
+      "url": "https://spdx.org/licenses/exceptions.json",
+      "http_status": 200,
+      "download_bytes": 41420,
+      "snapshot_bytes": 41251,
+      "sha256": "6bf7bb8d8336443792db80d9f3a5d28513792d985af88204cccd59ba623a3e15",
+      "captured_on": "2026-10-17"
+    },
+    "texts/0BSD.json": {
+      "url": "https://spdx.org/licenses/0BSD.json",
+      "http_status": 200,
+      "download_bytes": 3794,
+      "snapshot_bytes": 3470,
+      "sha256": "8b341367c884376f71a7c2da9d75cdd3c4c759851d25d5dcf1230b16a9be4b6f",
+      "captured_on": "2026-10-17"
+    },
+    "texts/AGPL-3.0.json": {
+      "url": "https://spdx.org/licenses/AGPL-3.0.json",
+      "http_status": 200,
+      "download_bytes": 127609,
+      "snapshot_bytes": 121285,
+      "sha256": "12d9fb1d2d87796e618d74b19d2be5fac376ec3c3d1d172bc3e4a71c0bf0c320",
+      "captured_on": "2026-10-17"
+    },
+    "texts/AGPL-3.0-only.json": {
+      "url": "https://spdx.org/licenses/AGPL-3.0-only.json",
+      "http_status": 200,
+      "download_bytes": 128680,
+      "snapshot_bytes": 122296,
+      "sha256": "c3e447c1652d88c7a70fdd93e0f8dca53017a118574def1251cd4f7f39dc0a03",
+      "captured_on": "2026-10-17"
+    },
+    "texts/AGPL-3.0-or-later.json": {
+      "url": "https://spdx.org/licenses/AGPL-3.0-or-later.json",
+      "http_status": 200,
+      "download_bytes": 130351,
+      "snapshot_bytes": 123447,
+      "sha256": "77517533c7fb539da0d2a79c236d5da147049f6aac629ff79d72a7af178153b7",
+      "captured_on": "2026-10-17"
+    },
+    "texts/Apache-1.1.json": {
+      "url": "https://spdx.org/licenses/Apache-1.1.json",
+      "http_status": 200,
+      "download_bytes": 13182,
+      "snapshot_bytes": 11783,
+      "sha256": "dfb8420a93cfad96450c8bab067eac79f20a9cee46a57db6fa03a89788d6b3fa",
+      "captured_on": "2026-10-17"
+    },
+    "texts/Apache-2.0.json": {
+      "url": "https://spdx.org/licenses/Apache-2.0.json",
+      "http_status": 200,
+      "download_bytes": 43569,
+      "snapshot_bytes": 40645,
+      "sha256": "b6c79ec335fcd99cf028ed5170859d173ea5e07f1bb35f59b1ab8d926c7367aa",
+      "captured_on": "2026-10-17"
+    },
+    "texts/Artistic-2.0.json": {
+      "url": "https://spdx.org/licenses/Artistic-2.0.json",
+      "http_status": 200,
+      "download_bytes": 37703,
+      "snapshot_bytes": 34489,
+      "sha256": "87621a66bc1dd26915b181aca038e75f07a529df6bf52fa724755b504e3f41a4",
+      "captured_on": "2026-10-17"
+    },
+    "texts/BSD-2-Clause.json": {
+      "url": "https://spdx.org/licenses/BSD-2-Clause.json",
+      "http_status": 200,
+      "download_bytes": 6801,
+      "snapshot_bytes": 5967,
+      "sha256": "13ad658b2b517baa3e74c48fc652824a95e75a5a806eb3072fd0632ba30932eb",
+      "captured_on": "2026-10-17"
+    },
+    "texts/BSD-3-Clause.json": {
+      "url": "https://spdx.org/licenses/BSD-3-Clause.json",
+      "http_status": 200,
+      "download_bytes": 13343,
+      "snapshot_bytes": 11619,
+      "sha256": "8efdbf9f92608b481a9e1840bf323d1edd082bc5779ef11a86aa24590e3b4733",
+      "captured_on": "2026-10-17"
+    },
+    "texts/BSD-3-Clause-Clear.json": {
+      "url": "https://spdx.org/licenses/BSD-3-Clause-Clear.json",
+      "http_status": 200,
+      "download_bytes": 8729,
+      "snapshot_bytes": 7825,
+      "sha256": "8c228ad22b5e516c1d34d15ae71279040fe45cddaeb799607b96895eff9c2067",
+      "captured_on": "2026-10-17"
+    },
+    "texts/BSL-1.0.json": {
+      "url": "https://spdx.org/licenses/BSL-1.0.json",
+      "http_status": 200,
+      "download_bytes": 5429,
+      "snapshot_bytes": 5265,
+      "sha256": "7201b3969606ea427d9a586caeec905546ea3775a88e82791be8c08bcdef351f",
+      "captured_on": "2026-10-17"
+    },
+    "texts/BUSL-1.1.json": {
+      "url": "https://spdx.org/licenses/BUSL-1.1.json",
+      "http_status": 200,
+      "download_bytes": 15891,
+      "snapshot_bytes": 14897,
+      "sha256": "744ec0f0afaf2a8f1a2259e0f41df93359ce1b57c7402026ef4a794967bce536",
+      "captured_on": "2026-10-17"
+    },
+    "texts/Beerware.json": {
+      "url": "https://spdx.org/licenses/Beerware.json",
+      "http_status": 200,
+      "download_bytes": 2103,
+      "snapshot_bytes": 1899,
+      "sha256": "31791fbd982fab7a5d4da6b96e01399b0e8b17685e0438646274b4452ef1acdd",
+      "captured_on": "2026-10-17"
+    },
+    "texts/CC0-1.0.json": {
+      "url": "https://spdx.org/licenses/CC0-1.0.json",
+      "http_status": 200,
+      "download_bytes": 29698,
+      "snapshot_bytes": 27279,
+      "sha256": "127c1c5a4b594ff80d87b5eb9816ed89156b4cf0398689736568bb0a0051b54e",
+      "captured_on": "2026-10-17"
+    },
+    "texts/CDDL-1.0.json": {
+      "url": "https://spdx.org/licenses/CDDL-1.0.json",
+      "http_status": 200,
+      "download_bytes": 71759,
+      "snapshot_bytes": 65930,
+      "sha256": "be28ee65c0896dbb111076f63ee3b22b9cd49f9a87fbc311c580d5f3bc989b8e",
+      "captured_on": "2026-10-17"
+    },
+    "texts/CDDL-1.1.json": {
+      "url": "https://spdx.org/licenses/CDDL-1.1.json",
+      "http_status": 200,
+      "download_bytes": 76533,
+      "snapshot_bytes": 70544,
+      "sha256": "62f7c98e892f54ccecb30b40d8002eb499ed568f019d0010ee05133bbcec1169",
+      "captured_on": "2026-10-17"
+    },
+    "texts/EPL-1.0.json": {
+      "url": "https://spdx.org/licenses/EPL-1.0.json",
+      "http_status": 200,
+      "download_bytes": 46596,
+      "snapshot_bytes": 43317,
+      "sha256": "8012ee728634c6d8e15809e7eeb362afb04601ec05b1900f51baeae7416a20b2",
+      "captured_on": "2026-10-17"
+    },
+    "texts/EPL-2.0.json": {
+      "url": "https://spdx.org/licenses/EPL-2.0.json",
+      "http_status": 200,
+      "download_bytes": 61369,
+      "snapshot_bytes": 57385,
+      "sha256": "31f77529c1832bd7688c35f96864925cc37e8f391cfd4ae4d46cd56b97d8c493",
+      "captured_on": "2026-10-17"
+    },
+    "texts/Elastic-2.0.json": {
+      "url": "https://spdx.org/licenses/Elastic-2.0.json",
+      "http_status": 200,
+      "download_bytes": 14461,
+      "snapshot_bytes": 13762,
+      "sha256": "920de6cdac7ce70b9b75178f3271133b71e38ad43ec952376ecb1f7bfb533289",
+      "captured_on": "2026-10-17"
+    },
+    "texts/GPL-2.0.json": {
+      "url": "https://spdx.org/licenses/GPL-2.0.json",
+      "http_status": 200,
+      "download_bytes": 72143,
+      "snapshot_bytes": 67079,
+      "sha256": "8bc9aac91b3e18658f773a59ccd26811b707a8a6f67a580ddebe5195de59164b",
+      "captured_on": "2026-10-17"
+    },
+    "texts/GPL-2.0-only.json": {
+      "url": "https://spdx.org/licenses/GPL-2.0-only.json",
+      "http_status": 200,
+      "download_bytes": 73836,
+      "snapshot_bytes": 68752,
+      "sha256": "08be6836b97ce7e905afcb0ab07cb969bbf3c108c840e5c75e1c97662b2df440",
+      "captured_on": "2026-10-17"
+    },
+    "texts/GPL-2.0-or-later.json": {
+      "url": "https://spdx.org/licenses/GPL-2.0-or-later.json",
+      "http_status": 200,
+      "download_bytes": 73482,
+      "snapshot_bytes": 68568,
+      "sha256": "b77f20255b601b435a50c542c2755a6e00098ece3f9875955b552dcce58cf0ff",
+      "captured_on": "2026-10-17"
+    },
+    "texts/GPL-3.0.json": {
+      "url": "https://spdx.org/licenses/GPL-3.0.json",
+      "http_status": 200,
+      "download_bytes": 129938,
+      "snapshot_bytes": 123174,
+      "sha256": "751e8a9f308a60338b99a9b859366b4f1e8cfa67876fcd2c361d1efe0637578d",
+      "captured_on": "2026-10-17"
+    },
+    "texts/GPL-3.0-only.json": {
+      "url": "https://spdx.org/licenses/GPL-3.0-only.json",
+      "http_status": 200,
+      "download_bytes": 130871,
+      "snapshot_bytes": 124107,
+      "sha256": "cffe5e4efc1a6d1c39a33254d3e49b39238989180d54561482e21ba2561b4f14",
+      "captured_on": "2026-10-17"
+    },
+    "texts/GPL-3.0-or-later.json": {
+      "url": "https://spdx.org/licenses/GPL-3.0-or-later.json",
+      "http_status": 200,
+      "download_bytes": 132314,
+      "snapshot_bytes": 125200,
+      "sha256": "9f1af9a30299e587fc6a4fbb130dd007946b67e640fbaae59fbda499450f7843",
+      "captured_on": "2026-10-17"
+    },
+    "texts/ISC.json": {
+      "url": "https://spdx.org/licenses/ISC.json",
+      "http_status": 200,
+      "download_bytes": 5218,
+      "snapshot_bytes": 4559,
+      "sha256": "3043bbf5005b5145d9b54565311e546de106f7da7a7af6de30150b9d7558f9d7",
+      "captured_on": "2026-10-17"
+    },
+    "texts/LGPL-2.1.json": {
+      "url": "https://spdx.org/licenses/LGPL-2.1.json",
+      "http_status": 200,
+      "download_bytes": 100655,
+      "snapshot_bytes": 94906,
+      "sha256": "f6313bf56b01e6f77c1a0137fdce0208569eb2fed8ae5ef7265afd034f104989",
+      "captured_on": "2026-10-17"
+    },
+    "texts/LGPL-2.1-only.json": {
+      "url": "https://spdx.org/licenses/LGPL-2.1-only.json",
+      "http_status": 200,
+      "download_bytes": 101590,
+      "snapshot_bytes": 95841,
+      "sha256": "0fda750148f985859e05d2c793a71ed81e08b85c935bdd2e473aae46655374bb",
+      "captured_on": "2026-10-17"
+    },
+    "texts/LGPL-2.1-or-later.json": {
+      "url": "https://spdx.org/licenses/LGPL-2.1-or-later.json",
+      "http_status": 200,
+      "download_bytes": 102067,
+      "snapshot_bytes": 96383,
+      "sha256": "71fe936b6620975c075531361145c384111f9185be459de16b648ad991776b19",
+      "captured_on": "2026-10-17"
+    },
+    "texts/LGPL-3.0-only.json": {
+      "url": "https://spdx.org/licenses/LGPL-3.0-only.json",
+      "http_status": 200,
+      "download_bytes": 162345,
+      "snapshot_bytes": 152886,
+      "sha256": "b3fa2e6f3e641a645828a252e7dbeed357db0e5dc7dcf34c2659e0bd0e21811b",
+      "captured_on": "2026-10-17"
+    },
+    "texts/LGPL-3.0-or-later.json": {
+      "url": "https://spdx.org/licenses/LGPL-3.0-or-later.json",
+      "http_status": 200,
+      "download_bytes": 162407,
+      "snapshot_bytes": 152948,
+      "sha256": "aa687f89847cb3c37fda0103a92c47bcec53ed53209ce56d616302d6ab690c66",
+      "captured_on": "2026-10-17"
+    },
+    "texts/MIT.json": {
+      "url": "https://spdx.org/licenses/MIT.json",
+      "http_status": 200,
+      "download_bytes": 8433,
+      "snapshot_bytes": 7124,
+      "sha256": "9544e3ca7d18e45265dc2a79fb327d5ec6404fcc04b6c9b550040fbfcfe58b55",
+      "captured_on": "2026-10-17"
+    },
+    "texts/MIT-0.json": {
+      "url": "https://spdx.org/licenses/MIT-0.json",
+      "http_status": 200,
+      "download_bytes": 5267,
+      "snapshot_bytes": 4873,
+      "sha256": "c1dd8e7b5af4f2dd779cdc96c5eb5938fb753eb59f036cf0677860c09fffd0ef",
+      "captured_on": "2026-10-17"
+    },
+    "texts/MPL-1.1.json": {
+      "url": "https://spdx.org/licenses/MPL-1.1.json",
+      "http_status": 200,
+      "download_bytes": 110269,
+      "snapshot_bytes": 100665,
+      "sha256": "585e41abf4a26b7aaa9f57304e6f4009ecdc4b7b5bd2cd0f8dd27959d424a305",
+      "captured_on": "2026-10-17"
+    },
+    "texts/MPL-2.0.json": {
+      "url": "https://spdx.org/licenses/MPL-2.0.json",
+      "http_status": 200,
+      "download_bytes": 79438,
+      "snapshot_bytes": 70384,
+      "sha256": "54d09736e97ad0b63c703a7ea6624f125790916cc3f6352ae0631ac8de5fa5ca",
+      "captured_on": "2026-10-17"
+    },
+    "texts/MS-PL.json": {
+      "url": "https://spdx.org/licenses/MS-PL.json",
+      "http_status": 200,
+      "download_bytes": 13421,
+      "snapshot_bytes": 12072,
+      "sha256": "287c5a97770af63ab96b139276f71be8ca1513beb31380f872666f72011a8537",
+      "captured_on": "2026-10-17"
+    },
+    "texts/MS-RL.json": {
+      "url": "https://spdx.org/licenses/MS-RL.json",
+      "http_status": 200,
+      "download_bytes": 15110,
+      "snapshot_bytes": 13596,
+      "sha256": "854ac64832a1030a3acb7bc81393334f9d7c04f6528d9e5adf171bb6437544d2",
+      "captured_on": "2026-10-17"
+    },
+    "texts/NCSA.json": {
+      "url": "https://spdx.org/licenses/NCSA.json",
+      "http_status": 200,
+      "download_bytes": 8630,
+      "snapshot_bytes": 7641,
+      "sha256": "9e61c14babcc8c2b42e09def5d51a847588575478f1ee27d8f514b60a8ead07a",
+      "captured_on": "2026-10-17"
+    },
+    "texts/OpenSSL.json": {
+      "url": "https://spdx.org/licenses/OpenSSL.json",
+      "http_status": 200,
+      "download_bytes": 22586,
+      "snapshot_bytes": 20712,
+      "sha256": "49e62ad957f3fd6ae2f8b00c66413bb318db582d911a8c799e5609444c3cd28d",
+      "captured_on": "2026-10-17"
+    },
+    "texts/PHP-3.01.json": {
+      "url": "https://spdx.org/licenses/PHP-3.01.json",
+      "http_status": 200,
+      "download_bytes": 12786,
+      "snapshot_bytes": 11632,
+      "sha256": "d31cabbf0e096250b73d7d0c311394cf70c3ef7778c611f82f9421cf31d2eea2",
+      "captured_on": "2026-10-17"
+    },
+    "texts/PSF-2.0.json": {
+      "url": "https://spdx.org/licenses/PSF-2.0.json",
+      "http_status": 200,
+      "download_bytes": 17902,
+      "snapshot_bytes": 14748,
+      "sha256": "26e3ceefb25dfbce6b596d10449f536dbb2d046ce2c189d440caa7f48f79ad21",
+      "captured_on": "2026-10-17"
+    },
+    "texts/PostgreSQL.json": {
+      "url": "https://spdx.org/licenses/PostgreSQL.json",
+      "http_status": 200,
+      "download_bytes": 6229,
+      "snapshot_bytes": 5600,
+      "sha256": "11da948f1d89508ac6ccefea12733bd8ccfe0805cdac65044f2254b5bbae4f44",
+      "captured_on": "2026-10-17"
+    },
+    "texts/Python-2.0.json": {
+      "url": "https://spdx.org/licenses/Python-2.0.json",
+      "http_status": 200,
+      "download_bytes": 39862,
+      "snapshot_bytes": 36458,
+      "sha256": "21789aad42e263de5d5c78a089f548082ef0141ef23737ec3de9ba7bafef75d3",
+      "captured_on": "2026-10-17"
+    },
+    "texts/SSPL-1.0.json": {
+      "url": "https://spdx.org/licenses/SSPL-1.0.json",
+      "http_status": 200,
+      "download_bytes": 109398,
+      "snapshot_bytes": 103794,
+      "sha256": "8e4463e19dc04edbcbcbdc6f2b45f571ebb63c8a252a2bfeb1055715cd36cdad",
+      "captured_on": "2026-10-17"
+    },
+    "texts/UPL-1.0.json": {
+      "url": "https://spdx.org/licenses/UPL-1.0.json",
+      "http_status": 200,
+      "download_bytes": 7704,
+      "snapshot_bytes": 7150,
+      "sha256": "d21b4ec38f2a296c11e8aad3109e2acb0ef180a20f82ba3243d09e1b6ad9baeb",
+      "captured_on": "2026-10-17"
+    },
+    "texts/Unlicense.json": {
+      "url": "https://spdx.org/licenses/Unlicense.json",
+      "http_status": 200,
+      "download_bytes": 4756,
+      "snapshot_bytes": 4552,
+      "sha256": "56883aeff3dca92295827cced1ec9db0fd16bd206d7392e81fea2fd2584ff06f",
+      "captured_on": "2026-10-17"
+    },
+    "texts/WTFPL.json": {
+      "url": "https://spdx.org/licenses/WTFPL.json",
+      "http_status": 200,
+      "download_bytes": 2931,
+      "snapshot_bytes": 2607,
+      "sha256": "d1b5b75dfc072788ccad06a59c0af8b5f8a03a421bbbfdbb4293d7b08c2a6622",
+      "captured_on": "2026-10-17"
+    },
+    "texts/Zlib.json": {
+      "url": "https://spdx.org/licenses/Zlib.json",
+      "http_status": 200,
+      "download_bytes": 5164,
+      "snapshot_bytes": 4525,
+      "sha256": "bed4a43637edc87914e6b393ea360579af4c322765afdbbec037011b93c7b2c7",
+      "captured_on": "2026-10-17"
+    }
+  }
+}

@@ -38,3 +38,15 @@ jobs:
 
       - name: Smoke (launcher)
         run: python scripts/launcher_licaudit.py --version
+
+      # M1：冻结数据必须能在干净环境里位级复现，且交付态入口真读得动
+      - name: Frozen data check
+        run: |
+          python tools/fetch_spdx.py --check --out references/spdx
+          python tools/gen_ruleset.py --check
+          python tools/gen_synthetic.py --check
+
+      - name: Verify data and bench (M1)
+        run: |
+          licaudit verify-data
+          licaudit bench --only m1

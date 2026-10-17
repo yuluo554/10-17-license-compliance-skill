@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "ruleset_version": "r0.1.0",
+  "entries": [
+    {
+      "id": "retain-copyright",
+      "label": "保留版权声明"
+    },
+    {
+      "id": "include-license-text",
+      "label": "附许可证全文"
+    },
+    {
+      "id": "mark-modifications",
+      "label": "标注修改"
+    },
+    {
+      "id": "provide-source",
+      "label": "提供对应源码"
+    },
+    {
+      "id": "network-source",
+      "label": "网络交互提供源码"
+    },
+    {
+      "id": "patent-grant",
+      "label": "专利授权"
+    },
+    {
+      "id": "trademark-restriction",
+      "label": "商标限制"
+    },
+    {
+      "id": "same-license",
+      "label": "同许可发布"
+    }
+  ]
+}

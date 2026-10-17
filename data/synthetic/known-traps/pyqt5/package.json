@@ -1,0 +1,10 @@
+{
+  "name": "example-app",
+  "version": "1.0.0",
+  "dependencies": {
+    "PyQt5": {
+      "version": "5.15.11",
+      "license": "GPL v3"
+    }
+  }
+}

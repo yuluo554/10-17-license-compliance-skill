@@ -248,11 +248,26 @@ def test_summary_counts_enabled_and_disabled(tmp_path):
     assert summary["enabled"]["tiers.json"] == 1
 
 
-def test_repo_has_no_ruleset_yet():
-    """骨架阶段仓库里不应有 manifest.json —— 否则 exit 3 的语义就失真了。"""
+def test_repo_ruleset_exists_and_loads():
+    """M1 起仓库里必须有可加载的规则包（M0 的「不应存在」断言到此作废）。"""
     manifest = os.path.join(
         loader.repo_root_from_package(), "references", "ruleset", "manifest.json"
     )
-    assert not os.path.isfile(manifest), (
-        "骨架阶段不应存在规则包 manifest；M1 生成后再更新本断言"
+    assert os.path.isfile(manifest), "M1 起 references/ruleset/manifest.json 必须存在"
+
+    ruleset = loader.load_ruleset()
+    assert ruleset.version
+    assert ruleset.license_list_version
+    assert ruleset.entries("tiers.json"), "tiers.json 至少要有一条已核验规则"
+    assert all(
+        entry.get("verified") is True for entry in ruleset.entries("tiers.json")
     )
+
+
+def test_explicit_rules_dir_does_not_fall_back(tmp_path):
+    """显式指定的目录无效时不得回退到仓库规则包（K24）。"""
+    empty = tmp_path / "empty"
+    empty.mkdir()
+    with pytest.raises(RulesetError) as excinfo:
+        loader.load_ruleset(explicit=str(empty))
+    assert "不会回退" in str(excinfo.value)

@@ -56,10 +56,21 @@ def test_launcher_selftest_core():
 
 
 def test_module_reports_chinese_without_crash():
-    """模块方式在 UTF-8 环境下输出中文不应崩（编码守卫覆盖）。"""
+    """模块方式在 UTF-8 环境下输出中文不应崩（编码守卫覆盖）。
+
+    M1 起仓库自带规则包，``status`` 成功返回 0；这里关心「中文可读、无 traceback」。
+    """
     result = run(["-m", "licaudit", "status"])
     text = result.stdout.decode("utf-8", "replace") + result.stderr.decode("utf-8", "replace")
-    # 无规则包 → exit 3，但必须是可读错误而不是 traceback
+    assert result.returncode == 0, text
+    assert "规则包" in text
+    assert "Traceback" not in text
+
+
+def test_module_reports_chinese_error_without_crash():
+    """缺规则包时必须输出中文错误而非 traceback。"""
+    result = run(["-m", "licaudit", "--rules-dir", "does-not-exist", "status"])
+    text = result.stdout.decode("utf-8", "replace") + result.stderr.decode("utf-8", "replace")
     assert result.returncode == 3
     assert "规则包" in text
     assert "Traceback" not in text

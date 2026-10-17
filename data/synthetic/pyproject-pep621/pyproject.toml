@@ -1,0 +1,18 @@
+[project]
+name = "example-app"
+version = "1.0.0"
+license = { text = "MIT" }
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+]
+dependencies = [
+  "example-pkg-a==1.0.0",
+  { name = "example-pkg-b", version = "2.0.0", license = "Apache-2.0" },
+  { name = "example-pkg-c", version = "3.0.0", classifiers = ["License :: OSI Approved :: ISC License (ISCL)"] },
+  { name = "example-pkg-d", version = "4.0.0" },
+]
+
+[project.optional-dependencies]
+test = [
+  { name = "example-pkg-e", version = "5.0.0", license = "MPL-2.0" },
+]

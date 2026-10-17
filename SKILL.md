@@ -152,4 +152,18 @@ licaudit report --out-dir out --format csv
 
 ## 当前实现状态
 
-**骨架（M0）**：CLI 契约、退出码、规则包加载硬门、自检、三条调用通路已就绪；`scan` / `assess` / `report` 在规则包缺失时**真实返回 3**，实现分别落在 M1 / M2–M4 / M5。各里程碑 DoD 见 `plan/05-里程碑.md`。
+**M1 已完成**：SPDX 3.29.0 快照、规则包（48 条已核验档位规则）、11 个合成用例与冻结真值已入仓；
+`scan` 产出 `inventory.json`，`verify-data` 用参照实现逐条对账，`bench --only m1` 可跑。
+
+`assess`（M2–M4）与 `report`（M5）尚未实现：规则包就绪时明确报「未实现」并返回 `2`，
+不写占位产物。各里程碑 DoD 见 `plan/05-里程碑.md`。
+
+### 数据刷新（人工步骤，运行时零网络）
+
+```bash
+py -3.12 -X utf8 tools/fetch_spdx.py --out references/spdx
+py -3.12 -X utf8 tools/gen_ruleset.py
+py -3.12 -X utf8 tools/gen_synthetic.py
+```
+
+生成物禁止手改；三个生成器都支持 `--check`（重生成后逐字节比对）。

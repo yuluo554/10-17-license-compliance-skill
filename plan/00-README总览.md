@@ -3,7 +3,7 @@
 - **项目**：开源许可证合规审查 Skill（Agent Skill：`SKILL.md` + 确定性 CLI 引擎 + 可版本化规则包）
 - **性质**：不参赛项目题（模拟项目），发布 GitHub **公开仓库**，署名 `yuluo554`
 - **版本**：v1（2026-10-17 定稿）
-- **当前里程碑**：**M0 计划与骨架已完成**；M1 数据先行未开工。
+- **当前里程碑**：**M0 与 M1 已完成（2026-10-17）**；M2 未开工。
 - **定位**：现有工具出事实（syft / scancode / ORT），本题做**判定层**——把"场景 × 传染 × 冲突 × 中文处置"串成可回归测试的判定链。
 
 ## 一、文档索引
@@ -13,18 +13,19 @@
 | `plan/00-README总览.md` | 本文档：索引、决策记录、承诺-证据台账、里程碑 | ✅ 已建立 |
 | `plan/01-题目文档.md` | 十段式题目定稿（**定稿不改写**；后续勘误走新版本号 + 版本史行） | ✅ 已建立 |
 | `plan/02-架构与技术选型.md` | 交付形态、分层架构、目录结构、退出码契约、技术选型 | ✅ M0 |
-| `plan/03-模块详设.md` | M1–M5 实现级设计、判定语义总纲、失败路径 | ✅ M0 |
-| `plan/04-数据计划.md` | SPDX 快照、规则包生成、合成清单与真值、冻结纪律 | ✅ M0 |
-| `plan/05-里程碑.md` | M0–M6 DoD、K 清单（唯一一份） | ✅ M0 |
-| `plan/06-交付对标与决策记录.md` | 评分对标、决策记录、待定决策表、风险 | ✅ M0 |
-| `plan/HANDOFF-M1.md` | 下一棒交接（六节） | ✅ M0 |
+| `plan/03-模块详设.md` | M1–M5 实现级设计、判定语义总纲、失败路径 | ✅ M0；M1 落地补充（D19/D22） |
+| `plan/04-数据计划.md` | SPDX 快照、规则包生成、合成清单与真值、冻结纪律 | ✅ M0；M1 执行完毕 |
+| `plan/05-里程碑.md` | M0–M6 DoD、K 清单（唯一一份） | ✅ M0 + M1 DoD |
+| `plan/06-交付对标与决策记录.md` | 评分对标、决策记录（D1–D22）、待定决策表、风险 | ✅ M0 + M1 |
+| `plan/HANDOFF-M1.md` | M0→M1 交接（六节） | ✅ 已完成其内容 |
+| `plan/HANDOFF-M2.md` | M1→M2 交接（六节） | ✅ M1 |
 | `data/README.md` | 依据查证记录（三态）、数据源可获取性、合成数据纪律、数值口径 | ✅ 已建立 |
-| `data/synthetic/README.md` | 合成数据与真值库说明（M1 填充） | ✅ M0 |
-| `references/README.md` | 规则包结构与生成纪律 | ✅ M0 |
-| `tools/README.md` | 生成器清单与纪律 | ✅ M0 |
+| `data/synthetic/README.md` | 合成数据与真值库说明 | ✅ M1 |
+| `references/README.md` | 规则包结构与生成纪律 + M1 实测数字 | ✅ M1 |
+| `tools/README.md` | 生成器清单与纪律 + M1 实测 | ✅ M1 |
 | `examples/README.md` | 示例报告生成与断言 | ✅ M0 |
-| `SKILL.md` | Skill 主入口（含机器可解析契约块） | ✅ M0 |
-| `README.md` | 仓库说明、快速开始、退出码、限制 | ✅ M0 |
+| `SKILL.md` | Skill 主入口（含机器可解析契约块） | ✅ M0 + M1 |
+| `README.md` | 仓库说明、快速开始、退出码、限制 | ✅ M0 + M1 |
 
 ## 二、决策记录
 
@@ -58,12 +59,12 @@
 
 | 承诺项 | 素材来源 | 交付物内可达性 | 核验方式 | 状态 |
 | --- | --- | --- | --- | --- |
-| SPDX 许可证清单可用作规则来源 | <https://spdx.org/licenses/licenses.json>（3.29.0） | 快照入 `references/spdx/`，随仓冻结 | manifest 记录 `license_list_version` + `--check` 位级一致 | ⬜ 待 M1 |
-| SPDX 例外清单可用于 `WITH` 解析 | <https://spdx.org/licenses/exceptions.json>（3.29.0） | 同上 | 例外 ID 命中率基准 | ⬜ 待 M1 |
-| 单许可证全文可作条款锚点 | <https://spdx.org/licenses/GPL-3.0-only.json> | 按需取子集入仓，全文不入包 | 锚点抽检：条款节号可在 text 中定位 | ⬜ 待 M1 |
+| SPDX 许可证清单可用作规则来源 | <https://spdx.org/licenses/licenses.json>（3.29.0） | 快照入 `references/spdx/`，随仓冻结 | manifest 记录 `license_list_version` + `--check` 位级一致 | ✅ M1 |
+| SPDX 例外清单可用于 `WITH` 解析 | <https://spdx.org/licenses/exceptions.json>（3.29.0） | 同上 | 例外 ID 命中率基准 | ✅ M1（`WITH` 命中/未命中双向用例） |
+| 单许可证全文可作条款锚点 | <https://spdx.org/licenses/GPL-3.0-only.json> | 按需取子集入仓（48 份），全文不入包 | 锚点抽检：quote 可在 text 中逐字定位 | ✅ M1（`test_tier_anchors_are_locatable_in_snapshots`） |
 | AGPL §13 网络交互为独立触发点 | <https://www.gnu.org/licenses/agpl-3.0.en.html> | 规则包场景触发表 | 基准用例：SaaS + 未分发 → 触发 | ⬜ 待 M3 |
 | 中国司法锚点（罗盒案） | （2021）最高法知民终2063号，2023-05-05 终审 | 报告"依据条款"脚注引用 | 文档引用一致性检查 | ⬜ 待 M5 |
-| M1 四级可信度链 | 六种清单形态的真实结构 | 解析器纯函数，随包 | 坑位回归：pandas / psycopg2 / PyMySQL / PyQt5 | ⬜ 待 M1 |
+| M1 四级可信度链 | 六种清单形态的真实结构 | 解析器纯函数，随包 | 坑位回归：pandas / psycopg2 / PyMySQL / PyQt5；F1 = 1.0 | ✅ M1 |
 | M2 传染五档 + 义务矩阵 | SPDX 字段 + curated 条款锚点 | `references/ruleset/` | 每个 SPDX ID 的真值表断言 | ⬜ 待 M2 |
 | M3 场景判定（八场景） | AGPL §13 + curated 触发表 | `assess` 命令 | 八场景 × 链接方式判定表 | ⬜ 待 M3 |
 | M4 冲突与兼容性 | curated `conflict-pairs.json` + OSADL 镜像交叉验证 | `assess` 命令 | `GPL-2.0-only × Apache-2.0` 等已知对 | ⬜ 待 M4 |
@@ -74,7 +75,7 @@
 | 自检可证伪 | `selftest.py` | `licaudit selftest` | 空规则包 → exit 1；6 项核心 check 各有变异用例 | ✅ M0 |
 | 纯本地 / 零上传（源码层） | 架构 | 运行时无出站请求 | AST 扫描禁止网络模块 import | ✅ M0（产物层待 M6） |
 | 三条调用通路等价 | `cli.py` / `__main__.py` / `scripts/launcher_licaudit.py` | — | 子进程实跑 + 退出码一致 | ✅ M0 |
-| 合成数据白名单 | `data/synthetic/` | 随包 | 白名单校验脚本 | ⬜ 待 M1 |
+| 合成数据白名单 | `data/synthetic/` | 随包 | `test_synthetic_packages_are_whitelisted` | ✅ M1 |
 | 中文合规 skill 形态空白 | `gh api` 检索，基准日 2026-10-17 | — | 软论据，记录检索式与基准日 | ⬜ 软论据（不可硬化为结论） |
 
 ## 四、里程碑
@@ -82,7 +83,7 @@
 | 里程碑 | 内容 | DoD | 状态 |
 | --- | --- | --- | --- |
 | **M0 计划与骨架** | plan/00–06；CLI 契约与退出码；规则包加载硬门；可证伪自检；三条调用通路；CI 配置 | 双解释器 pytest 全绿（137 项）；退出码 0/2/3 锁进测试；README 命令实跑；CI 属「本地等价校验，未接远端」 | ✅ 2026-10-17 |
-| **M1 数据先行 + M1 解析** | SPDX 快照；规则包 v0；合成清单与真值；M1 解析器；`scan` 命令 | 快照/规则包/真值入仓且 `--check` 位级一致；四条坑位全部有断言；`verify-data` 读冻结件；解析 F1 ≥ 0.95 | ⬜ 下一棒 |
+| **M1 数据先行 + M1 解析** | SPDX 快照；规则包 v0；合成清单与真值；M1 解析器；`scan` 命令 | 快照/规则包/真值入仓且 `--check` 位级一致；四条坑位全部有断言；`verify-data` 读冻结件；解析 F1 = 1.0 | ✅ 2026-10-17 |
 | **M2 画像矩阵** | 传染五档、义务项、OSI/FSF、专利/商标条款 | 每个采样 ID 有档位+义务+锚点；无锚点不生效 | ⬜ |
 | **M3 场景判定** | 八场景 × 链接方式触发表；用户回答落盘 | 判定表全绿；SaaS 未分发但网络交互 → 触发；「商用」不在输入 | ⬜ |
 | **M4 冲突分析** | `conflict-pairs.json`；`OR`/`AND` 求值；outbound 判定 | 已知冲突对全命中；outbound 未知 → 待定 | ⬜ |
@@ -95,7 +96,11 @@
 ## 五、当前状态
 
 - **M0 已完成（2026-10-17）**：计划文档 00–06 齐备；骨架可安装、三条通路实跑；退出码四语义锁进测试；
-  规则包加载硬门与可证伪自检就位；双解释器 137 项测试全绿；CI 配置就位但**未接远端**。
-- **未做**：任何远端推送、任何 CI 运行、M1 起的数据与判定实现。
-- **下一棒**：读 `plan/HANDOFF-M1.md`，从 M1 数据先行开工。
-- **诚实口径**：本轮所有 CI 相关表述均为「本地等价校验，未接远端，CI 待首推验证」。
+  规则包加载硬门与可证伪自检就位；CI 配置就位但**未接远端**。
+- **M1 已完成（2026-10-17）**：SPDX 3.29.0 快照（740 许可 / 86 例外 / 48 份全文）冻结；
+  curated 人工表（48 条档位规则、7 条 trove 映射、4 条坑位元数据）；规则包 r0.1.0 生成且 `--check` 位级一致；
+  11 个合成用例 + 44 条真值期望；M1 解析器（六形态 / 四级链 / SPDX 表达式）；`scan` / `verify-data` /
+  `bench --only m1` 打通；双解释器 **247 passed, 1 skipped**；F1 = 1.0；7 组变异验证。
+- **未做**：M2–M5（画像/场景/冲突/报告）；任何远端推送与 CI 运行。
+- **下一棒**：读 `plan/HANDOFF-M2.md`，从 M2 画像矩阵开工。
+- **诚实口径**：本轮所有 CI 相关表述仍为「本地等价校验，未接远端，CI 待首推验证」。

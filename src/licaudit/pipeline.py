@@ -9,11 +9,19 @@
 """
 
 import os
+import sys
 
 from . import __version__, contract
 from .errors import UsageError
+from .inventory.build import build_inventory, inventory_path
 from .ruleset import load_ruleset
 from .serialize import write_json
+from .verify import (
+    format_bench_report,
+    format_verify_report,
+    run_bench as run_bench_suites,
+    verify_data,
+)
 
 DEFAULT_OUT_DIR = "out"
 
@@ -45,8 +53,26 @@ def run_status(args):
 
 def run_scan(args):
     # 先过规则包硬门：缺规则包必须是 exit 3，而不是「没有依赖、零风险」的 exit 0。
-    load_ruleset(explicit=getattr(args, "rules_dir", None), verify_hashes=True)
-    _not_yet("scan", "M1")
+    ruleset = load_ruleset(explicit=getattr(args, "rules_dir", None), verify_hashes=True)
+    payload = build_inventory(args.manifests, ruleset)
+    target = _ensure_out_dir(args.out_dir)
+    path = inventory_path(target)
+    write_json(path, payload)
+    _print_scan_summary(payload, path)
+    return payload, 0
+
+
+def _print_scan_summary(payload, path):
+    dependencies = payload.get("dependencies", [])
+    pending = payload.get("pending_confirmation", [])
+    notes = payload.get("parse_notes", [])
+    resolvable = [item for item in dependencies if item.get("spdx_id")]
+    sys.stdout.write(
+        "依赖 {0} 条；已归一化 {1} 条；待人工确认 {2} 条；解析注记 {3} 条\n".format(
+            len(dependencies), len(resolvable), len(pending), len(notes)
+        )
+    )
+    sys.stdout.write("产物: {0}\n".format(path))
 
 
 def run_assess(args):
@@ -60,14 +86,22 @@ def run_report(args):
 
 
 def run_verify_data(args):
-    """读取冻结真值并复算（M1 落地）。骨架阶段明确拒绝，不伪造通过。"""
-    load_ruleset(explicit=getattr(args, "rules_dir", None), verify_hashes=True)
-    _not_yet("verify-data", "M1")
+    """读取冻结真值并用运行时解析器复算（M1）。"""
+    ruleset = load_ruleset(explicit=getattr(args, "rules_dir", None), verify_hashes=True)
+    data_dir = os.path.abspath(getattr(args, "data_dir", "data"))
+    report, code = verify_data(data_dir, ruleset)
+    sys.stdout.write(format_verify_report(report) + "\n")
+    return report, code
 
 
 def run_bench(args):
-    load_ruleset(explicit=getattr(args, "rules_dir", None), verify_hashes=True)
-    _not_yet("bench", "M1–M5")
+    ruleset = load_ruleset(explicit=getattr(args, "rules_dir", None), verify_hashes=True)
+    data_dir = os.path.abspath(getattr(args, "data_dir", "data"))
+    report, code = run_bench_suites(
+        getattr(args, "only", None), ruleset, data_dir
+    )
+    sys.stdout.write(format_bench_report(report) + "\n")
+    return report, code
 
 
 def write_status_artifact(summary, out_dir):

@@ -1,0 +1,6 @@
+# 合成用例：版本、extras、注释、-r 行
+example-pkg-a==1.0.0  # license: MIT
+example-pkg-b[extra1,extra2]==2.0.0  # license: Apache-2.0
+example-pkg-c>=3.0
+-r requirements-dev.txt
+example-pkg-d==4.0.0

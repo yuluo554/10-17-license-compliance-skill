@@ -56,9 +56,14 @@ def test_selftest_core_passes_without_ruleset(capsys):
     assert "FAIL" not in out
 
 
-def test_selftest_full_fails_without_ruleset(capsys):
-    """无规则包时完整自检必须失败——否则自检是假的。"""
-    code, out, err = run(["selftest"], capsys)
+def test_selftest_full_fails_when_ruleset_dir_is_empty(tmp_path, capsys):
+    """规则包不可用时完整自检必须失败——否则自检是假的。
+
+    M1 起仓库自带规则包，所以这里显式指向空目录制造「无规则包」。
+    """
+    empty = tmp_path / "empty"
+    empty.mkdir()
+    code, out, err = run(["--rules-dir", str(empty), "selftest"], capsys)
     assert code == EXIT_FINDINGS
     assert "ruleset_loadable" in out
     assert "FAIL" in out
@@ -97,7 +102,7 @@ def test_status_with_ruleset_writes_artifact(tmp_path, capsys):
 
 @pytest.mark.parametrize("command", ["scan", "assess", "report", "bench", "verify-data"])
 def test_unimplemented_commands_need_ruleset_first(tmp_path, command, capsys, monkeypatch):
-    """未实现命令也必须先过规则包硬门：缺规则包 → exit 3，而不是 exit 0 空承诺。"""
+    """所有命令都必须先过规则包硬门：缺规则包 → exit 3，而不是 exit 0 空承诺。"""
     empty = tmp_path / "empty"
     empty.mkdir()
     monkeypatch.chdir(str(tmp_path))
@@ -113,15 +118,34 @@ def test_unimplemented_commands_need_ruleset_first(tmp_path, command, capsys, mo
     assert code == EXIT_RULESET, (command, out, err)
 
 
-def test_scan_with_ruleset_reports_not_implemented(tmp_path, capsys):
-    """规则包就绪后，未实现命令明确报「未实现」→ exit 2，不写假产物。"""
+def test_assess_still_reports_not_implemented(tmp_path, capsys):
+    """assess 属于 M2–M4：规则包就绪后明确报「未实现」→ exit 2，不写假产物。"""
+    root = make_ruleset_dir(str(tmp_path / "rs"))
+    out_dir = tmp_path / "out"
+    code, out, err = run(
+        [
+            "--rules-dir", root, "assess",
+            "--inventory", "inv.json",
+            "--scenario", "saas",
+            "--outbound-license", "pending",
+            "--out-dir", str(out_dir),
+        ],
+        capsys,
+    )
+    assert code == EXIT_USAGE
+    assert "未实现" in err
+    assert not (out_dir / "profile.json").exists()
+
+
+def test_scan_missing_manifest_is_usage_error(tmp_path, capsys):
+    """M1 起 scan 已实现：文件不存在是输入错误（exit 2），不是「未实现」。"""
     root = make_ruleset_dir(str(tmp_path / "rs"))
     out_dir = tmp_path / "out"
     code, out, err = run(
         ["--rules-dir", root, "scan", "package.json", "--out-dir", str(out_dir)], capsys
     )
     assert code == EXIT_USAGE
-    assert "未实现" in err
+    assert "不可读" in err
     assert not (out_dir / "inventory.json").exists()
 
 

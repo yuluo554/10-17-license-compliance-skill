@@ -7,9 +7,9 @@
 
 | 脚本 | 作用 | 里程碑 |
 | --- | --- | --- |
-| `fetch_spdx.py` | 抓取 SPDX `licenses.json` / `exceptions.json` 快照，登记 sha256 与版本 | M1 |
-| `gen_ruleset.py` | 由 SPDX 快照 + `references/curated/` 生成 `references/ruleset/` + manifest | M1 |
-| `gen_synthetic.py` | 产合成依赖清单与真值库（固定 seed、确定性 RNG） | M1 |
+| `fetch_spdx.py` | ✅ 抓取 SPDX 清单与按需全文快照，登记 sha256 与版本（含离线 `--check`） | M1 |
+| `gen_ruleset.py` | ✅ 由 SPDX 快照 + `references/curated/` 生成规则包；锚点 quote 必须可在原文定位 | M1 |
+| `gen_synthetic.py` | ✅ 产合成依赖清单与真值库（splitmix64、独立朴素 oracle） | M1 |
 | `check_release.py` | M6 发布终态自检（tag / Release 附件 / 留档） | M6 |
 
 ## 纪律
@@ -20,4 +20,13 @@
 - 落盘一律经 `licaudit.serialize` 的原子写与冻结序列化参数。
 - 这些脚本**不是**用户命令：用户面向的命令只有 `licaudit <subcommand>`。
 
-M0 骨架阶段本目录为空占位；生成器随 M1/M6 落地。
+## M1 实测（2026-10-17）
+
+```bash
+py -3.12 -X utf8 tools/fetch_spdx.py --check --out references/spdx   # rc=0
+py -3.12 -X utf8 tools/gen_ruleset.py --check                        # rc=0
+py -3.12 -X utf8 tools/gen_synthetic.py --check                      # rc=0
+```
+
+三个 `--check` 都是两层：形态校验 + 重生成到临时目录逐字节比对。
+手改冻结产物会让 `--check` 变红（`test_gen_ruleset_check_detects_handedit` 是阳性对照）。

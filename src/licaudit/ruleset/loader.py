@@ -68,8 +68,24 @@ def candidate_dirs(explicit=None):
 
 
 def locate_ruleset(explicit=None):
-    """按优先级找到第一个含 manifest.json 的目录；都没有则抛错。"""
-    tried = candidate_dirs(explicit)
+    """按优先级找到第一个含 manifest.json 的目录；都没有则抛错。
+
+    显式 ``--rules-dir`` 若是无效目录，**不回退**到环境变量/仓库推导——
+    否则 ``--rules-dir /empty`` 会静默用上另一份规则，等于让调用方误以为在验证它指定的那份。
+    """
+    if explicit:
+        explicit_path = os.path.abspath(explicit)
+        manifest_path = os.path.join(explicit_path, "manifest.json")
+        if os.path.isfile(manifest_path):
+            return explicit_path
+        raise RulesetError(
+            "显式指定的规则包目录中没有 manifest.json",
+            path=explicit_path,
+            tried=explicit_path,
+            hint="--rules-dir 指向的目录必须含 manifest.json；不会回退到其他来源",
+        )
+
+    tried = candidate_dirs(None)
     for candidate in tried:
         manifest_path = os.path.join(candidate, "manifest.json")
         if os.path.isfile(manifest_path):

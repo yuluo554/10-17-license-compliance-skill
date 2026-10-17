@@ -1,9 +1,9 @@
 # 合成数据与真值库
 
-> 本目录在 **M1** 起存放程序化生成的合成依赖清单与真值。M0 骨架阶段只有本说明。
+> **M1 已生成入仓**：11 个用例目录，每个含清单文件 + `README.md`（说明覆盖点）。
 > 纪律见 `plan/04-数据计划.md`：真值只存输入与期望，观测由运行时实算。
 
-## 目录（M1 起）
+## 目录（M1 已就位）
 
 ```
 data/
@@ -50,6 +50,19 @@ py -3.12 -X utf8 tools/gen_synthetic.py --check
 - 期望值由生成器内的独立朴素 oracle 计算，不调用生产解析器。
 - 人工核对项（坑位用例）挂 `checked_on`，不得用解析器输出回填。
 
-## 说明
+## M1 实测（2026-10-17）
 
-本文件在 M1 之前保持现状；M1 完成后由 `plan/04` 的启动清单驱动填充。
+| 用例 | 覆盖点 |
+| --- | --- |
+| `npm-basic` | 字符串 license / 对象 license / `licenses` 数组 / 缺失字段 |
+| `npm-lock-v2` / `npm-lock-v3` | `packages` 映射；根包（键 `""`）跳过 |
+| `pip-requirements` | `==` 版本、extras、注释、`-r` 行；无版本 → `*` |
+| `pyproject-pep621` | `[project]` 依赖 + optional-dependencies；classifier 走 trove 链 |
+| `pyproject-poetry` | `[tool.poetry.dependencies]`；`python` 约束不是依赖 |
+| `go-mod` | require 块 + 单行 require；`// license:` 注记 |
+| `maven-pom` | 项目 `<licenses>` 不传给依赖；依赖级 `<license>` 生效 |
+| `expr-complex` | `OR` / `AND` / `WITH`（已知与未知例外）/ 括号 |
+| `unknown-and-missing` | 族名 → `<族>-unknown`；缺 license → 兜底；自由文本不被猜 |
+| `known-traps` | pandas / psycopg2 / PyMySQL / PyQt5（真实包名，不进示例报告） |
+
+共 11 用例 / 44 条真值期望。`py -3.12 tools/gen_synthetic.py --check` 通过。

@@ -1,0 +1,26 @@
+{
+  "name": "example-app",
+  "version": "1.0.0",
+  "dependencies": {
+    "example-pkg-a": {
+      "version": "1.0.0",
+      "license": "Apache-2.0 OR MIT"
+    },
+    "example-pkg-b": {
+      "version": "2.0.0",
+      "license": "MIT AND Apache-2.0"
+    },
+    "example-pkg-c": {
+      "version": "3.0.0",
+      "license": "GPL-2.0-only WITH Classpath-exception-2.0"
+    },
+    "example-pkg-d": {
+      "version": "4.0.0",
+      "license": "GPL-2.0-only WITH Example-exception-9.9"
+    },
+    "example-pkg-e": {
+      "version": "5.0.0",
+      "license": "(MIT OR Apache-2.0) AND BSD-3-Clause"
+    }
+  }
+}

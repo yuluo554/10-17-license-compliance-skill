@@ -1,0 +1,519 @@
+{
+  "format": "licaudit-truth",
+  "format_version": 1,
+  "cases": [
+    {
+      "case_id": "expr-complex",
+      "inputs": {
+        "files": [
+          "package.json"
+        ]
+      },
+      "expect": {
+        "dependencies": [
+          {
+            "package": "example-pkg-a",
+            "version": "1.0.0",
+            "spdx_id": "Apache-2.0 OR MIT",
+            "confidence": "license_expression",
+            "flags": []
+          },
+          {
+            "package": "example-pkg-b",
+            "version": "2.0.0",
+            "spdx_id": "MIT AND Apache-2.0",
+            "confidence": "license_expression",
+            "flags": []
+          },
+          {
+            "package": "example-pkg-c",
+            "version": "3.0.0",
+            "spdx_id": "GPL-2.0-only WITH Classpath-exception-2.0",
+            "confidence": "license_expression",
+            "flags": []
+          },
+          {
+            "package": "example-pkg-d",
+            "version": "4.0.0",
+            "spdx_id": "GPL-2.0-only WITH Example-exception-9.9",
+            "confidence": "license_expression",
+            "flags": [
+              "unknown-exception"
+            ]
+          },
+          {
+            "package": "example-pkg-e",
+            "version": "5.0.0",
+            "spdx_id": "(MIT OR Apache-2.0) AND BSD-3-Clause",
+            "confidence": "license_expression",
+            "flags": []
+          }
+        ],
+        "pending_confirmation": [
+          {
+            "package": "example-pkg-d",
+            "version": "4.0.0",
+            "spdx_id": "GPL-2.0-only WITH Example-exception-9.9",
+            "confidence": "license_expression",
+            "flags": [
+              "unknown-exception"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "go-mod",
+      "inputs": {
+        "files": [
+          "go.mod"
+        ]
+      },
+      "expect": {
+        "dependencies": [
+          {
+            "package": "example.com/example/a",
+            "version": "v1.0.0",
+            "spdx_id": "MIT",
+            "confidence": "license_expression",
+            "flags": []
+          },
+          {
+            "package": "example.com/example/c",
+            "version": "v3.0.0",
+            "spdx_id": "BSD-3-Clause",
+            "confidence": "license_expression",
+            "flags": []
+          }
+        ],
+        "pending_confirmation": [
+          {
+            "package": "example.com/example/b",
+            "version": "v2.0.0",
+            "spdx_id": null,
+            "confidence": "truncated_fallback",
+            "flags": [
+              "unresolved"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "known-traps",
+      "inputs": {
+        "files": [
+          "pandas/package.json",
+          "psycopg2/package.json",
+          "pymysql/package.json",
+          "pyqt5/package.json"
+        ]
+      },
+      "expect": {
+        "dependencies": [
+          {
+            "package": "PyMySQL",
+            "version": "1.1.0",
+            "spdx_id": "MIT",
+            "confidence": "license_first_line",
+            "flags": []
+          },
+          {
+            "package": "PyQt5",
+            "version": "5.15.11",
+            "spdx_id": "GPL-3.0",
+            "confidence": "license_first_line",
+            "flags": [
+              "version-ambiguous",
+              "deprecated-id"
+            ]
+          },
+          {
+            "package": "pandas",
+            "version": "3.0.6",
+            "spdx_id": "BSD-3-Clause",
+            "confidence": "license_first_line",
+            "flags": []
+          }
+        ],
+        "pending_confirmation": [
+          {
+            "package": "PyQt5",
+            "version": "5.15.11",
+            "spdx_id": "GPL-3.0",
+            "confidence": "license_first_line",
+            "flags": [
+              "version-ambiguous",
+              "deprecated-id"
+            ]
+          },
+          {
+            "package": "psycopg2",
+            "version": "2.9.13",
+            "spdx_id": "LGPL-unknown",
+            "confidence": "license_first_line",
+            "flags": [
+              "family-unknown"
+            ]
+          }
+        ],
+        "checked_on": "2026-10-17"
+      },
+      "note": "真实包名坑位回归；期望值人工核对后写入"
+    },
+    {
+      "case_id": "maven-pom",
+      "inputs": {
+        "files": [
+          "pom.xml"
+        ]
+      },
+      "expect": {
+        "dependencies": [
+          {
+            "package": "com.example:pkg-a",
+            "version": "1.0.0",
+            "spdx_id": "MIT",
+            "confidence": "license_expression",
+            "flags": []
+          }
+        ],
+        "pending_confirmation": [
+          {
+            "package": "com.example:pkg-b",
+            "version": "2.0.0",
+            "spdx_id": null,
+            "confidence": "truncated_fallback",
+            "flags": [
+              "unresolved"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "npm-basic",
+      "inputs": {
+        "files": [
+          "package.json"
+        ]
+      },
+      "expect": {
+        "dependencies": [
+          {
+            "package": "example-pkg-a",
+            "version": "1.0.0",
+            "spdx_id": "MIT",
+            "confidence": "license_expression",
+            "flags": []
+          },
+          {
+            "package": "example-pkg-b",
+            "version": "2.1.0",
+            "spdx_id": "Apache-2.0",
+            "confidence": "license_expression",
+            "flags": []
+          },
+          {
+            "package": "example-pkg-c",
+            "version": "3.0.0",
+            "spdx_id": "MIT AND Apache-2.0",
+            "confidence": "license_expression",
+            "flags": []
+          }
+        ],
+        "pending_confirmation": [
+          {
+            "package": "example-pkg-d",
+            "version": "4.0.0",
+            "spdx_id": null,
+            "confidence": "truncated_fallback",
+            "flags": [
+              "unresolved"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "npm-lock-v2",
+      "inputs": {
+        "files": [
+          "package-lock.json"
+        ]
+      },
+      "expect": {
+        "dependencies": [
+          {
+            "package": "example-pkg-a",
+            "version": "1.0.0",
+            "spdx_id": "MIT",
+            "confidence": "license_expression",
+            "flags": []
+          },
+          {
+            "package": "example-pkg-b",
+            "version": "2.0.0",
+            "spdx_id": "Apache-2.0 OR MIT",
+            "confidence": "license_expression",
+            "flags": []
+          }
+        ],
+        "pending_confirmation": [
+          {
+            "package": "example-pkg-c",
+            "version": "3.0.0",
+            "spdx_id": null,
+            "confidence": "truncated_fallback",
+            "flags": [
+              "unresolved"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "npm-lock-v3",
+      "inputs": {
+        "files": [
+          "package-lock.json"
+        ]
+      },
+      "expect": {
+        "dependencies": [
+          {
+            "package": "example-pkg-a",
+            "version": "1.0.0",
+            "spdx_id": "MIT",
+            "confidence": "license_expression",
+            "flags": []
+          },
+          {
+            "package": "example-pkg-b",
+            "version": "2.0.0",
+            "spdx_id": "Apache-2.0 OR MIT",
+            "confidence": "license_expression",
+            "flags": []
+          }
+        ],
+        "pending_confirmation": [
+          {
+            "package": "example-pkg-c",
+            "version": "3.0.0",
+            "spdx_id": null,
+            "confidence": "truncated_fallback",
+            "flags": [
+              "unresolved"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "pip-requirements",
+      "inputs": {
+        "files": [
+          "requirements.txt"
+        ]
+      },
+      "expect": {
+        "dependencies": [
+          {
+            "package": "example-pkg-a",
+            "version": "1.0.0",
+            "spdx_id": "MIT",
+            "confidence": "license_expression",
+            "flags": []
+          },
+          {
+            "package": "example-pkg-b",
+            "version": "2.0.0",
+            "spdx_id": "Apache-2.0",
+            "confidence": "license_expression",
+            "flags": []
+          }
+        ],
+        "pending_confirmation": [
+          {
+            "package": "example-pkg-c",
+            "version": "*",
+            "spdx_id": null,
+            "confidence": "truncated_fallback",
+            "flags": [
+              "unresolved"
+            ]
+          },
+          {
+            "package": "example-pkg-d",
+            "version": "4.0.0",
+            "spdx_id": null,
+            "confidence": "truncated_fallback",
+            "flags": [
+              "unresolved"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "pyproject-pep621",
+      "inputs": {
+        "files": [
+          "pyproject.toml"
+        ]
+      },
+      "expect": {
+        "dependencies": [
+          {
+            "package": "example-pkg-b",
+            "version": "2.0.0",
+            "spdx_id": "Apache-2.0",
+            "confidence": "license_expression",
+            "flags": []
+          },
+          {
+            "package": "example-pkg-c",
+            "version": "3.0.0",
+            "spdx_id": "ISC",
+            "confidence": "trove_classifier",
+            "flags": []
+          },
+          {
+            "package": "example-pkg-e",
+            "version": "5.0.0",
+            "spdx_id": "MPL-2.0",
+            "confidence": "license_expression",
+            "flags": []
+          }
+        ],
+        "pending_confirmation": [
+          {
+            "package": "example-pkg-a",
+            "version": "1.0.0",
+            "spdx_id": null,
+            "confidence": "truncated_fallback",
+            "flags": [
+              "unresolved"
+            ]
+          },
+          {
+            "package": "example-pkg-d",
+            "version": "4.0.0",
+            "spdx_id": null,
+            "confidence": "truncated_fallback",
+            "flags": [
+              "unresolved"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "pyproject-poetry",
+      "inputs": {
+        "files": [
+          "pyproject.toml"
+        ]
+      },
+      "expect": {
+        "dependencies": [
+          {
+            "package": "example-pkg-a",
+            "version": "1.0.0",
+            "spdx_id": "MIT",
+            "confidence": "license_expression",
+            "flags": []
+          }
+        ],
+        "pending_confirmation": [
+          {
+            "package": "example-pkg-b",
+            "version": "2.0.0",
+            "spdx_id": null,
+            "confidence": "truncated_fallback",
+            "flags": [
+              "unresolved"
+            ]
+          },
+          {
+            "package": "example-pkg-c",
+            "version": "3.0.0",
+            "spdx_id": null,
+            "confidence": "truncated_fallback",
+            "flags": [
+              "unresolved"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "unknown-and-missing",
+      "inputs": {
+        "files": [
+          "package.json"
+        ]
+      },
+      "expect": {
+        "dependencies": [
+          {
+            "package": "example-pkg-b",
+            "version": "2.0.0",
+            "spdx_id": "GPL-3.0",
+            "confidence": "license_first_line",
+            "flags": [
+              "version-ambiguous",
+              "deprecated-id"
+            ]
+          },
+          {
+            "package": "example-pkg-e",
+            "version": "5.0.0",
+            "spdx_id": "Apache-2.0",
+            "confidence": "license_first_line",
+            "flags": []
+          }
+        ],
+        "pending_confirmation": [
+          {
+            "package": "example-pkg-a",
+            "version": "1.0.0",
+            "spdx_id": "GPL-unknown",
+            "confidence": "license_expression",
+            "flags": [
+              "family-unknown"
+            ]
+          },
+          {
+            "package": "example-pkg-b",
+            "version": "2.0.0",
+            "spdx_id": "GPL-3.0",
+            "confidence": "license_first_line",
+            "flags": [
+              "version-ambiguous",
+              "deprecated-id"
+            ]
+          },
+          {
+            "package": "example-pkg-c",
+            "version": "3.0.0",
+            "spdx_id": null,
+            "confidence": "truncated_fallback",
+            "flags": [
+              "unresolved"
+            ]
+          },
+          {
+            "package": "example-pkg-d",
+            "version": "4.0.0",
+            "spdx_id": null,
+            "confidence": "truncated_fallback",
+            "flags": [
+              "unresolved"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

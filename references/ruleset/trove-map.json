@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "ruleset_version": "r0.1.0",
+  "entries": [
+    {
+      "classifier": "License :: OSI Approved :: BSD License",
+      "spdx_id": "BSD-3-Clause",
+      "source_url": "https://pypi.org/classifiers/",
+      "checked_on": "2026-10-17"
+    },
+    {
+      "classifier": "License :: OSI Approved :: Eclipse Public License 2.0 (EPL-2.0)",
+      "spdx_id": "EPL-2.0",
+      "source_url": "https://pypi.org/classifiers/",
+      "checked_on": "2026-10-17"
+    },
+    {
+      "classifier": "License :: OSI Approved :: ISC License (ISCL)",
+      "spdx_id": "ISC",
+      "source_url": "https://pypi.org/classifiers/",
+      "checked_on": "2026-10-17"
+    },
+    {
+      "classifier": "License :: OSI Approved :: MIT License",
+      "spdx_id": "MIT",
+      "source_url": "https://pypi.org/classifiers/",
+      "checked_on": "2026-10-17"
+    },
+    {
+      "classifier": "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
+      "spdx_id": "MPL-2.0",
+      "source_url": "https://pypi.org/classifiers/",
+      "checked_on": "2026-10-17"
+    },
+    {
+      "classifier": "License :: OSI Approved :: The Unlicense (Unlicense)",
+      "spdx_id": "Unlicense",
+      "source_url": "https://pypi.org/classifiers/",
+      "checked_on": "2026-10-17"
+    },
+    {
+      "classifier": "License :: OSI Approved :: zlib/libpng License",
+      "spdx_id": "Zlib",
+      "source_url": "https://pypi.org/classifiers/",
+      "checked_on": "2026-10-17"
+    }
+  ]
+}

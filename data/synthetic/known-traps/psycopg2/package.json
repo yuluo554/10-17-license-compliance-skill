@@ -1,0 +1,10 @@
+{
+  "name": "example-app",
+  "version": "1.0.0",
+  "dependencies": {
+    "psycopg2": {
+      "version": "2.9.13",
+      "license": "LGPL with exceptions"
+    }
+  }
+}

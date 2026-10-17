@@ -1,0 +1,31 @@
+{
+  "name": "example-app",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "example-pkg-a": {
+      "version": "1.0.0",
+      "license": "MIT"
+    },
+    "example-pkg-b": {
+      "version": "2.1.0",
+      "license": {
+        "type": "Apache-2.0"
+      }
+    },
+    "example-pkg-c": {
+      "version": "3.0.0",
+      "licenses": [
+        {
+          "type": "MIT"
+        },
+        {
+          "type": "Apache-2.0"
+        }
+      ]
+    },
+    "example-pkg-d": {
+      "version": "4.0.0"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "example-app",
+  "version": "1.0.0",
+  "dependencies": {
+    "example-pkg-a": {
+      "version": "1.0.0",
+      "license": "GPL"
+    },
+    "example-pkg-b": {
+      "version": "2.0.0",
+      "license": "GPL v3"
+    },
+    "example-pkg-c": {
+      "version": "3.0.0"
+    },
+    "example-pkg-d": {
+      "version": "4.0.0",
+      "license": "Proprietary Internal Use Only"
+    },
+    "example-pkg-e": {
+      "version": "5.0.0",
+      "license": "Apache License, Version 2.0"
+    }
+  }
+}

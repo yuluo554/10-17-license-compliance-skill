@@ -1,0 +1,10 @@
+[tool.poetry]
+name = "example-app"
+version = "1.0.0"
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+example-pkg-a = { version = "1.0.0", license = "MIT" }
+example-pkg-b = { version = "2.0.0" }
+example-pkg-c = "^3.0.0"

@@ -1,0 +1,33 @@
+{
+  "crossRef": [
+    {
+      "isLive": true,
+      "isValid": true,
+      "isWayBackLink": false,
+      "match": "false",
+      "order": 1,
+      "timestamp": "2026-09-16T17:07:32Z",
+      "url": "https://people.freebsd.org/~phk/"
+    },
+    {
+      "isLive": true,
+      "isValid": true,
+      "isWayBackLink": false,
+      "match": "false",
+      "order": 0,
+      "timestamp": "2026-09-16T17:07:32Z",
+      "url": "https://fedoraproject.org/wiki/Licensing/Beerware"
+    }
+  ],
+  "isDeprecatedLicenseId": false,
+  "isOsiApproved": false,
+  "licenseId": "Beerware",
+  "licenseText": "\"THE BEER-WARE LICENSE\" (Revision 42):  <phk@FreeBSD.ORG> wrote this file. As long as you retain this notice you  can do whatever you want with this stuff. If we meet some day, and you think  this stuff is worth it, you can buy me a beer in return Poul-Henning Kamp\n",
+  "licenseTextHtml": "\n       <p>&quot;THE BEER-WARE LICENSE&quot; (Revision 42):</p>\n\n      <p><var class=\"replaceable-license-text\"><span title=\"can be replaced with the pattern <phk@FreeBSD.ORG>|<phk@login.dkuug.dk>\"> &lt;phk@FreeBSD.ORG&gt;</span></var> wrote this file. As long as you retain\n         this notice you can do whatever you want with this stuff. If we meet some day, and you think this\n         stuff is worth it, you can buy me a beer in return Poul-Henning Kamp</p>\n\n    ",
+  "name": "Beerware License",
+  "seeAlso": [
+    "https://fedoraproject.org/wiki/Licensing/Beerware",
+    "https://people.freebsd.org/~phk/"
+  ],
+  "standardLicenseTemplate": "\"THE BEER-WARE LICENSE\" (Revision 42):\n\n<<var;name=\"email\";original=\"<phk@FreeBSD.ORG>\";match=\"<phk@FreeBSD.ORG>|<phk@login.dkuug.dk>\">> wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return Poul-Henning Kamp\n\n"
+}

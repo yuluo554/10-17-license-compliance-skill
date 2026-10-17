@@ -1,0 +1,24 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example</groupId>
+  <artifactId>example-app</artifactId>
+  <version>1.0.0</version>
+  <licenses>
+    <license>
+      <name>Apache-2.0</name>
+    </license>
+  </licenses>
+  <dependencies>
+    <dependency>
+      <groupId>com.example</groupId>
+      <artifactId>pkg-a</artifactId>
+      <version>1.0.0</version>
+      <license>MIT</license>
+    </dependency>
+    <dependency>
+      <groupId>com.example</groupId>
+      <artifactId>pkg-b</artifactId>
+      <version>2.0.0</version>
+    </dependency>
+  </dependencies>
+</project>

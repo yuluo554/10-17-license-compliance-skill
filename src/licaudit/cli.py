@@ -91,6 +91,7 @@ def build_parser():
 
     bench = subparsers.add_parser("bench", help="运行内置基准")
     bench.add_argument("--only", default=None, help="只跑指定套件（未知名 → exit 2）")
+    bench.add_argument("--data-dir", default="data", help="数据目录")
     bench.set_defaults(handler=pipeline.run_bench)
 
     selftest = subparsers.add_parser("selftest", help="可证伪自检")

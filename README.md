@@ -2,9 +2,9 @@
 
 开源许可证合规审查 Skill：读依赖清单，归一化为 SPDX 标识，结合分发 / 链接 / 网络交互判定传染与冲突，输出中文《第三方开源清单》。
 
-> 当前状态：**M0 骨架**。CLI 契约、退出码、规则包硬门、自检与三条调用通路已就绪；
-> `scan` / `assess` / `report` 在规则包缺失时真实返回 `3`，实现分别落在 M1 / M2–M4 / M5。
-> 里程碑与 DoD 见 [plan/05-里程碑.md](plan/05-里程碑.md)。
+> 当前状态：**M1 已完成**。SPDX 快照、规则包、合成清单与真值库已冻结入仓；
+> `scan` / `verify-data` / `bench --only m1` 可用。`assess` / `report` 属 M2–M5，
+> 规则包就绪后明确报「未实现」并返回 `2`。里程碑与 DoD 见 [plan/05-里程碑.md](plan/05-里程碑.md)。
 
 ## 它解决什么
 
@@ -29,17 +29,23 @@ pip install -e ".[dev]"
 
 ## 快速开始
 
-### 现在就能跑（M0 骨架）
+### 现在就能跑（M1）
 
 ```bash
-# 1. 只跑纯内部不变量自检（不依赖规则包）
+# 1. 只跑纯内部不变量自检
 licaudit selftest --core
 
-# 2. 查看规则包定位情况：M0 尚无规则包 → 预期 exit 3
+# 2. 规则包与快照状态
 licaudit status
 
-# 3. 完整自检：同样因缺规则包而 exit 1（这是自检可证伪的证据）
-licaudit selftest
+# 3. 扫描依赖清单 → inventory.json
+licaudit scan data/synthetic/npm-basic/package.json --out-dir out
+
+# 4. 用参照实现对账冻结真值库
+licaudit verify-data
+
+# 5. 内置基准（M1）
+licaudit bench --only m1
 ```
 
 未安装时的等价入口（启动器会把仓库 `src` 放进 `sys.path`）：
@@ -52,31 +58,38 @@ PYTHONPATH=src python -m licaudit selftest --core
 **未安装时 `python -m licaudit` 会报 `No module named licaudit`**——模块方式依赖安装；
 Skill 场景（agent 直接读仓库）用启动器，或设置 `PYTHONPATH=src`。
 
-### M1–M5 落地后可用
+### M2–M5 落地后可用
 
 ```bash
-# 扫描依赖清单 → inventory.json
-licaudit scan data/synthetic/example-project/package.json --out-dir out
-
-# 画像 + 场景 + 冲突判定
+# 画像 + 场景 + 冲突判定（M2–M4）
 licaudit assess --inventory out/inventory.json --scenario saas \
   --outbound-license pending --scenario-note "用户原话" --out-dir out
 
-# 中文《第三方开源清单》
+# 中文《第三方开源清单》（M5）
 licaudit report --out-dir out --format md
 licaudit report --out-dir out --format csv
-
-# 真值对账与内置基准
-licaudit verify-data
-licaudit bench
 ```
 
-目前这些命令**先过规则包硬门**：规则包缺失直接 `exit 3`，规则包就绪后明确提示「该阶段未实现」并 `exit 2`，
-**不会写出占位产物，也不会返回 `exit 0` 假装成功**。
+`assess` / `report` 目前**先过规则包硬门**：规则包缺失直接 `exit 3`；规则包就绪后
+明确提示「该阶段未实现」并 `exit 2`，**不会写出占位产物，也不会返回 `exit 0` 假装成功**。
 
-**M0 阶段说明**：规则包 `manifest.json` 尚未生成（由 M1 的规则包生成器产出），
-因此 `status` / `scan` / `assess` / `report` 都会返回 `exit 3`（规则包缺失）。
-这是**刻意**的——规则包缺失不得退化成「零依赖、无风险」的 `exit 0`。
+## 数据与规则包
+
+| 目录 | 内容 | 生成方式 |
+| --- | --- | --- |
+| `references/spdx/` | SPDX 3.29.0 快照（740 条许可 + 86 条例外 + 48 份全文） | `py -3.12 tools/fetch_spdx.py --out references/spdx` |
+| `references/curated/` | 人工核对表（档位/义务/锚点、trove 映射、坑位元数据） | 人工维护 |
+| `references/ruleset/` | 生成物（**禁手改**） | `py -3.12 tools/gen_ruleset.py` |
+| `data/synthetic/` | 合成依赖清单（11 个用例） | `py -3.12 tools/gen_synthetic.py` |
+| `data/truth/` | 冻结真值（只存输入与期望） | 同上 |
+
+三个生成器都支持 `--check`：重生成到临时目录并**逐字节**比对冻结产物。
+
+```bash
+py -3.12 -X utf8 tools/fetch_spdx.py --check --out references/spdx
+py -3.12 -X utf8 tools/gen_ruleset.py --check
+py -3.12 -X utf8 tools/gen_synthetic.py --check
+```
 
 ## 退出码
 

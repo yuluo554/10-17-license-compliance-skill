@@ -1,0 +1,1376 @@
+{
+  "schema_version": 1,
+  "ruleset_version": "r0.1.0",
+  "entries": [
+    {
+      "license_id": "0BSD",
+      "tier": "permissive",
+      "obligations": [],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/0BSD.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "AGPL-3.0",
+      "tier": "network-copyleft",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "mark-modifications",
+        "provide-source",
+        "same-license",
+        "patent-grant",
+        "network-source"
+      ],
+      "patent_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/AGPL-3.0.json#licenseText",
+          "section": "条款原文",
+          "quote": "11. Patents."
+        }
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/AGPL-3.0.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "13. Remote Network Interaction; Use with the GNU General Public License."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "AGPL-3.0-only",
+      "tier": "network-copyleft",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "mark-modifications",
+        "provide-source",
+        "same-license",
+        "patent-grant",
+        "network-source"
+      ],
+      "patent_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/AGPL-3.0-only.json#licenseText",
+          "section": "条款原文",
+          "quote": "11. Patents."
+        }
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/AGPL-3.0-only.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "13. Remote Network Interaction; Use with the GNU General Public License."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "AGPL-3.0-or-later",
+      "tier": "network-copyleft",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "mark-modifications",
+        "provide-source",
+        "same-license",
+        "patent-grant",
+        "network-source"
+      ],
+      "patent_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/AGPL-3.0-or-later.json#licenseText",
+          "section": "条款原文",
+          "quote": "11. Patents."
+        }
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/AGPL-3.0-or-later.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "13. Remote Network Interaction; Use with the GNU General Public License."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "Apache-1.1",
+      "tier": "permissive",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "trademark-restriction"
+      ],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/Apache-1.1.json#licenseText",
+          "section": "条款原文",
+          "quote": "4. The names \"Apache\" and \"Apache Software Foundation\" must not be used to endorse or promote products derived from this software without prior written permission. For written permission, please contact apache@apache.org."
+        }
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/Apache-1.1.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "Apache-2.0",
+      "tier": "permissive",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "patent-grant",
+        "trademark-restriction"
+      ],
+      "patent_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/Apache-2.0.json#licenseText",
+          "section": "条款原文",
+          "quote": "3. Grant of Patent License. Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable (except as stated in this section) patent license to make, have made, use, offer to sell, sell, import, and otherwise transfer the Work, where such license applies only to those patent claims licensable by such Contributor that are necessarily infringed by their Contribution(s) alone or by combination of their Contribution(s) with the Work to which such Contribution(s) was submitted. If You institute patent litigation against any entity (including a cross-claim or counterclaim in a lawsuit) alleging that the Work or a Contribution incorporated within the Work constitutes direct or contributory patent infringement, then any patent licenses granted to You under this License for that Work shall terminate as of the date such litigation is filed."
+        }
+      },
+      "trademark_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/Apache-2.0.json#licenseText",
+          "section": "条款原文",
+          "quote": "6. Trademarks. This License does not grant permission to use the trade names, trademarks, service marks, or product names of the Licensor, except as required for reasonable and customary use in describing the origin of the Work and reproducing the content of the NOTICE file."
+        }
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/Apache-2.0.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "4. Redistribution. You may reproduce and distribute copies of the Work or Derivative Works thereof in any medium, with or without modifications, and in Source or Object form, provided that You meet the following conditions:"
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "Artistic-2.0",
+      "tier": "permissive",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "mark-modifications"
+      ],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/Artistic-2.0.json#licenseText",
+          "section": "条款原文",
+          "quote": "(12) This license does not grant you the right to use any trademark, service mark, tradename, or logo of the Copyright Holder."
+        }
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/Artistic-2.0.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "(12) This license does not grant you the right to use any trademark, service mark, tradename, or logo of the Copyright Holder."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "BSD-2-Clause",
+      "tier": "permissive",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text"
+      ],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/BSD-2-Clause.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "BSD-3-Clause",
+      "tier": "permissive",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text"
+      ],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/BSD-3-Clause.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "BSD-3-Clause-Clear",
+      "tier": "permissive",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text"
+      ],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/BSD-3-Clause-Clear.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "BSL-1.0",
+      "tier": "permissive",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text"
+      ],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/BSL-1.0.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "The copyright notices in the Software and this entire statement, including the above license grant, this restriction and the following disclaimer, must be included in all copies of the Software, in whole or in part, and all derivative works of the Software, unless such copies or derivative works are solely in the form of machine-executable object code generated by a source language processor."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "BUSL-1.1",
+      "tier": "source-available",
+      "obligations": [
+        "retain-copyright",
+        "trademark-restriction"
+      ],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/BUSL-1.1.json#licenseText",
+          "section": "条款原文",
+          "quote": "\"Business Source License\" is a trademark of MariaDB Corporation Ab."
+        }
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/BUSL-1.1.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "The Licensor hereby grants you the right to copy, modify, create derivative"
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "Beerware",
+      "tier": "permissive",
+      "obligations": [],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/Beerware.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "As long as you retain this notice you can do whatever you want with this stuff."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "CC0-1.0",
+      "tier": "permissive",
+      "obligations": [],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/CC0-1.0.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "a. No trademark or patent rights held by Affirmer are waived, abandoned,"
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "CDDL-1.0",
+      "tier": "weak-copyleft",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "mark-modifications",
+        "provide-source",
+        "same-license",
+        "patent-grant"
+      ],
+      "patent_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/CDDL-1.0.json#licenseText",
+          "section": "条款原文",
+          "quote": "2. License Grants."
+        }
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/CDDL-1.0.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "3. Distribution Obligations."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "CDDL-1.1",
+      "tier": "weak-copyleft",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "mark-modifications",
+        "provide-source",
+        "same-license",
+        "patent-grant"
+      ],
+      "patent_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/CDDL-1.1.json#licenseText",
+          "section": "条款原文",
+          "quote": "2. License Grants."
+        }
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/CDDL-1.1.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "3. Distribution Obligations."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "EPL-1.0",
+      "tier": "weak-copyleft",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "mark-modifications",
+        "provide-source",
+        "same-license",
+        "patent-grant"
+      ],
+      "patent_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/EPL-1.0.json#licenseText",
+          "section": "条款原文",
+          "quote": "2. GRANT OF RIGHTS"
+        }
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/EPL-1.0.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "3. REQUIREMENTS"
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "EPL-2.0",
+      "tier": "weak-copyleft",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "mark-modifications",
+        "provide-source",
+        "same-license",
+        "patent-grant",
+        "trademark-restriction"
+      ],
+      "patent_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/EPL-2.0.json#licenseText",
+          "section": "条款原文",
+          "quote": "2. GRANT OF RIGHTS"
+        }
+      },
+      "trademark_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/EPL-2.0.json#licenseText",
+          "section": "条款原文",
+          "quote": "3.3 Contributors may not remove or alter any copyright, patent, trademark, attribution notices, disclaimers of warranty, or limitations of liability (‘notices’) contained within the Program from any copy of the Program which they Distribute, provided that Contributors may add their own appropriate notices."
+        }
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/EPL-2.0.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "3. REQUIREMENTS"
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "Elastic-2.0",
+      "tier": "source-available",
+      "obligations": [
+        "retain-copyright",
+        "trademark-restriction"
+      ],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/Elastic-2.0.json#licenseText",
+          "section": "条款原文",
+          "quote": "of the licensor in the software. Any use of the licensor’s trademarks is subject"
+        }
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/Elastic-2.0.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "The licensor grants you a license, under any patent claims the licensor can"
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "GPL-2.0",
+      "tier": "strong-copyleft",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "mark-modifications",
+        "provide-source",
+        "same-license"
+      ],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/GPL-2.0.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "2. You may modify your copy or copies of the Program or any portion of it, thus forming a work based on the Program, and copy and distribute such modifications or work under the terms of Section 1 above, provided that you also meet all of these conditions:"
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "GPL-2.0-only",
+      "tier": "strong-copyleft",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "mark-modifications",
+        "provide-source",
+        "same-license"
+      ],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/GPL-2.0-only.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "2. You may modify your copy or copies of the Program or any portion of it, thus forming a work based on the Program, and copy and distribute such modifications or work under the terms of Section 1 above, provided that you also meet all of these conditions:"
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "GPL-2.0-or-later",
+      "tier": "strong-copyleft",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "mark-modifications",
+        "provide-source",
+        "same-license"
+      ],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/GPL-2.0-or-later.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "2. You may modify your copy or copies of the Program or any portion of it, thus forming a work based on the Program, and copy and distribute such modifications or work under the terms of Section 1 above, provided that you also meet all of these conditions:"
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "GPL-3.0",
+      "tier": "strong-copyleft",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "mark-modifications",
+        "provide-source",
+        "same-license",
+        "patent-grant"
+      ],
+      "patent_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/GPL-3.0.json#licenseText",
+          "section": "条款原文",
+          "quote": "11. Patents."
+        }
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/GPL-3.0.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "5. Conveying Modified Source Versions."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "GPL-3.0-only",
+      "tier": "strong-copyleft",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "mark-modifications",
+        "provide-source",
+        "same-license",
+        "patent-grant"
+      ],
+      "patent_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/GPL-3.0-only.json#licenseText",
+          "section": "条款原文",
+          "quote": "11. Patents."
+        }
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/GPL-3.0-only.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "5. Conveying Modified Source Versions."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "GPL-3.0-or-later",
+      "tier": "strong-copyleft",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "mark-modifications",
+        "provide-source",
+        "same-license",
+        "patent-grant"
+      ],
+      "patent_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/GPL-3.0-or-later.json#licenseText",
+          "section": "条款原文",
+          "quote": "11. Patents."
+        }
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/GPL-3.0-or-later.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "5. Conveying Modified Source Versions."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "ISC",
+      "tier": "permissive",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text"
+      ],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/ISC.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "LGPL-2.1",
+      "tier": "weak-copyleft",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "mark-modifications",
+        "provide-source",
+        "same-license"
+      ],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/LGPL-2.1.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "6. As an exception to the Sections above, you may also combine or link a \"work that uses the Library\" with the Library to produce a work containing portions of the Library, and distribute that work under terms of your choice, provided that the terms permit modification of the work for the customer's own use and reverse engineering for debugging such modifications."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "LGPL-2.1-only",
+      "tier": "weak-copyleft",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "mark-modifications",
+        "provide-source",
+        "same-license"
+      ],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/LGPL-2.1-only.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "6. As an exception to the Sections above, you may also combine or link a \"work that uses the Library\" with the Library to produce a work containing portions of the Library, and distribute that work under terms of your choice, provided that the terms permit modification of the work for the customer's own use and reverse engineering for debugging such modifications."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "LGPL-2.1-or-later",
+      "tier": "weak-copyleft",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "mark-modifications",
+        "provide-source",
+        "same-license"
+      ],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/LGPL-2.1-or-later.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "6. As an exception to the Sections above, you may also combine or link a \"work that uses the Library\" with the Library to produce a work containing portions of the Library, and distribute that work under terms of your choice, provided that the terms permit modification of the work for the customer's own use and reverse engineering for debugging such modifications."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "LGPL-3.0-only",
+      "tier": "weak-copyleft",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "mark-modifications",
+        "provide-source",
+        "same-license"
+      ],
+      "patent_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/LGPL-3.0-only.json#licenseText",
+          "section": "条款原文",
+          "quote": "4. Combined Works."
+        }
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/LGPL-3.0-only.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "4. Combined Works."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "LGPL-3.0-or-later",
+      "tier": "weak-copyleft",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "mark-modifications",
+        "provide-source",
+        "same-license"
+      ],
+      "patent_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/LGPL-3.0-or-later.json#licenseText",
+          "section": "条款原文",
+          "quote": "4. Combined Works."
+        }
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/LGPL-3.0-or-later.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "4. Combined Works."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "MIT",
+      "tier": "permissive",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text"
+      ],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/MIT.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "The above copyright notice and this permission notice shall be included in all copies or substantial"
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "MIT-0",
+      "tier": "permissive",
+      "obligations": [],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/MIT-0.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "Permission is hereby granted, free of charge, to any person obtaining a copy of this"
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "MPL-1.1",
+      "tier": "weak-copyleft",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "mark-modifications",
+        "provide-source",
+        "same-license"
+      ],
+      "patent_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/MPL-1.1.json#licenseText",
+          "section": "条款原文",
+          "quote": "3.7. Larger Works. You may create a Larger Work by combining Covered Code with other code not governed by the terms of this License and distribute the Larger Work as a single product. In such a case, You must make sure the requirements of this License are fulfilled for the Covered Code."
+        }
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/MPL-1.1.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "3.7. Larger Works. You may create a Larger Work by combining Covered Code with other code not governed by the terms of this License and distribute the Larger Work as a single product. In such a case, You must make sure the requirements of this License are fulfilled for the Covered Code."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "MPL-2.0",
+      "tier": "weak-copyleft",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "mark-modifications",
+        "provide-source",
+        "same-license",
+        "patent-grant",
+        "trademark-restriction"
+      ],
+      "patent_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/MPL-2.0.json#licenseText",
+          "section": "条款原文",
+          "quote": "2.1. Grants"
+        }
+      },
+      "trademark_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/MPL-2.0.json#licenseText",
+          "section": "条款原文",
+          "quote": "This License does not grant any rights in the trademarks, service marks,"
+        }
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/MPL-2.0.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "3.1. Distribution of Source Form"
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "MS-PL",
+      "tier": "permissive",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "patent-grant"
+      ],
+      "patent_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/MS-PL.json#licenseText",
+          "section": "条款原文",
+          "quote": "2. Grant of Rights"
+        }
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/MS-PL.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "2. Grant of Rights"
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "MS-RL",
+      "tier": "weak-copyleft",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "mark-modifications",
+        "provide-source",
+        "same-license"
+      ],
+      "patent_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/MS-RL.json#licenseText",
+          "section": "条款原文",
+          "quote": "3. Conditions and Limitations"
+        }
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/MS-RL.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "3. Conditions and Limitations"
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "NCSA",
+      "tier": "permissive",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text"
+      ],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/NCSA.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimers."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "OpenSSL",
+      "tier": "permissive",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "trademark-restriction"
+      ],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/OpenSSL.json#licenseText",
+          "section": "条款原文",
+          "quote": "4. The names \"OpenSSL Toolkit\" and \"OpenSSL Project\" must not be used to endorse or promote products derived from this software without prior written permission. For written permission, please contact openssl-core@openssl.org."
+        }
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/OpenSSL.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "PHP-3.01",
+      "tier": "permissive",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "trademark-restriction"
+      ],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/PHP-3.01.json#licenseText",
+          "section": "条款原文",
+          "quote": "3. The name \"PHP\" must not be used to endorse or promote products derived from this software without prior written permission. For written permission, please contact group@php.net."
+        }
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/PHP-3.01.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "PSF-2.0",
+      "tier": "permissive",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text"
+      ],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/PSF-2.0.json#licenseText",
+          "section": "条款原文",
+          "quote": "trademarks or trade name in a trademark sense to endorse or promote"
+        }
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/PSF-2.0.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "grants Licensee a nonexclusive, royalty-free, world-wide license to reproduce,"
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "PostgreSQL",
+      "tier": "permissive",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text"
+      ],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/PostgreSQL.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "Permission to use, copy, modify, and distribute this software and its documentation for any purpose, without fee, and without a written agreement is hereby granted, provided that the above copyright notice and this paragraph and the following two paragraphs appear in all copies."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "Python-2.0",
+      "tier": "permissive",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text"
+      ],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/Python-2.0.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "2. Subject to the terms and conditions of this License Agreement, PSF hereby grants Licensee a nonexclusive, royalty-free, world-wide license to reproduce, analyze, test, perform and/or display publicly, prepare derivative works, distribute, and otherwise use Python alone or in any derivative version, provided, however, that PSF's License Agreement and PSF's notice of copyright, i.e., \"Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006 Python Software Foundation; All Rights Reserved\" are retained in Python alone or in any derivative version prepared by Licensee."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "SSPL-1.0",
+      "tier": "network-copyleft",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text",
+        "mark-modifications",
+        "provide-source",
+        "same-license",
+        "patent-grant",
+        "network-source"
+      ],
+      "patent_clause": {
+        "present": true,
+        "anchor": {
+          "source": "spdx-license-text",
+          "ref": "texts/SSPL-1.0.json#licenseText",
+          "section": "条款原文",
+          "quote": "11. Patents."
+        }
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/SSPL-1.0.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "13. Offering the Program as a Service."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "UPL-1.0",
+      "tier": "permissive",
+      "obligations": [
+        "retain-copyright",
+        "include-license-text"
+      ],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/UPL-1.0.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "Subject to the condition set forth below, permission is hereby granted to any person obtaining a copy of this software, associated documentation and/or data (collectively the \"Software\"), free of charge and under any and all copyright rights in the Software, and any and all patent rights owned or freely licensable by each licensor hereunder covering either (i) the unmodified Software as contributed to or provided by such licensor, or (ii) the Larger Works (as defined below), to deal in both"
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "Unlicense",
+      "tier": "permissive",
+      "obligations": [],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/Unlicense.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "This is free and unencumbered software released into the public domain."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "WTFPL",
+      "tier": "permissive",
+      "obligations": [],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/WTFPL.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "0. You just DO WHAT THE FUCK YOU WANT TO."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "license_id": "Zlib",
+      "tier": "permissive",
+      "obligations": [
+        "retain-copyright",
+        "mark-modifications"
+      ],
+      "patent_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "trademark_clause": {
+        "present": false,
+        "anchor": null
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/Zlib.json#licenseText",
+        "section": "许可证条款原文",
+        "quote": "2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    }
+  ],
+  "coverage": {
+    "tiers_total_ids": 740,
+    "tiers_sampled_ids": 48,
+    "note": "首期只覆盖清单实际出现的 SPDX ID；抽样覆盖，非全量穷举"
+  }
+}

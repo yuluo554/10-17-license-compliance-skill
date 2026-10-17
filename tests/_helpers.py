@@ -11,6 +11,8 @@ SRC = os.path.join(REPO_ROOT, "src")
 if SRC not in sys.path:
     sys.path.insert(0, SRC)
 
+__all__ = ["REPO_ROOT", "SRC", "make_ruleset_dir", "write_json"]
+
 
 def write_json(path, payload):
     with io.open(path, "w", encoding="utf-8", newline="\n") as stream:
