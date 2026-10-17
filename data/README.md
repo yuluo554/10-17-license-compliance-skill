@@ -63,8 +63,28 @@
   - `PyMySQL`：classifier 与表达式并存的形态；
   - `PyQt5`：多许可证 / 特殊条款形态。
   这四条用例的**期望输出由人工核对后写入真值文件并标注核对日期**，不得由解析器自身输出回填真值。
-- **冲突对真值**：至少包含一个已知不兼容对（`GPL-2.0-only` × `Apache-2.0`）与一组 `OR` / `AND` 求值用例。
+- **冲突对真值（M4）**：`data/truth/conflicts.json` 由 `tools/gen_conflict_truth.py` 从
+  `references/curated/conflict-pairs.json` + `references/curated/tiers.json` **直接推导**，
+  生成器不 import 生产冲突引擎；表达式求值用生成器内自带的迷你文法独立实现。
+  三侧覆盖：① 已知冲突对全命中（含 `GPL-2.0-only` × `Apache-2.0`）与未登记组合；
+  ② `OR` 最宽松 / `AND` 最严格（含嵌套与 `WITH`、未覆盖档位 → `resolved = false`）；
+  ③ `outbound = pending` → 全部条目 `pending` 且文案固定。实测：4 条冲突对 / 2 对未登记组合 / 6 条求值样例。
 - **场景真值**：八场景 × 链接方式的触发表由规则包给出，基准只引用不另写一份。
+- **画像真值（M2）**：`data/truth/profile.json` 由 `tools/gen_profile_truth.py` 从
+  `references/curated/tiers.json` **直接推导**，生成器不 import 生产画像引擎；锚点可定位性
+  用文件内的朴素实现独立校验。真值必须同时登记「有档位」与「`tier: null`」两侧，
+  否则未覆盖分支无人守。实测：52 个输入 ID → 48 条覆盖 + 4 条未覆盖。
+
+- **场景真值（M3）**：`data/truth/scenario.json` 由 `tools/gen_scenario_truth.py` 从
+  `references/curated/scenario-triggers.json` **直接推导**，生成器不 import 生产场景引擎。
+  真值同时登记 `expect.matrix`（八场景 × 链接方式 × 档位 × 网络交互 = 230 行）与
+  `expect.pending`（`tier: null` 分支）；链接方式轴场景的匹配用代表性交付形态（见 `inputs.link_scenario_delivery`）。
+
+- **处置真值（M5）**：`data/truth/actions.json` 由 `tools/gen_action_truth.py` 从
+  `references/curated/action-rules.json` + `references/curated/scenario-triggers.json`
+  **直接推导**，生成器不 import 生产处置引擎；谓词匹配用文件内的独立朴素实现。
+  真值登记**可达事实域**（6 组可达义务轴 × 确定冲突结论 × 依赖间冲突 × 链接方式 × 场景结论 = 192 组）
+  与每级处置的植入样本（`expect.levels`，四级各一条），并要求「零未覆盖 + 零死规则」。
 
 ### 3.3 冻结纪律
 
@@ -72,6 +92,16 @@
 - **M1 实测（2026-10-17）**：11 个合成用例 / 44 条真值期望；`verify-data` 全命中；解析 F1 = 1.0。
   坑位素材存于 `references/curated/trap-packages.json`（照实录入的 PyPI 元数据）。
 - 冻结物必须可 `--check` 位级复现：生成脚本 + 输入快照 → 生成物哈希与 manifest 一致。
+- **M2 实测（2026-10-17）**：`tools/gen_profile_truth.py --check` rc=0；
+  `licaudit bench --only m2` 52/52 命中。
+- **M3 实测（2026-10-17）**：`tools/gen_scenario_truth.py --check` rc=0；
+  `licaudit bench --only m3` 231/231 命中（6 条可用触发规则）。
+- **M4 实测（2026-10-17）**：`tools/gen_conflict_truth.py --check` rc=0；
+  `licaudit bench --only m4` 16/16 命中（4 条可用冲突对 + 2 对未登记组合 + 1 次无向复查 + 6 条求值样例 + 4 条待定条目）。
+- **M5 实测（2026-10-17）**：`tools/gen_action_truth.py --check` rc=0；
+  `licaudit bench --only m5` 196/196 命中（192 组确定输入 + 四级样本）；
+  合成用例增至 12 个 / 59 条真值期望（新增 `example-project`：15 个依赖、六种清单形态、全合成包名），
+  `verify-data` 全命中、解析 F1 = 1.0。
 
 ## 四、数值口径纪律
 

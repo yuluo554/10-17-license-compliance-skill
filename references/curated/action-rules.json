@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "obligation_axes": {
+    "retain-copyright": "notice",
+    "include-license-text": "notice",
+    "mark-modifications": "notice",
+    "patent-grant": "notice",
+    "trademark-restriction": "notice",
+    "provide-source": "source",
+    "network-source": "network-source",
+    "same-license": "same-license"
+  },
+  "entries": [
+    {
+      "id": "A-REPL-001",
+      "level": "replace_or_license",
+      "basis": "依赖要求以同许可发布（same-license），而项目 outbound 与之不相容：档位级判定已给出 incompatible，且同许可义务不能靠进程/容器边界规避，只能替换该依赖或另行取得商业授权。",
+      "when": {
+        "axes_any": [
+          "same-license"
+        ],
+        "conflict": [
+          "incompatible"
+        ],
+        "pair_conflict": [
+          "none"
+        ]
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/GPL-2.0-only.json#licenseText",
+        "section": "§6",
+        "quote": "You may not impose any further restrictions on the recipients' exercise of the rights granted herein."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "id": "A-REPL-002",
+      "level": "replace_or_license",
+      "basis": "清单内两条依赖的许可证组合已被规则包登记为 incompatible（依赖间冲突），且当前链接方式（无边界隔离 / 静态合并）使两者进入同一作品，无法通过进程或容器边界分开。",
+      "when": {
+        "pair_conflict": [
+          "incompatible"
+        ],
+        "link_mode": [
+          "none",
+          "static"
+        ]
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/Apache-2.0.json#licenseText",
+        "section": "§3",
+        "quote": "If You institute patent litigation against any entity (including a cross-claim or counterclaim in a lawsuit) alleging that the Work or a Contribution incorporated within the Work constitutes direct or contributory patent infringement, then any patent licenses granted to You under this License for that Work shall terminate as of the date such litigation is filed."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "id": "A-DECL-001",
+      "level": "declare",
+      "basis": "只触发了声明类义务（保留版权与许可声明、标注修改、商标/专利提示），且与项目 outbound 相容：把许可全文与版权声明随交付物一并提供即可，不需要改变架构。",
+      "when": {
+        "axes_only": [
+          [
+            "notice"
+          ]
+        ],
+        "conflict": [
+          "compatible"
+        ],
+        "pair_conflict": [
+          "none"
+        ]
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/MIT.json#licenseText",
+        "section": "条件段",
+        "quote": "The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "id": "A-ISOL-001",
+      "level": "isolate",
+      "basis": "触发了对应源码义务（provide-source），但该义务附着于「通过链接与库合并成同一作品」的情形：改用共享库/动态链接或把组件放进独立进程、容器边界，即可不再把库复制进交付物。",
+      "when": {
+        "axes_any": [
+          "source"
+        ],
+        "pair_conflict": [
+          "none"
+        ]
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/LGPL-2.1-only.json#licenseText",
+        "section": "§6(b)",
+        "quote": "Use a suitable shared library mechanism for linking with the Library. A suitable mechanism is one that (1) uses at run time a copy of the library already present on the user's computer system, rather than copying library functions into the executable, and (2) will operate properly with a modified version of the library, if the user installs one, as long as the modified version is interface-compatible with the version that the work was made with."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "id": "A-ISOL-002",
+      "level": "isolate",
+      "basis": "触发了网络交互提供源码义务（network-source）。该义务附着于「你修改并由用户远程交互的程序本身」：把该组件隔离为不修改、不与之合并的独立服务（进程/服务边界），即可不触发该条。",
+      "when": {
+        "axes_any": [
+          "network-source"
+        ],
+        "pair_conflict": [
+          "none"
+        ]
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/AGPL-3.0-only.json#licenseText",
+        "section": "§13",
+        "quote": "Notwithstanding any other provision of this License, if you modify the Program, your modified version must prominently offer all users interacting with it remotely through a computer network (if your version supports such interaction) an opportunity to receive the Corresponding Source of your version by providing access to the Corresponding Source from a network server at no charge, through some standard or customary means of facilitating copying of software."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "id": "A-ISOL-003",
+      "level": "isolate",
+      "basis": "依赖档位高于项目 outbound 档位（档位级粗判为 incompatible），但该依赖不附带同许可义务：其传染范围附着在文件/模块边界上，把该模块独立成包或独立进程交付即可满足，无须替换。",
+      "when": {
+        "conflict": [
+          "incompatible"
+        ],
+        "pair_conflict": [
+          "none"
+        ]
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/MPL-2.0.json#licenseText",
+        "section": "§3.3",
+        "quote": "You may create and distribute a Larger Work under terms of Your choice, provided that You also comply with the requirements of this License for the Covered Software."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "id": "A-ISOL-004",
+      "level": "isolate",
+      "basis": "清单内两条依赖的组合已被登记为 incompatible（依赖间冲突），但当前链接方式允许边界分离（动态链接 / 独立进程）：把冲突组件分进程或分容器交付，两者不构成同一作品，冲突消解。",
+      "when": {
+        "pair_conflict": [
+          "incompatible"
+        ],
+        "link_mode": [
+          "dynamic",
+          "separate-process"
+        ]
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/GPL-2.0-only.json#licenseText",
+        "section": "§2",
+        "quote": "In addition, mere aggregation of another work not based on the Program with the Program (or with a work based on the Program) on a volume of a storage or distribution medium does not bring the other work under the scope of this License."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "id": "A-OK-001",
+      "level": "ok",
+      "basis": "当前场景与链接方式下未触发任何需要行动的义务，且与项目 outbound 相容：依赖可直接使用，无附加动作。",
+      "when": {
+        "axes_only": [
+          []
+        ],
+        "conflict": [
+          "compatible"
+        ],
+        "pair_conflict": [
+          "none"
+        ]
+      },
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/0BSD.json#licenseText",
+        "section": "许可段",
+        "quote": "Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    }
+  ]
+}

@@ -8,7 +8,7 @@ import io
 
 import pytest
 
-from _helpers import make_ruleset_dir
+from _helpers import make_ruleset_dir, write_json
 
 from licaudit import cli
 from licaudit.exit_codes import EXIT_FINDINGS, EXIT_OK, EXIT_RULESET, EXIT_USAGE
@@ -118,23 +118,54 @@ def test_unimplemented_commands_need_ruleset_first(tmp_path, command, capsys, mo
     assert code == EXIT_RULESET, (command, out, err)
 
 
-def test_assess_still_reports_not_implemented(tmp_path, capsys):
-    """assess 属于 M2–M4：规则包就绪后明确报「未实现」→ exit 2，不写假产物。"""
+def test_assess_full_mode_requires_scenario_and_outbound(tmp_path, capsys):
+    """M3 全量模式：缺 ``--scenario`` / ``--outbound-license`` → exit 2，且不写产物。"""
     root = make_ruleset_dir(str(tmp_path / "rs"))
+    inventory = tmp_path / "inv.json"
+    write_json(str(inventory), {
+        "format": "licaudit-inventory",
+        "format_version": 1,
+        "dependencies": [],
+        "pending_confirmation": [],
+    })
     out_dir = tmp_path / "out"
+
     code, out, err = run(
-        [
-            "--rules-dir", root, "assess",
-            "--inventory", "inv.json",
-            "--scenario", "saas",
-            "--outbound-license", "pending",
-            "--out-dir", str(out_dir),
-        ],
+        ["--rules-dir", root, "assess", "--inventory", str(inventory),
+         "--outbound-license", "pending", "--out-dir", str(out_dir)],
         capsys,
     )
     assert code == EXIT_USAGE
-    assert "未实现" in err
-    assert not (out_dir / "profile.json").exists()
+    assert "场景" in err
+    assert not (out_dir / "scenario.json").exists()
+
+    code, out, err = run(
+        ["--rules-dir", root, "assess", "--inventory", str(inventory),
+         "--scenario", "saas", "--out-dir", str(out_dir)],
+        capsys,
+    )
+    assert code == EXIT_USAGE
+    assert "outbound" in err
+    assert not (out_dir / "scenario.json").exists()
+
+
+def test_assess_full_mode_rejects_unknown_outbound_id(tmp_path, capsys):
+    root = make_ruleset_dir(str(tmp_path / "rs"))
+    inventory = tmp_path / "inv.json"
+    write_json(str(inventory), {
+        "format": "licaudit-inventory",
+        "format_version": 1,
+        "dependencies": [],
+        "pending_confirmation": [],
+    })
+    code, out, err = run(
+        ["--rules-dir", root, "assess", "--inventory", str(inventory),
+         "--scenario", "saas", "--outbound-license", "Not-A-Real-License",
+         "--out-dir", str(tmp_path / "out")],
+        capsys,
+    )
+    assert code == EXIT_USAGE
+    assert "outbound" in err
 
 
 def test_scan_missing_manifest_is_usage_error(tmp_path, capsys):

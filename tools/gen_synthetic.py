@@ -72,6 +72,7 @@ PLAIN_IDS = (
     "Unlicense", "Zlib", "MPL-2.0", "EPL-2.0", "GPL-2.0-only", "GPL-3.0-only",
     "LGPL-2.1-only", "LGPL-3.0-only", "AGPL-3.0-only", "SSPL-1.0", "BUSL-1.1",
     "GPL-2.0-or-later", "GPL-3.0-or-later", "MIT-0", "BSL-1.0", "UPL-1.0",
+    "Python-2.0",
 )
 PLAIN_ID_SET = set(PLAIN_IDS)
 
@@ -601,6 +602,172 @@ require example.com/example/c v3.0.0 // license: BSD-3-Clause
         "族名 → <族>-unknown；缺 license → 兜底；自由文本不被猜；首行锚定识别版本",
     ))
 
+    # --- example-project（M5 示例项目：六种清单形态 + 四级处置） ---
+    # 15 个依赖，覆盖 package.json / package-lock.json / requirements.txt /
+    # pyproject.toml / go.mod / pom.xml 六种清单形态；包名全部合成（K28）。
+    # 处置分布（实测，见 plan/HANDOFF-M6.md §一）：
+    #   分发场景 + MIT outbound        → ok / isolate / replace_or_license
+    #   SaaS 场景 + Elastic-2.0 outbound → ok / declare / replace_or_license
+    # 单场景下四级处置无法同时出现（declare 需 SaaS + source-available outbound，
+    # replace 需依赖间不兼容对或同许可义务与不相容 outbound），故示例报告给两份运行。
+    example_deps = (
+        ("a", "1.0.0", "MIT", True),
+        ("b", "2.0.0", "Apache-2.0", True),
+        ("c", "3.0.0", "GPL-3.0-only", True),
+        ("d", "4.0.0", "GPL-2.0-only", True),
+        ("e", "5.0.0", "MPL-2.0", True),
+        ("f", "6.0.0", "LGPL-2.1-only", True),
+        ("g", "7.0.0", None, False),
+        ("h", "8.0.0", "AGPL-3.0-only", True),
+        ("i", "9.0.0", "BSD-3-Clause", True),
+        ("j", "10.0.0", "BUSL-1.1", True),
+        ("m", "13.0.0", "Python-2.0", True),
+        ("n", "14.0.0", "0BSD", True),
+        ("o", "15.0.0", "GPL", True),
+    )
+    example_package_json = """{
+  "name": "example-app",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "example-pkg-a": {
+      "version": "1.0.0",
+      "license": "MIT"
+    },
+    "example-pkg-b": {
+      "version": "2.0.0",
+      "license": {
+        "type": "Apache-2.0"
+      }
+    },
+    "example-pkg-c": {
+      "version": "3.0.0",
+      "license": "GPL-3.0-only"
+    },
+    "example-pkg-d": {
+      "version": "4.0.0",
+      "license": "GPL-2.0-only"
+    }
+  }
+}
+"""
+    example_lock = """{
+  "name": "example-app",
+  "lockfileVersion": 3,
+  "packages": {
+    "": {
+      "name": "example-app",
+      "version": "1.0.0",
+      "license": "MIT"
+    },
+    "node_modules/example-pkg-e": {
+      "version": "5.0.0",
+      "license": "MPL-2.0"
+    },
+    "node_modules/example-pkg-f": {
+      "version": "6.0.0",
+      "license": "LGPL-2.1-only"
+    },
+    "node_modules/example-pkg-g": {
+      "version": "7.0.0"
+    }
+  }
+}
+"""
+    example_requirements = """# 示例项目：SaaS / 分发两种场景共用同一批依赖
+example-pkg-h==8.0.0  # license: AGPL-3.0-only
+example-pkg-i==9.0.0  # license: BSD-3-Clause
+"""
+    example_pyproject = """[project]
+name = "example-app"
+version = "1.0.0"
+license = { text = "MIT" }
+dependencies = [
+  { name = "example-pkg-j", version = "10.0.0", license = "BUSL-1.1" },
+  { name = "example-pkg-k", version = "11.0.0", classifiers = ["License :: OSI Approved :: MIT License"] },
+]
+"""
+    example_go_mod = """module example.com/example-app
+
+go 1.21
+
+require example.com/example-pkg-l v12.0.0 // license: Unlicense
+"""
+    example_pom = """<project xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example</groupId>
+  <artifactId>example-app</artifactId>
+  <version>1.0.0</version>
+  <licenses>
+    <license>
+      <name>MIT</name>
+    </license>
+  </licenses>
+  <dependencies>
+    <dependency>
+      <groupId>com.example</groupId>
+      <artifactId>example-pkg-m</artifactId>
+      <version>13.0.0</version>
+      <license>Python-2.0</license>
+    </dependency>
+    <dependency>
+      <groupId>com.example</groupId>
+      <artifactId>example-pkg-n</artifactId>
+      <version>14.0.0</version>
+      <license>0BSD</license>
+    </dependency>
+    <dependency>
+      <groupId>com.example</groupId>
+      <artifactId>example-pkg-o</artifactId>
+      <version>15.0.0</version>
+      <license>GPL</license>
+    </dependency>
+  </dependencies>
+</project>
+"""
+    expect = {}
+    for letter, version, raw, structured in example_deps:
+        spdx_id, confidence, flags = oracle_normalize(raw, structured=structured)
+        # pom 依赖按 `groupId:artifactId` 记账（与 maven-pom 用例同口径）。
+        name = _pkg(letter) if letter not in ("m", "n", "o") else "com.example:" + _pkg(letter)
+        expect[name] = {
+            "version": version,
+            "spdx_id": spdx_id,
+            "confidence": confidence,
+            "flags": flags,
+        }
+    # go 模块路径按 `example.com/` 记账（与 go-mod 用例同口径）。
+    spdx_id, confidence, flags = oracle_normalize("Unlicense", structured=True)
+    expect["example.com/example-pkg-l"] = {
+        "version": "v12.0.0",
+        "spdx_id": spdx_id,
+        "confidence": confidence,
+        "flags": flags,
+    }
+    # trove 链（pyproject classifiers）由 oracle 的第 2 级给出。
+    spdx_id, confidence, flags = oracle_normalize(
+        None, classifiers=["License :: OSI Approved :: MIT License"], structured=False
+    )
+    expect[_pkg("k")] = {
+        "version": "11.0.0",
+        "spdx_id": spdx_id,
+        "confidence": confidence,
+        "flags": flags,
+    }
+    cases.append(_case(
+        "example-project",
+        {
+            "package.json": example_package_json,
+            "package-lock.json": example_lock,
+            "requirements.txt": example_requirements,
+            "pyproject.toml": example_pyproject,
+            "go.mod": example_go_mod,
+            "pom.xml": example_pom,
+        },
+        expect,
+        "M5 示例项目：六种清单形态 + 四级处置；包名全合成，不含真实包名",
+    ))
+
     return sorted(cases, key=lambda item: item["case_id"])
 
 
@@ -884,6 +1051,8 @@ CASE_README = {
     "expr-complex": "覆盖 OR / AND / WITH；未知例外保留表达式，不整体丢弃。",
     "unknown-and-missing": "族名 → <族>-unknown；缺 license → 兜底；自由文本不被猜。",
     "known-traps": "pandas / psycopg2 / PyMySQL / PyQt5 坑位回归。",
+    "example-project": "M5 示例项目：六种清单形态（15 个依赖）+ 四级处置，入 `examples/report/`；"
+                       "包名全合成，不含真实包名。",
 }
 
 

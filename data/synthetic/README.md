@@ -1,6 +1,6 @@
 # 合成数据与真值库
 
-> **M1 已生成入仓**：11 个用例目录，每个含清单文件 + `README.md`（说明覆盖点）。
+> **M1 已生成入仓、M5 扩充**：12 个用例目录，每个含清单文件 + `README.md`（说明覆盖点）。
 > 纪律见 `plan/04-数据计划.md`：真值只存输入与期望，观测由运行时实算。
 
 ## 目录（M1 已就位）
@@ -64,5 +64,7 @@ py -3.12 -X utf8 tools/gen_synthetic.py --check
 | `expr-complex` | `OR` / `AND` / `WITH`（已知与未知例外）/ 括号 |
 | `unknown-and-missing` | 族名 → `<族>-unknown`；缺 license → 兜底；自由文本不被猜 |
 | `known-traps` | pandas / psycopg2 / PyMySQL / PyQt5（真实包名，不进示例报告） |
+| `example-project` | **M5 示例项目**：六种清单形态（package.json / package-lock.json / requirements.txt / pyproject.toml / go.mod / pom.xml），15 个依赖，全合成包名；`examples/report/` 的输入 |
 
-共 11 用例 / 44 条真值期望。`py -3.12 tools/gen_synthetic.py --check` 通过。
+共 12 用例 / 59 条真值期望（M5 新增 `example-project` 的 15 条）。
+`py -3.12 tools/gen_synthetic.py --check` 通过。

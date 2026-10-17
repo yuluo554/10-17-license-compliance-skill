@@ -1,0 +1,3658 @@
+{
+  "format": "licaudit-scenario-truth",
+  "format_version": 1,
+  "inputs": {
+    "ruleset_source": "references/curated/scenario-triggers.json",
+    "tiers_source": "references/curated/tiers.json",
+    "license_list_version": "3.29.0",
+    "scenarios": [
+      "internal",
+      "distribute-binary",
+      "distribute-source",
+      "saas",
+      "static-link",
+      "dynamic-link",
+      "separate-process",
+      "container-image"
+    ],
+    "link_modes": [
+      "none",
+      "static",
+      "dynamic",
+      "separate-process"
+    ],
+    "tiers": [
+      "permissive",
+      "weak-copyleft",
+      "strong-copyleft",
+      "network-copyleft",
+      "source-available"
+    ],
+    "network_interaction_values": [
+      true,
+      false
+    ],
+    "link_scenario_delivery": {
+      "static-link": "binary",
+      "dynamic-link": "binary",
+      "separate-process": "binary"
+    },
+    "tier_samples": {
+      "permissive": "MIT",
+      "weak-copyleft": "LGPL-2.1-only",
+      "strong-copyleft": "GPL-2.0-only",
+      "network-copyleft": "AGPL-3.0-only",
+      "source-available": "BUSL-1.1"
+    },
+    "enabled_rule_ids": [
+      "T-DIST-NET-001",
+      "T-DIST-STRONG-001",
+      "T-DIST-WEAK-001",
+      "T-NET-001",
+      "T-SA-HOSTED-001",
+      "T-STATIC-WEAK-001"
+    ],
+    "dropped_rule_ids": []
+  },
+  "expect": {
+    "matrix": [
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "none",
+        "tier": "permissive",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "none",
+        "tier": "permissive",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "none",
+        "tier": "weak-copyleft",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "none",
+        "tier": "weak-copyleft",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "none",
+        "tier": "strong-copyleft",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "none",
+        "tier": "strong-copyleft",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "none",
+        "tier": "network-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "network-interaction"
+        ],
+        "rule_ids": [
+          "T-NET-001"
+        ],
+        "obligations": [
+          "network-source"
+        ]
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "none",
+        "tier": "network-copyleft",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "none",
+        "tier": "source-available",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "none",
+        "tier": "source-available",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "static",
+        "tier": "permissive",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "static",
+        "tier": "permissive",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "static",
+        "tier": "weak-copyleft",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "static",
+        "tier": "weak-copyleft",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "static",
+        "tier": "strong-copyleft",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "static",
+        "tier": "strong-copyleft",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "static",
+        "tier": "network-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "network-interaction"
+        ],
+        "rule_ids": [
+          "T-NET-001"
+        ],
+        "obligations": [
+          "network-source"
+        ]
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "static",
+        "tier": "network-copyleft",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "static",
+        "tier": "source-available",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "static",
+        "tier": "source-available",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "dynamic",
+        "tier": "permissive",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "dynamic",
+        "tier": "permissive",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "dynamic",
+        "tier": "weak-copyleft",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "dynamic",
+        "tier": "weak-copyleft",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "dynamic",
+        "tier": "strong-copyleft",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "dynamic",
+        "tier": "strong-copyleft",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "dynamic",
+        "tier": "network-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "network-interaction"
+        ],
+        "rule_ids": [
+          "T-NET-001"
+        ],
+        "obligations": [
+          "network-source"
+        ]
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "dynamic",
+        "tier": "network-copyleft",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "dynamic",
+        "tier": "source-available",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "dynamic",
+        "tier": "source-available",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "separate-process",
+        "tier": "permissive",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "separate-process",
+        "tier": "permissive",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "separate-process",
+        "tier": "weak-copyleft",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "separate-process",
+        "tier": "weak-copyleft",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "separate-process",
+        "tier": "strong-copyleft",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "separate-process",
+        "tier": "strong-copyleft",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "separate-process",
+        "tier": "network-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "network-interaction"
+        ],
+        "rule_ids": [
+          "T-NET-001"
+        ],
+        "obligations": [
+          "network-source"
+        ]
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "separate-process",
+        "tier": "network-copyleft",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "separate-process",
+        "tier": "source-available",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "internal",
+        "delivery": "internal",
+        "delivery_scenario": "internal",
+        "link_mode": "separate-process",
+        "tier": "source-available",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "none",
+        "tier": "permissive",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "none",
+        "tier": "permissive",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "none",
+        "tier": "weak-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "none",
+        "tier": "weak-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "none",
+        "tier": "strong-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "none",
+        "tier": "strong-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "none",
+        "tier": "network-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution",
+          "network-interaction"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001",
+          "T-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "network-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "none",
+        "tier": "network-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "none",
+        "tier": "source-available",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "none",
+        "tier": "source-available",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "static",
+        "tier": "permissive",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "static",
+        "tier": "permissive",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "static",
+        "tier": "weak-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution",
+          "static-link"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001",
+          "T-STATIC-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "static",
+        "tier": "weak-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution",
+          "static-link"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001",
+          "T-STATIC-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "static",
+        "tier": "strong-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "static",
+        "tier": "strong-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "static",
+        "tier": "network-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution",
+          "network-interaction"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001",
+          "T-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "network-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "static",
+        "tier": "network-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "static",
+        "tier": "source-available",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "static",
+        "tier": "source-available",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "dynamic",
+        "tier": "permissive",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "dynamic",
+        "tier": "permissive",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "dynamic",
+        "tier": "weak-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "dynamic",
+        "tier": "weak-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "dynamic",
+        "tier": "strong-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "dynamic",
+        "tier": "strong-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "dynamic",
+        "tier": "network-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution",
+          "network-interaction"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001",
+          "T-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "network-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "dynamic",
+        "tier": "network-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "dynamic",
+        "tier": "source-available",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "dynamic",
+        "tier": "source-available",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "separate-process",
+        "tier": "permissive",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "separate-process",
+        "tier": "permissive",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "separate-process",
+        "tier": "weak-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "separate-process",
+        "tier": "weak-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "separate-process",
+        "tier": "strong-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "separate-process",
+        "tier": "strong-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "separate-process",
+        "tier": "network-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution",
+          "network-interaction"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001",
+          "T-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "network-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "separate-process",
+        "tier": "network-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "separate-process",
+        "tier": "source-available",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-binary",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "separate-process",
+        "tier": "source-available",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "none",
+        "tier": "permissive",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "none",
+        "tier": "permissive",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "none",
+        "tier": "weak-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "none",
+        "tier": "weak-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "none",
+        "tier": "strong-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "none",
+        "tier": "strong-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "none",
+        "tier": "network-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution",
+          "network-interaction"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001",
+          "T-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "network-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "none",
+        "tier": "network-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "none",
+        "tier": "source-available",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "none",
+        "tier": "source-available",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "static",
+        "tier": "permissive",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "static",
+        "tier": "permissive",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "static",
+        "tier": "weak-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution",
+          "static-link"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001",
+          "T-STATIC-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "static",
+        "tier": "weak-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution",
+          "static-link"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001",
+          "T-STATIC-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "static",
+        "tier": "strong-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "static",
+        "tier": "strong-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "static",
+        "tier": "network-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution",
+          "network-interaction"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001",
+          "T-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "network-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "static",
+        "tier": "network-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "static",
+        "tier": "source-available",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "static",
+        "tier": "source-available",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "dynamic",
+        "tier": "permissive",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "dynamic",
+        "tier": "permissive",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "dynamic",
+        "tier": "weak-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "dynamic",
+        "tier": "weak-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "dynamic",
+        "tier": "strong-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "dynamic",
+        "tier": "strong-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "dynamic",
+        "tier": "network-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution",
+          "network-interaction"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001",
+          "T-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "network-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "dynamic",
+        "tier": "network-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "dynamic",
+        "tier": "source-available",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "dynamic",
+        "tier": "source-available",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "separate-process",
+        "tier": "permissive",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "separate-process",
+        "tier": "permissive",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "separate-process",
+        "tier": "weak-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "separate-process",
+        "tier": "weak-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "separate-process",
+        "tier": "strong-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "separate-process",
+        "tier": "strong-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "separate-process",
+        "tier": "network-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution",
+          "network-interaction"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001",
+          "T-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "network-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "separate-process",
+        "tier": "network-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "separate-process",
+        "tier": "source-available",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "distribute-source",
+        "delivery": "source",
+        "delivery_scenario": "distribute-source",
+        "link_mode": "separate-process",
+        "tier": "source-available",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "none",
+        "tier": "permissive",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "none",
+        "tier": "permissive",
+        "network_interaction": false,
+        "verdict": "pending_confirmation",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "none",
+        "tier": "weak-copyleft",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "none",
+        "tier": "weak-copyleft",
+        "network_interaction": false,
+        "verdict": "pending_confirmation",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "none",
+        "tier": "strong-copyleft",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "none",
+        "tier": "strong-copyleft",
+        "network_interaction": false,
+        "verdict": "pending_confirmation",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "none",
+        "tier": "network-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "network-interaction"
+        ],
+        "rule_ids": [
+          "T-NET-001"
+        ],
+        "obligations": [
+          "network-source"
+        ]
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "none",
+        "tier": "network-copyleft",
+        "network_interaction": false,
+        "verdict": "pending_confirmation",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "none",
+        "tier": "source-available",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "hosted-service-restriction"
+        ],
+        "rule_ids": [
+          "T-SA-HOSTED-001"
+        ],
+        "obligations": [
+          "retain-copyright"
+        ]
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "none",
+        "tier": "source-available",
+        "network_interaction": false,
+        "verdict": "pending_confirmation",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "static",
+        "tier": "permissive",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "static",
+        "tier": "permissive",
+        "network_interaction": false,
+        "verdict": "pending_confirmation",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "static",
+        "tier": "weak-copyleft",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "static",
+        "tier": "weak-copyleft",
+        "network_interaction": false,
+        "verdict": "pending_confirmation",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "static",
+        "tier": "strong-copyleft",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "static",
+        "tier": "strong-copyleft",
+        "network_interaction": false,
+        "verdict": "pending_confirmation",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "static",
+        "tier": "network-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "network-interaction"
+        ],
+        "rule_ids": [
+          "T-NET-001"
+        ],
+        "obligations": [
+          "network-source"
+        ]
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "static",
+        "tier": "network-copyleft",
+        "network_interaction": false,
+        "verdict": "pending_confirmation",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "static",
+        "tier": "source-available",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "hosted-service-restriction"
+        ],
+        "rule_ids": [
+          "T-SA-HOSTED-001"
+        ],
+        "obligations": [
+          "retain-copyright"
+        ]
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "static",
+        "tier": "source-available",
+        "network_interaction": false,
+        "verdict": "pending_confirmation",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "dynamic",
+        "tier": "permissive",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "dynamic",
+        "tier": "permissive",
+        "network_interaction": false,
+        "verdict": "pending_confirmation",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "dynamic",
+        "tier": "weak-copyleft",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "dynamic",
+        "tier": "weak-copyleft",
+        "network_interaction": false,
+        "verdict": "pending_confirmation",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "dynamic",
+        "tier": "strong-copyleft",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "dynamic",
+        "tier": "strong-copyleft",
+        "network_interaction": false,
+        "verdict": "pending_confirmation",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "dynamic",
+        "tier": "network-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "network-interaction"
+        ],
+        "rule_ids": [
+          "T-NET-001"
+        ],
+        "obligations": [
+          "network-source"
+        ]
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "dynamic",
+        "tier": "network-copyleft",
+        "network_interaction": false,
+        "verdict": "pending_confirmation",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "dynamic",
+        "tier": "source-available",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "hosted-service-restriction"
+        ],
+        "rule_ids": [
+          "T-SA-HOSTED-001"
+        ],
+        "obligations": [
+          "retain-copyright"
+        ]
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "dynamic",
+        "tier": "source-available",
+        "network_interaction": false,
+        "verdict": "pending_confirmation",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "separate-process",
+        "tier": "permissive",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "separate-process",
+        "tier": "permissive",
+        "network_interaction": false,
+        "verdict": "pending_confirmation",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "separate-process",
+        "tier": "weak-copyleft",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "separate-process",
+        "tier": "weak-copyleft",
+        "network_interaction": false,
+        "verdict": "pending_confirmation",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "separate-process",
+        "tier": "strong-copyleft",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "separate-process",
+        "tier": "strong-copyleft",
+        "network_interaction": false,
+        "verdict": "pending_confirmation",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "separate-process",
+        "tier": "network-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "network-interaction"
+        ],
+        "rule_ids": [
+          "T-NET-001"
+        ],
+        "obligations": [
+          "network-source"
+        ]
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "separate-process",
+        "tier": "network-copyleft",
+        "network_interaction": false,
+        "verdict": "pending_confirmation",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "separate-process",
+        "tier": "source-available",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "hosted-service-restriction"
+        ],
+        "rule_ids": [
+          "T-SA-HOSTED-001"
+        ],
+        "obligations": [
+          "retain-copyright"
+        ]
+      },
+      {
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "separate-process",
+        "tier": "source-available",
+        "network_interaction": false,
+        "verdict": "pending_confirmation",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "static-link",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "static",
+        "tier": "permissive",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "static-link",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "static",
+        "tier": "permissive",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "static-link",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "static",
+        "tier": "weak-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution",
+          "static-link"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001",
+          "T-STATIC-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "static-link",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "static",
+        "tier": "weak-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution",
+          "static-link"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001",
+          "T-STATIC-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "static-link",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "static",
+        "tier": "strong-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "static-link",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "static",
+        "tier": "strong-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "static-link",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "static",
+        "tier": "network-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution",
+          "network-interaction"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001",
+          "T-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "network-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "static-link",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "static",
+        "tier": "network-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "static-link",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "static",
+        "tier": "source-available",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "static-link",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "static",
+        "tier": "source-available",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "dynamic-link",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "dynamic",
+        "tier": "permissive",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "dynamic-link",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "dynamic",
+        "tier": "permissive",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "dynamic-link",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "dynamic",
+        "tier": "weak-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "dynamic-link",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "dynamic",
+        "tier": "weak-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "dynamic-link",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "dynamic",
+        "tier": "strong-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "dynamic-link",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "dynamic",
+        "tier": "strong-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "dynamic-link",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "dynamic",
+        "tier": "network-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution",
+          "network-interaction"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001",
+          "T-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "network-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "dynamic-link",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "dynamic",
+        "tier": "network-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "dynamic-link",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "dynamic",
+        "tier": "source-available",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "dynamic-link",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "dynamic",
+        "tier": "source-available",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "separate-process",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "separate-process",
+        "tier": "permissive",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "separate-process",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "separate-process",
+        "tier": "permissive",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "separate-process",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "separate-process",
+        "tier": "weak-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "separate-process",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "separate-process",
+        "tier": "weak-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "separate-process",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "separate-process",
+        "tier": "strong-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "separate-process",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "separate-process",
+        "tier": "strong-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "separate-process",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "separate-process",
+        "tier": "network-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution",
+          "network-interaction"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001",
+          "T-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "network-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "separate-process",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "separate-process",
+        "tier": "network-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "separate-process",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "separate-process",
+        "tier": "source-available",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "separate-process",
+        "delivery": "binary",
+        "delivery_scenario": "distribute-binary",
+        "link_mode": "separate-process",
+        "tier": "source-available",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "none",
+        "tier": "permissive",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "none",
+        "tier": "permissive",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "none",
+        "tier": "weak-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "none",
+        "tier": "weak-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "none",
+        "tier": "strong-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "none",
+        "tier": "strong-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "none",
+        "tier": "network-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution",
+          "network-interaction"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001",
+          "T-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "network-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "none",
+        "tier": "network-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "none",
+        "tier": "source-available",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "none",
+        "tier": "source-available",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "static",
+        "tier": "permissive",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "static",
+        "tier": "permissive",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "static",
+        "tier": "weak-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution",
+          "static-link"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001",
+          "T-STATIC-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "static",
+        "tier": "weak-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution",
+          "static-link"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001",
+          "T-STATIC-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "static",
+        "tier": "strong-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "static",
+        "tier": "strong-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "static",
+        "tier": "network-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution",
+          "network-interaction"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001",
+          "T-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "network-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "static",
+        "tier": "network-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "static",
+        "tier": "source-available",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "static",
+        "tier": "source-available",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "dynamic",
+        "tier": "permissive",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "dynamic",
+        "tier": "permissive",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "dynamic",
+        "tier": "weak-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "dynamic",
+        "tier": "weak-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "dynamic",
+        "tier": "strong-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "dynamic",
+        "tier": "strong-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "dynamic",
+        "tier": "network-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution",
+          "network-interaction"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001",
+          "T-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "network-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "dynamic",
+        "tier": "network-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "dynamic",
+        "tier": "source-available",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "dynamic",
+        "tier": "source-available",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "separate-process",
+        "tier": "permissive",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "separate-process",
+        "tier": "permissive",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "separate-process",
+        "tier": "weak-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "separate-process",
+        "tier": "weak-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-WEAK-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source"
+        ]
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "separate-process",
+        "tier": "strong-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "separate-process",
+        "tier": "strong-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-STRONG-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "separate-process",
+        "tier": "network-copyleft",
+        "network_interaction": true,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution",
+          "network-interaction"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001",
+          "T-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "network-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "separate-process",
+        "tier": "network-copyleft",
+        "network_interaction": false,
+        "verdict": "triggered",
+        "triggers": [
+          "distribution"
+        ],
+        "rule_ids": [
+          "T-DIST-NET-001"
+        ],
+        "obligations": [
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ]
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "separate-process",
+        "tier": "source-available",
+        "network_interaction": true,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      },
+      {
+        "scenario": "container-image",
+        "delivery": "container",
+        "delivery_scenario": "container-image",
+        "link_mode": "separate-process",
+        "tier": "source-available",
+        "network_interaction": false,
+        "verdict": "not_triggered",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      }
+    ],
+    "pending": [
+      {
+        "tier": null,
+        "scenario": "saas",
+        "delivery": "saas",
+        "delivery_scenario": "saas",
+        "link_mode": "none",
+        "network_interaction": true,
+        "verdict": "pending_confirmation",
+        "triggers": [],
+        "rule_ids": [],
+        "obligations": []
+      }
+    ]
+  }
+}

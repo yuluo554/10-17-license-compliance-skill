@@ -1,0 +1,159 @@
+{
+  "format": "licaudit-conflicts-truth",
+  "format_version": 1,
+  "inputs": {
+    "ruleset_source": "references/curated/conflict-pairs.json",
+    "tiers_source": "references/curated/tiers.json",
+    "license_list_version": "3.29.0",
+    "captured_on": "2026-10-17",
+    "pair_ids": [
+      "CP-GPL2-AGPL3",
+      "CP-GPL2-APACHE2",
+      "CP-GPL2-GPL3",
+      "CP-GPL3-APACHE2"
+    ],
+    "dropped_pair_ids": [],
+    "pair_sample_licenses": [
+      "AGPL-3.0-only",
+      "Apache-2.0",
+      "GPL-2.0-only",
+      "GPL-3.0-only"
+    ],
+    "evaluation_expressions": [
+      "MIT OR GPL-3.0-only",
+      "GPL-2.0-only AND MIT",
+      "(MIT OR Apache-2.0) AND GPL-3.0-only",
+      "GPL-2.0-only OR AGPL-3.0-only",
+      "MIT OR (GPL-2.0-only WITH Classpath-exception-2.0)",
+      "MIT OR BlueOak-1.0.0"
+    ],
+    "tier_by_atom": {
+      "AGPL-3.0-only": "network-copyleft",
+      "Apache-2.0": "permissive",
+      "BlueOak-1.0.0": null,
+      "GPL-2.0-only": "strong-copyleft",
+      "GPL-3.0-only": "strong-copyleft",
+      "MIT": "permissive"
+    },
+    "outbound_pending_value": "pending"
+  },
+  "expect": {
+    "pairs": [
+      {
+        "pair_id": "CP-GPL2-AGPL3",
+        "left": "GPL-2.0-only",
+        "right": "AGPL-3.0-only",
+        "resolution": "incompatible"
+      },
+      {
+        "pair_id": "CP-GPL2-APACHE2",
+        "left": "GPL-2.0-only",
+        "right": "Apache-2.0",
+        "resolution": "incompatible"
+      },
+      {
+        "pair_id": "CP-GPL2-GPL3",
+        "left": "GPL-2.0-only",
+        "right": "GPL-3.0-only",
+        "resolution": "incompatible"
+      },
+      {
+        "pair_id": "CP-GPL3-APACHE2",
+        "left": "GPL-3.0-only",
+        "right": "Apache-2.0",
+        "resolution": "compatible"
+      }
+    ],
+    "uncovered_pairs": [
+      [
+        "AGPL-3.0-only",
+        "Apache-2.0"
+      ],
+      [
+        "AGPL-3.0-only",
+        "GPL-3.0-only"
+      ]
+    ],
+    "evaluations": [
+      {
+        "expression": "MIT OR GPL-3.0-only",
+        "operator": "OR",
+        "atoms": [
+          "MIT",
+          "GPL-3.0-only"
+        ],
+        "selected": "MIT",
+        "tier": "permissive",
+        "resolved": true,
+        "exceptions": []
+      },
+      {
+        "expression": "GPL-2.0-only AND MIT",
+        "operator": "AND",
+        "atoms": [
+          "GPL-2.0-only",
+          "MIT"
+        ],
+        "selected": "GPL-2.0-only",
+        "tier": "strong-copyleft",
+        "resolved": true,
+        "exceptions": []
+      },
+      {
+        "expression": "(MIT OR Apache-2.0) AND GPL-3.0-only",
+        "operator": "AND",
+        "atoms": [
+          "MIT",
+          "Apache-2.0",
+          "GPL-3.0-only"
+        ],
+        "selected": "GPL-3.0-only",
+        "tier": "strong-copyleft",
+        "resolved": true,
+        "exceptions": []
+      },
+      {
+        "expression": "GPL-2.0-only OR AGPL-3.0-only",
+        "operator": "OR",
+        "atoms": [
+          "GPL-2.0-only",
+          "AGPL-3.0-only"
+        ],
+        "selected": "GPL-2.0-only",
+        "tier": "strong-copyleft",
+        "resolved": true,
+        "exceptions": []
+      },
+      {
+        "expression": "MIT OR (GPL-2.0-only WITH Classpath-exception-2.0)",
+        "operator": "OR",
+        "atoms": [
+          "MIT",
+          "GPL-2.0-only"
+        ],
+        "selected": "MIT",
+        "tier": "permissive",
+        "resolved": true,
+        "exceptions": [
+          "Classpath-exception-2.0"
+        ]
+      },
+      {
+        "expression": "MIT OR BlueOak-1.0.0",
+        "operator": "OR",
+        "atoms": [
+          "MIT",
+          "BlueOak-1.0.0"
+        ],
+        "selected": null,
+        "tier": null,
+        "resolved": false,
+        "exceptions": []
+      }
+    ],
+    "outbound_pending": {
+      "resolution": "pending",
+      "basis": "项目自身许可证待定"
+    }
+  }
+}

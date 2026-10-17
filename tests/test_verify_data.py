@@ -103,6 +103,15 @@ def test_bench_m1_passes(capsys):
     assert "F1" in out
 
 
+def test_bench_m2_without_profile_truth_is_usage_error(tmp_path, capsys):
+    """缺画像真值时 bench m2 必须明确报输入不可用，而不是跑零条通过。"""
+    empty = tmp_path / "data"
+    (empty / "truth").mkdir(parents=True)
+    code, out, err = run(["bench", "--only", "m2", "--data-dir", str(empty)], capsys)
+    assert code == EXIT_USAGE
+    assert "画像真值" in err
+
+
 def test_verify_data_reports_f1_for_dod(capsys):
     """M1 DoD 要求解析 F1 ≥ 0.95；这个数必须由 CLI 实算并打印。"""
     code, out, err = run(["verify-data"], capsys)
@@ -139,6 +148,8 @@ def test_bench_default_runs_implemented_suites(capsys):
     code, out, err = run(["bench"], capsys)
     assert code == EXIT_OK, out + err
     assert "m1" in out
+    assert "m3" in out
+    assert "m4" in out
 
 
 def test_bench_unknown_suite_is_usage_error(capsys):
@@ -147,11 +158,44 @@ def test_bench_unknown_suite_is_usage_error(capsys):
     assert "未知" in err
 
 
+def test_bench_m5_passes_on_action_truth(capsys):
+    code, out, err = run(["bench", "--only", "m5"], capsys)
+    assert code == EXIT_OK, out + err
+    assert "[OK] m5" in out
+    assert "处置分级" in out
+
+
 def test_bench_unimplemented_suite_is_usage_error(capsys):
-    """M2 尚未实现：必须明确拒绝，而不是跑一个空套件返回通过。"""
-    code, out, err = run(["bench", "--only", "m3"], capsys)
+    """``m6``（发布里程碑）没有判定套件：必须明确拒绝，而不是跑一个空套件返回通过。"""
+    code, out, err = run(["bench", "--only", "m6"], capsys)
     assert code == EXIT_USAGE
     assert "尚未实现" in err
+
+
+def test_bench_and_implemented_suites_agree():
+    """``BENCH_SUITES`` 是全部里程碑套件，``IMPLEMENTED_SUITES`` 是其子集。"""
+    from licaudit import verify
+
+    assert set(verify.IMPLEMENTED_SUITES) <= set(verify.BENCH_SUITES)
+    assert verify.IMPLEMENTED_SUITES == ("m1", "m2", "m3", "m4", "m5")
+
+
+def test_bench_m3_without_scenario_truth_is_usage_error(tmp_path, capsys):
+    """缺场景真值时 bench m3 必须明确报输入不可用，而不是跑零条通过。"""
+    empty = tmp_path / "data"
+    (empty / "truth").mkdir(parents=True)
+    code, out, err = run(["bench", "--only", "m3", "--data-dir", str(empty)], capsys)
+    assert code == EXIT_USAGE
+    assert "场景真值" in err
+
+
+def test_bench_m4_without_conflict_truth_is_usage_error(tmp_path, capsys):
+    """缺冲突真值时 bench m4 必须明确报输入不可用，而不是跑零条通过。"""
+    empty = tmp_path / "data"
+    (empty / "truth").mkdir(parents=True)
+    code, out, err = run(["bench", "--only", "m4", "--data-dir", str(empty)], capsys)
+    assert code == EXIT_USAGE
+    assert "冲突真值" in err
 
 
 def test_bench_requires_ruleset(tmp_path, capsys, monkeypatch):

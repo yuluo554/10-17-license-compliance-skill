@@ -48,30 +48,46 @@ def build_parser():
     assess = subparsers.add_parser("assess", help="画像、场景与冲突判定")
     assess.add_argument("--inventory", required=True, help="scan 产出的 inventory.json")
     assess.add_argument(
+        "--profile-only",
+        action="store_true",
+        help="只产许可证画像矩阵 profile.json（M2）；不要求场景与 outbound 许可证",
+    )
+    assess.add_argument(
         "--scenario",
-        required=True,
+        default=None,
         choices=contract.SCENARIO_IDS,
         help="八场景之一：internal / distribute-binary / distribute-source / saas / "
-        "static-link / dynamic-link / separate-process / container-image",
+        "static-link / dynamic-link / separate-process / container-image；全量模式必填",
+    )
+    assess.add_argument(
+        "--delivery",
+        default=None,
+        choices=contract.DELIVERIES,
+        help="交付形态（内部使用/二进制/源码/SaaS/容器镜像）；链接方式轴场景必填",
     )
     assess.add_argument(
         "--linking",
         default=None,
-        choices=("none", "static", "dynamic", "separate-process"),
+        choices=contract.LINK_MODES,
         help="链接方式（默认由场景推导）",
     )
     assess.add_argument(
         "--network-interaction",
         default=None,
         choices=("yes", "no"),
-        help="用户是否通过网络与程序交互（saas / container-image 必答）",
+        help="用户是否通过网络与程序交互（saas 必答；container-image 可选）",
     )
     assess.add_argument(
         "--outbound-license",
-        required=True,
-        help="项目自身 outbound 许可证的 SPDX 表达式；尚未决定时写 pending",
+        default=None,
+        help="项目自身 outbound 许可证的 SPDX 表达式；尚未决定时写 pending；全量模式必填",
     )
     assess.add_argument("--scenario-note", default="", help="用户原始回答，原样落盘")
+    assess.add_argument(
+        "--spdx-dir",
+        default=None,
+        help="SPDX 快照目录；默认按 references/spdx 定位",
+    )
     assess.add_argument("--out-dir", default=pipeline.DEFAULT_OUT_DIR, help="产物目录")
     assess.set_defaults(handler=pipeline.run_assess)
 

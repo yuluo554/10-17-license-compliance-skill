@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "pair_id": "CP-GPL2-APACHE2",
+      "left": "GPL-2.0-only",
+      "right": "Apache-2.0",
+      "resolution": "incompatible",
+      "basis": "Apache-2.0 §3 的专利诉讼终止条款与 §4 的通知/署名保留条件，构成 GPL-2.0-only §6 明文禁止的对受让人附加的进一步限制：GPLv2 系许可证不允许把这类额外条件加在合并作品上。",
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/Apache-2.0.json#licenseText",
+        "section": "§3",
+        "quote": "If You institute patent litigation against any entity (including a cross-claim or counterclaim in a lawsuit) alleging that the Work or a Contribution incorporated within the Work constitutes direct or contributory patent infringement, then any patent licenses granted to You under this License for that Work shall terminate as of the date such litigation is filed."
+      },
+      "cross_check": {
+        "source": "osadl-mirror",
+        "status": "advisory",
+        "checked_on": "2026-10-17"
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "pair_id": "CP-GPL2-AGPL3",
+      "left": "GPL-2.0-only",
+      "right": "AGPL-3.0-only",
+      "resolution": "incompatible",
+      "basis": "AGPL-3.0-only §13 要求向远程网络交互的用户提供对应源码；该额外义务落在 GPL-2.0-only §6 禁止的「进一步限制」之内，两者不能合并为同一作品。",
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/AGPL-3.0-only.json#licenseText",
+        "section": "§13",
+        "quote": "Notwithstanding any other provision of this License, if you modify the Program, your modified version must prominently offer all users interacting with it remotely through a computer network"
+      },
+      "cross_check": {
+        "source": "osadl-mirror",
+        "status": "advisory",
+        "checked_on": "2026-10-17"
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "pair_id": "CP-GPL2-GPL3",
+      "left": "GPL-2.0-only",
+      "right": "GPL-3.0-only",
+      "resolution": "incompatible",
+      "basis": "GPL-3.0-only 在 §7/§11 等处引入附加条款与专利条款，GPL-2.0-only §6 不允许对受让人附加进一步限制，因此 GPLv2-only 代码不能与 GPLv3 代码合并为同一许可作品。",
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/GPL-2.0-only.json#licenseText",
+        "section": "§6",
+        "quote": "You may not impose any further restrictions on the recipients' exercise of the rights granted herein."
+      },
+      "cross_check": {
+        "source": "osadl-mirror",
+        "status": "advisory",
+        "checked_on": "2026-10-17"
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "pair_id": "CP-GPL3-APACHE2",
+      "left": "GPL-3.0-only",
+      "right": "Apache-2.0",
+      "resolution": "compatible",
+      "basis": "Apache-2.0 的免责声明、通知/署名保留与商标限制，均落在 GPL-3.0-only §7 允许补充的附加条款范围内，因此两者可以合并（合并作品整体按 GPLv3 发布）。",
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/GPL-3.0-only.json#licenseText",
+        "section": "§7",
+        "quote": "you may (if authorized by the copyright holders of that material) supplement the terms of this License with terms: a) Disclaiming warranty or limiting liability differently from the terms of sections 15 and 16 of this License; or b) Requiring preservation of specified reasonable legal notices or author attributions in that material"
+      },
+      "cross_check": {
+        "source": "osadl-mirror",
+        "status": "advisory",
+        "checked_on": "2026-10-17"
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    }
+  ]
+}

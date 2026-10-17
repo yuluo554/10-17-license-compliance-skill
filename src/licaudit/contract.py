@@ -142,6 +142,23 @@ ACTION_LEVELS = (
 
 BLOCKING_ACTION_LEVELS = ("isolate", "replace_or_license")
 
+# 展示用中文标签（报告层不内联档位/处置级别字面量，一律从这里取）。
+TIER_LABELS = {
+    "permissive": "宽松许可",
+    "weak-copyleft": "弱传染（文件/库级）",
+    "strong-copyleft": "强传染（同一作品）",
+    "network-copyleft": "网络传染（对外提供服务即触发）",
+    "source-available": "源码可见（非开源许可）",
+}
+
+ACTION_LEVEL_LABELS = {
+    "ok": "可直接使用",
+    "declare": "需补充声明",
+    "isolate": "需隔离（进程分离 / 容器边界）",
+    "replace_or_license": "需替换或取得商业授权",
+}
+
+
 SCENARIO_IDS = (
     "internal",
     "distribute-binary",
@@ -152,6 +169,8 @@ SCENARIO_IDS = (
     "separate-process",
     "container-image",
 )
+
+DELIVERIES = ("internal", "binary", "source", "saas", "container")
 
 SCENARIO_AXES = {
     "internal": {"delivery": "internal", "link_mode": "none"},

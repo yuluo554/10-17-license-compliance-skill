@@ -1,0 +1,39 @@
+# 源码包（sdist）清单：让「源码包」这一发布形态真正自足。
+#
+# D12 说规则包**不打进 wheel**；这里的 sdist 是另一回事——首期发布物是
+# 「源码包 / git clone + editable 安装」，sdist 因此必须带上 references/ 规则包与
+# data/ 真值，否则解包后 `licaudit status` 会 exit 3（找不到规则包）。
+#
+# 冻结数据（references/spdx/manifest.json、data/truth/*.json）的字节由
+# .gitattributes 的 `-text` 与生成器 `--check` 共同守着；sdist 只做原样打包。
+
+include LICENSE
+include README.md
+include SKILL.md
+include pyproject.toml
+include MANIFEST.in
+include .gitattributes
+include .gitignore
+
+recursive-include src/licaudit *.py
+recursive-include scripts *.py
+recursive-include tests *.py
+recursive-include tools *.py *.md
+recursive-include references *.json *.md
+recursive-include data *.json *.md *.txt *.toml *.mod *.xml
+recursive-include examples *.md *.csv
+recursive-include plan *.md
+recursive-include .github *.yml
+
+# 一次性变异验证脚本与临时产物不进发布面
+exclude tools/_mutate_m2.py
+exclude tools/_mutate_m3.py
+exclude tools/_mutate_m4.py
+exclude tools/_mutate_m5.py
+exclude tools/_scan_desensitize.py
+prune out
+prune dist
+prune .pytest_cache
+prune src/licaudit.egg-info
+global-exclude __pycache__
+global-exclude *.py[cod]

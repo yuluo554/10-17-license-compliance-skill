@@ -1,0 +1,8 @@
+[project]
+name = "example-app"
+version = "1.0.0"
+license = { text = "MIT" }
+dependencies = [
+  { name = "example-pkg-j", version = "10.0.0", license = "BUSL-1.1" },
+  { name = "example-pkg-k", version = "11.0.0", classifiers = ["License :: OSI Approved :: MIT License"] },
+]

@@ -79,13 +79,7 @@ def _check_scenario_axes():
         delivery = axes.get("delivery")
         if link_mode not in contract.LINK_MODES:
             return False
-        if delivery is not None and delivery not in (
-            "internal",
-            "binary",
-            "source",
-            "saas",
-            "container",
-        ):
+        if delivery is not None and delivery not in contract.DELIVERIES:
             return False
     return True
 

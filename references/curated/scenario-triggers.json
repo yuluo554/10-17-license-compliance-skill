@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "id": "T-DIST-STRONG-001",
+      "tier": "strong-copyleft",
+      "scenarios": [
+        "distribute-binary",
+        "distribute-source",
+        "container-image"
+      ],
+      "link_modes": [
+        "none",
+        "static",
+        "dynamic",
+        "separate-process"
+      ],
+      "trigger": "distribution",
+      "obligations": [
+        "mark-modifications",
+        "provide-source",
+        "same-license"
+      ],
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/GPL-2.0-only.json#licenseText",
+        "section": "§3(b)",
+        "quote": "b) You must cause any work that you distribute or publish, that in whole or in part contains or is derived from the Program or any part thereof, to be licensed as a whole at no charge to all third parties under the terms of this License."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "id": "T-DIST-NET-001",
+      "tier": "network-copyleft",
+      "scenarios": [
+        "distribute-binary",
+        "distribute-source",
+        "container-image"
+      ],
+      "link_modes": [
+        "none",
+        "static",
+        "dynamic",
+        "separate-process"
+      ],
+      "trigger": "distribution",
+      "obligations": [
+        "mark-modifications",
+        "provide-source",
+        "same-license"
+      ],
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/AGPL-3.0-only.json#licenseText",
+        "section": "§6",
+        "quote": "6. Conveying Non-Source Forms. You may convey a covered work in object code form under the terms of sections 4 and 5, provided that you also convey the machine-readable Corresponding Source"
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "id": "T-NET-001",
+      "tier": "network-copyleft",
+      "scenarios": [
+        "internal",
+        "distribute-binary",
+        "distribute-source",
+        "saas",
+        "static-link",
+        "dynamic-link",
+        "separate-process",
+        "container-image"
+      ],
+      "link_modes": [
+        "none",
+        "static",
+        "dynamic",
+        "separate-process"
+      ],
+      "network_interaction": true,
+      "trigger": "network-interaction",
+      "obligations": [
+        "network-source"
+      ],
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/AGPL-3.0-only.json#licenseText",
+        "section": "§13",
+        "quote": "Notwithstanding any other provision of this License, if you modify the Program, your modified version must prominently offer all users interacting with it remotely through a computer network"
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "id": "T-STATIC-WEAK-001",
+      "tier": "weak-copyleft",
+      "scenarios": [
+        "distribute-binary",
+        "distribute-source",
+        "container-image"
+      ],
+      "link_modes": [
+        "static"
+      ],
+      "trigger": "static-link",
+      "obligations": [
+        "mark-modifications",
+        "provide-source"
+      ],
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/LGPL-2.1-only.json#licenseText",
+        "section": "§6",
+        "quote": "However, linking a \"work that uses the Library\" with the Library creates an executable that is a derivative of the Library"
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "id": "T-DIST-WEAK-001",
+      "tier": "weak-copyleft",
+      "scenarios": [
+        "distribute-binary",
+        "distribute-source",
+        "container-image"
+      ],
+      "link_modes": [
+        "none",
+        "static",
+        "dynamic",
+        "separate-process"
+      ],
+      "trigger": "distribution",
+      "obligations": [
+        "mark-modifications",
+        "provide-source"
+      ],
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/MPL-2.0.json#licenseText",
+        "section": "§3.2",
+        "quote": "3.2. Distribution of Executable Form If You distribute Covered Software in Executable Form then: (a) such Covered Software must also be made available in Source Code Form"
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    },
+    {
+      "id": "T-SA-HOSTED-001",
+      "tier": "source-available",
+      "scenarios": [
+        "saas"
+      ],
+      "link_modes": [
+        "none",
+        "static",
+        "dynamic",
+        "separate-process"
+      ],
+      "trigger": "hosted-service-restriction",
+      "obligations": [
+        "retain-copyright"
+      ],
+      "anchor": {
+        "source": "spdx-license-text",
+        "ref": "texts/Elastic-2.0.json#licenseText",
+        "section": "Limitations",
+        "quote": "You may not provide the software to third parties as a hosted or managed service, where the service provides users with access to any substantial set of the features or functionality of the software."
+      },
+      "verified": true,
+      "checked_on": "2026-10-17"
+    }
+  ]
+}

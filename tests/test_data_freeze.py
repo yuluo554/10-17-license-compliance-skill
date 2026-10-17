@@ -22,6 +22,7 @@ from _helpers import REPO_ROOT
 DATA_DIR = os.path.join(REPO_ROOT, "data")
 SYNTHETIC_DIR = os.path.join(DATA_DIR, "synthetic")
 TRUTH_PATH = os.path.join(DATA_DIR, "truth", "truth.json")
+PROFILE_TRUTH_PATH = os.path.join(DATA_DIR, "truth", "profile.json")
 RULESET_DIR = os.path.join(REPO_ROOT, "references", "ruleset")
 SPDX_DIR = os.path.join(REPO_ROOT, "references", "spdx")
 TOOLS = os.path.join(REPO_ROOT, "tools")
@@ -66,6 +67,57 @@ def test_gen_synthetic_check_passes():
     text = result.stdout.decode("utf-8", "replace") + result.stderr.decode("utf-8", "replace")
     assert result.returncode == 0, text
     assert "逐字节一致" in text
+
+
+def test_gen_profile_truth_check_passes():
+    result = run_tool("gen_profile_truth.py", "--check")
+    text = result.stdout.decode("utf-8", "replace") + result.stderr.decode("utf-8", "replace")
+    assert result.returncode == 0, text
+    assert "逐字节一致" in text
+
+
+def test_gen_profile_truth_check_detects_handedit(tmp_path):
+    """阳性对照：手改画像真值 → ``--check`` 必须变红。"""
+    target = tmp_path / "profile.json"
+    target.write_text(
+        io.open(PROFILE_TRUTH_PATH, encoding="utf-8").read().replace(
+            '"tier": "permissive"', '"tier": "source-available"', 1
+        ),
+        encoding="utf-8",
+    )
+    result = run_tool("gen_profile_truth.py", "--check", "--out", str(target))
+    text = result.stdout.decode("utf-8", "replace")
+    assert result.returncode == 1, text
+    assert "[FAIL]" in text
+
+
+def test_profile_truth_is_a_projection_of_the_ruleset():
+    """真值 = 规则表的投影：逐条比对，不允许出现引擎"回填"的痕迹。"""
+    curated = read_json(os.path.join(REPO_ROOT, "references", "curated", "tiers.json"))
+    truth = read_json(PROFILE_TRUTH_PATH)
+    expected = {entry["license_id"]: entry for entry in curated["entries"]}
+    actual = {item["spdx_id"]: item for item in truth["expect"]["profiles"]}
+    assert set(actual) == set(expected)
+    from licaudit import contract
+
+    for license_id, item in actual.items():
+        rule = expected[license_id]
+        assert item["tier"] == rule["tier"]
+        assert set(item["obligations"]) == set(rule["obligations"])
+        assert [x for x in contract.OBLIGATIONS if x in item["obligations"]] == item["obligations"]
+        for field in ("patent_clause", "trademark_clause"):
+            assert item[field + "_present"] is bool((rule.get(field) or {}).get("present"))
+
+
+def test_profile_truth_covers_both_branches():
+    """``tier`` 有值与 ``tier: null`` 两侧都必须有真值条目。"""
+    truth = read_json(PROFILE_TRUTH_PATH)
+    assert truth["expect"]["profiles"], "缺少有档位的真值"
+    assert truth["expect"]["pending"], "缺少 tier: null 分支的真值"
+    covered = {item["spdx_id"] for item in truth["expect"]["profiles"]}
+    pending = {item["spdx_id"] for item in truth["expect"]["pending"]}
+    assert not (covered & pending), "同一 ID 不能既是覆盖又是未覆盖"
+    assert truth["inputs"]["spdx_ids"] == sorted(covered | pending)
 
 
 def test_fetch_spdx_check_passes_offline():
@@ -159,6 +211,105 @@ def test_generator_marks_unlocatable_rule_as_unverified(tmp_path):
     assert any("锚点不可定位" in problem for problem in problems)
 
 
+def test_gen_conflict_truth_check_passes():
+    result = run_tool("gen_conflict_truth.py", "--check")
+    text = result.stdout.decode("utf-8", "replace") + result.stderr.decode("utf-8", "replace")
+    assert result.returncode == 0, text
+    assert "逐字节一致" in text
+
+
+# ---------------------------------------------------------------------------
+# M4 冲突对生成门（D20 锚点 / SPDX 成员 / 无向组合唯一）
+# ---------------------------------------------------------------------------
+
+
+def _generate_with_curated(tmp_path, mutate):
+    """把 curated 复制一份、按 ``mutate`` 改坏，再跑一遍生成器（不碰仓库冻结产物）。"""
+    import shutil
+    import sys
+
+    sys.path.insert(0, TOOLS)
+    import gen_ruleset  # noqa: E402
+
+    curated = tmp_path / "curated"
+    shutil.copytree(os.path.join(REPO_ROOT, "references", "curated"), str(curated))
+    pairs_path = curated / "conflict-pairs.json"
+    payload = read_json(str(pairs_path))
+    mutate(payload)
+    pairs_path.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+
+    original = gen_ruleset.CURATED_DIR
+    gen_ruleset.CURATED_DIR = str(curated)
+    try:
+        return gen_ruleset.generate(str(tmp_path / "out"))
+    finally:
+        gen_ruleset.CURATED_DIR = original
+
+
+def test_conflict_pairs_generator_marks_unlocatable_anchor_as_unverified(tmp_path):
+    def mutate(payload):
+        entry = next(
+            item for item in payload["entries"] if item["pair_id"] == "CP-GPL2-APACHE2"
+        )
+        entry["anchor"]["quote"] = "这是一句 Apache-2.0 原文里不存在的话"
+
+    documents, _manifest, problems = _generate_with_curated(tmp_path, mutate)
+    entry = next(
+        item for item in documents["conflict-pairs.json"]["entries"]
+        if item["pair_id"] == "CP-GPL2-APACHE2"
+    )
+    assert entry["verified"] is False
+    assert any("锚点不可定位" in problem for problem in problems)
+
+
+def test_conflict_pairs_generator_rejects_licenses_absent_from_the_snapshot(tmp_path):
+    def mutate(payload):
+        entry = next(
+            item for item in payload["entries"] if item["pair_id"] == "CP-GPL2-GPL3"
+        )
+        entry["right"] = "No-Such-License-9.9"
+
+    documents, _manifest, problems = _generate_with_curated(tmp_path, mutate)
+    assert all(
+        item["pair_id"] != "CP-GPL2-GPL3"
+        for item in documents["conflict-pairs.json"]["entries"]
+    )
+    assert any("不在 SPDX 清单中" in problem for problem in problems)
+
+
+def test_conflict_pairs_generator_rejects_duplicate_unordered_combination(tmp_path):
+    def mutate(payload):
+        source = next(
+            item for item in payload["entries"] if item["pair_id"] == "CP-GPL2-APACHE2"
+        )
+        duplicate = dict(source)
+        duplicate["pair_id"] = "CP-DUPLICATE-001"
+        duplicate["left"], duplicate["right"] = source["right"], source["left"]
+        payload["entries"].append(duplicate)
+
+    documents, _manifest, problems = _generate_with_curated(tmp_path, mutate)
+    ids = [item["pair_id"] for item in documents["conflict-pairs.json"]["entries"]]
+    assert "CP-DUPLICATE-001" not in ids
+    assert "CP-GPL2-APACHE2" in ids
+    assert any("无向组合重复登记" in problem for problem in problems)
+
+
+def test_conflict_pairs_generator_rejects_invalid_resolution(tmp_path):
+    def mutate(payload):
+        next(
+            item for item in payload["entries"] if item["pair_id"] == "CP-GPL3-APACHE2"
+        )["resolution"] = "maybe"
+
+    documents, _manifest, problems = _generate_with_curated(tmp_path, mutate)
+    assert all(
+        item["pair_id"] != "CP-GPL3-APACHE2"
+        for item in documents["conflict-pairs.json"]["entries"]
+    )
+    assert any("resolution 非法" in problem for problem in problems)
+
+
 # ---------------------------------------------------------------------------
 # 合成数据白名单（K28）
 # ---------------------------------------------------------------------------
@@ -202,10 +353,9 @@ def test_trap_case_uses_only_real_names():
 
 
 def test_trap_case_is_absent_from_example_project():
-    """坑位用例不得进入示例项目（示例项目 M5 才建，这里守反向）。"""
+    """坑位用例不得进入示例项目（示例项目只含合成包名）。"""
     example_dir = os.path.join(SYNTHETIC_DIR, "example-project")
-    if not os.path.isdir(example_dir):
-        pytest.skip("example-project 属于 M5")
+    assert os.path.isdir(example_dir), "M5 起示例项目必须入仓"
     for dirpath, _dirnames, filenames in os.walk(example_dir):
         for filename in filenames:
             path = os.path.join(dirpath, filename)
@@ -213,6 +363,13 @@ def test_trap_case_is_absent_from_example_project():
                 text = stream.read()
             for name in ("pandas", "psycopg2", "PyMySQL", "PyQt5"):
                 assert name not in text
+
+
+def test_gen_action_truth_check_passes():
+    result = run_tool("gen_action_truth.py", "--check")
+    text = result.stdout.decode("utf-8", "replace") + result.stderr.decode("utf-8", "replace")
+    assert result.returncode == 0, text
+    assert "逐字节一致" in text
 
 
 # ---------------------------------------------------------------------------

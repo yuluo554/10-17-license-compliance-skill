@@ -1,0 +1,2366 @@
+{
+  "format": "licaudit-actions-truth",
+  "format_version": 1,
+  "inputs": {
+    "ruleset_source": "references/curated/action-rules.json",
+    "triggers_source": "references/curated/scenario-triggers.json",
+    "license_list_version": "3.29.0",
+    "captured_on": "2026-10-17",
+    "level_order": [
+      "ok",
+      "declare",
+      "isolate",
+      "replace_or_license"
+    ],
+    "rule_ids": [
+      "A-REPL-001",
+      "A-REPL-002",
+      "A-DECL-001",
+      "A-ISOL-001",
+      "A-ISOL-002",
+      "A-ISOL-003",
+      "A-ISOL-004",
+      "A-OK-001"
+    ],
+    "dropped_rule_ids": [],
+    "obligation_axes": {
+      "retain-copyright": "notice",
+      "include-license-text": "notice",
+      "mark-modifications": "notice",
+      "provide-source": "source",
+      "network-source": "network-source",
+      "patent-grant": "notice",
+      "trademark-restriction": "notice",
+      "same-license": "same-license"
+    },
+    "reachable_axes": [
+      [],
+      [
+        "network-source"
+      ],
+      [
+        "notice"
+      ],
+      [
+        "notice",
+        "source"
+      ],
+      [
+        "notice",
+        "same-license",
+        "source"
+      ],
+      [
+        "network-source",
+        "notice",
+        "same-license",
+        "source"
+      ]
+    ],
+    "fact_domain": {
+      "conflict": [
+        "compatible",
+        "incompatible"
+      ],
+      "pair_conflict": [
+        "none",
+        "incompatible"
+      ],
+      "link_mode": [
+        "none",
+        "static",
+        "dynamic",
+        "separate-process"
+      ],
+      "verdict": [
+        "triggered",
+        "not_triggered"
+      ]
+    }
+  },
+  "expect": {
+    "matrix": [
+      {
+        "axes": [],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "none",
+        "verdict": "triggered",
+        "level": "ok",
+        "rule_id": "A-OK-001"
+      },
+      {
+        "axes": [],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "none",
+        "verdict": "not_triggered",
+        "level": "ok",
+        "rule_id": "A-OK-001"
+      },
+      {
+        "axes": [],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "static",
+        "verdict": "triggered",
+        "level": "ok",
+        "rule_id": "A-OK-001"
+      },
+      {
+        "axes": [],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "static",
+        "verdict": "not_triggered",
+        "level": "ok",
+        "rule_id": "A-OK-001"
+      },
+      {
+        "axes": [],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "dynamic",
+        "verdict": "triggered",
+        "level": "ok",
+        "rule_id": "A-OK-001"
+      },
+      {
+        "axes": [],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "dynamic",
+        "verdict": "not_triggered",
+        "level": "ok",
+        "rule_id": "A-OK-001"
+      },
+      {
+        "axes": [],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "separate-process",
+        "verdict": "triggered",
+        "level": "ok",
+        "rule_id": "A-OK-001"
+      },
+      {
+        "axes": [],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "separate-process",
+        "verdict": "not_triggered",
+        "level": "ok",
+        "rule_id": "A-OK-001"
+      },
+      {
+        "axes": [],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "none",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "none",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "static",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "static",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "dynamic",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "dynamic",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "separate-process",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "separate-process",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "none",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-003"
+      },
+      {
+        "axes": [],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "none",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-003"
+      },
+      {
+        "axes": [],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "static",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-003"
+      },
+      {
+        "axes": [],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "static",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-003"
+      },
+      {
+        "axes": [],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "dynamic",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-003"
+      },
+      {
+        "axes": [],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "dynamic",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-003"
+      },
+      {
+        "axes": [],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "separate-process",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-003"
+      },
+      {
+        "axes": [],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "separate-process",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-003"
+      },
+      {
+        "axes": [],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "none",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "none",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "static",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "static",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "dynamic",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "dynamic",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "separate-process",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "separate-process",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "none",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-002"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "none",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-002"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "static",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-002"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "static",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-002"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "dynamic",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-002"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "dynamic",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-002"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "separate-process",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-002"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "separate-process",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-002"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "none",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "none",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "static",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "static",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "dynamic",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "dynamic",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "separate-process",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "separate-process",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "none",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-002"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "none",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-002"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "static",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-002"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "static",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-002"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "dynamic",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-002"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "dynamic",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-002"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "separate-process",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-002"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "separate-process",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-002"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "none",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "none",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "static",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "static",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "dynamic",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "dynamic",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "separate-process",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "network-source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "separate-process",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "none",
+        "verdict": "triggered",
+        "level": "declare",
+        "rule_id": "A-DECL-001"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "none",
+        "verdict": "not_triggered",
+        "level": "declare",
+        "rule_id": "A-DECL-001"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "static",
+        "verdict": "triggered",
+        "level": "declare",
+        "rule_id": "A-DECL-001"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "static",
+        "verdict": "not_triggered",
+        "level": "declare",
+        "rule_id": "A-DECL-001"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "dynamic",
+        "verdict": "triggered",
+        "level": "declare",
+        "rule_id": "A-DECL-001"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "dynamic",
+        "verdict": "not_triggered",
+        "level": "declare",
+        "rule_id": "A-DECL-001"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "separate-process",
+        "verdict": "triggered",
+        "level": "declare",
+        "rule_id": "A-DECL-001"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "separate-process",
+        "verdict": "not_triggered",
+        "level": "declare",
+        "rule_id": "A-DECL-001"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "none",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "none",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "static",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "static",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "dynamic",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "dynamic",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "separate-process",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "separate-process",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "none",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-003"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "none",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-003"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "static",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-003"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "static",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-003"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "dynamic",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-003"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "dynamic",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-003"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "separate-process",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-003"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "separate-process",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-003"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "none",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "none",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "static",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "static",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "dynamic",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "dynamic",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "separate-process",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "notice"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "separate-process",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "none",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "none",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "static",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "static",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "dynamic",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "dynamic",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "separate-process",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "separate-process",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "none",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "none",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "static",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "static",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "dynamic",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "dynamic",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "separate-process",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "separate-process",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "none",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "none",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "static",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "static",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "dynamic",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "dynamic",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "separate-process",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "separate-process",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "none",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "none",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "static",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "static",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "dynamic",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "dynamic",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "separate-process",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "notice",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "separate-process",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "none",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "none",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "static",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "static",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "dynamic",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "dynamic",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "separate-process",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "separate-process",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "none",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "none",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "static",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "static",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "dynamic",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "dynamic",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "separate-process",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "separate-process",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "none",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "none",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "static",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "static",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "dynamic",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "dynamic",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "separate-process",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "separate-process",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-001"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "none",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "none",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "static",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "static",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "dynamic",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "dynamic",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "separate-process",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "separate-process",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "none",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "none",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "static",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "static",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "dynamic",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "dynamic",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "separate-process",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "separate-process",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-001"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "none",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "none",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "static",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "static",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "dynamic",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "dynamic",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "separate-process",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "separate-process",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "none",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-001"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "none",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-001"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "static",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-001"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "static",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-001"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "dynamic",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-001"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "dynamic",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-001"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "separate-process",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-001"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "none",
+        "link_mode": "separate-process",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-001"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "none",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "none",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "static",
+        "verdict": "triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "static",
+        "verdict": "not_triggered",
+        "level": "replace_or_license",
+        "rule_id": "A-REPL-002"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "dynamic",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "dynamic",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "separate-process",
+        "verdict": "triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      },
+      {
+        "axes": [
+          "network-source",
+          "notice",
+          "same-license",
+          "source"
+        ],
+        "conflict": "incompatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "separate-process",
+        "verdict": "not_triggered",
+        "level": "isolate",
+        "rule_id": "A-ISOL-004"
+      }
+    ],
+    "levels": {
+      "ok": {
+        "rule_id": "A-OK-001",
+        "axes": [],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "none",
+        "verdict": "triggered"
+      },
+      "declare": {
+        "rule_id": "A-DECL-001",
+        "axes": [
+          "notice"
+        ],
+        "conflict": "compatible",
+        "pair_conflict": "none",
+        "link_mode": "none",
+        "verdict": "triggered"
+      },
+      "isolate": {
+        "rule_id": "A-ISOL-004",
+        "axes": [],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "dynamic",
+        "verdict": "triggered"
+      },
+      "replace_or_license": {
+        "rule_id": "A-REPL-002",
+        "axes": [],
+        "conflict": "compatible",
+        "pair_conflict": "incompatible",
+        "link_mode": "none",
+        "verdict": "triggered"
+      }
+    },
+    "coverage": {
+      "rows": 192,
+      "uncovered": 0,
+      "dead_rules": []
+    }
+  }
+}

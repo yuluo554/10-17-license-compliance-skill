@@ -3,6 +3,134 @@
   "format_version": 1,
   "cases": [
     {
+      "case_id": "example-project",
+      "inputs": {
+        "files": [
+          "go.mod",
+          "package-lock.json",
+          "package.json",
+          "pom.xml",
+          "pyproject.toml",
+          "requirements.txt"
+        ]
+      },
+      "expect": {
+        "dependencies": [
+          {
+            "package": "com.example:example-pkg-m",
+            "version": "13.0.0",
+            "spdx_id": "Python-2.0",
+            "confidence": "license_expression",
+            "flags": []
+          },
+          {
+            "package": "com.example:example-pkg-n",
+            "version": "14.0.0",
+            "spdx_id": "0BSD",
+            "confidence": "license_expression",
+            "flags": []
+          },
+          {
+            "package": "example-pkg-a",
+            "version": "1.0.0",
+            "spdx_id": "MIT",
+            "confidence": "license_expression",
+            "flags": []
+          },
+          {
+            "package": "example-pkg-b",
+            "version": "2.0.0",
+            "spdx_id": "Apache-2.0",
+            "confidence": "license_expression",
+            "flags": []
+          },
+          {
+            "package": "example-pkg-c",
+            "version": "3.0.0",
+            "spdx_id": "GPL-3.0-only",
+            "confidence": "license_expression",
+            "flags": []
+          },
+          {
+            "package": "example-pkg-d",
+            "version": "4.0.0",
+            "spdx_id": "GPL-2.0-only",
+            "confidence": "license_expression",
+            "flags": []
+          },
+          {
+            "package": "example-pkg-e",
+            "version": "5.0.0",
+            "spdx_id": "MPL-2.0",
+            "confidence": "license_expression",
+            "flags": []
+          },
+          {
+            "package": "example-pkg-f",
+            "version": "6.0.0",
+            "spdx_id": "LGPL-2.1-only",
+            "confidence": "license_expression",
+            "flags": []
+          },
+          {
+            "package": "example-pkg-h",
+            "version": "8.0.0",
+            "spdx_id": "AGPL-3.0-only",
+            "confidence": "license_expression",
+            "flags": []
+          },
+          {
+            "package": "example-pkg-i",
+            "version": "9.0.0",
+            "spdx_id": "BSD-3-Clause",
+            "confidence": "license_expression",
+            "flags": []
+          },
+          {
+            "package": "example-pkg-j",
+            "version": "10.0.0",
+            "spdx_id": "BUSL-1.1",
+            "confidence": "license_expression",
+            "flags": []
+          },
+          {
+            "package": "example-pkg-k",
+            "version": "11.0.0",
+            "spdx_id": "MIT",
+            "confidence": "trove_classifier",
+            "flags": []
+          },
+          {
+            "package": "example.com/example-pkg-l",
+            "version": "v12.0.0",
+            "spdx_id": "Unlicense",
+            "confidence": "license_expression",
+            "flags": []
+          }
+        ],
+        "pending_confirmation": [
+          {
+            "package": "com.example:example-pkg-o",
+            "version": "15.0.0",
+            "spdx_id": "GPL-unknown",
+            "confidence": "license_expression",
+            "flags": [
+              "family-unknown"
+            ]
+          },
+          {
+            "package": "example-pkg-g",
+            "version": "7.0.0",
+            "spdx_id": null,
+            "confidence": "truncated_fallback",
+            "flags": [
+              "unresolved"
+            ]
+          }
+        ]
+      }
+    },
+    {
       "case_id": "expr-complex",
       "inputs": {
         "files": [

@@ -1,0 +1,744 @@
+{
+  "format": "licaudit-profile-truth",
+  "format_version": 1,
+  "inputs": {
+    "spdx_ids": [
+      "0BSD",
+      "AGPL-3.0",
+      "AGPL-3.0-only",
+      "AGPL-3.0-or-later",
+      "Apache-1.1",
+      "Apache-2.0",
+      "Artistic-2.0",
+      "BSD-2-Clause",
+      "BSD-3-Clause",
+      "BSD-3-Clause-Clear",
+      "BSL-1.0",
+      "BUSL-1.1",
+      "Beerware",
+      "BlueOak-1.0.0",
+      "CC-BY-4.0",
+      "CC0-1.0",
+      "CDDL-1.0",
+      "CDDL-1.1",
+      "EPL-1.0",
+      "EPL-2.0",
+      "Elastic-2.0",
+      "GPL-2.0",
+      "GPL-2.0-only",
+      "GPL-2.0-or-later",
+      "GPL-3.0",
+      "GPL-3.0-only",
+      "GPL-3.0-or-later",
+      "GPL-unknown",
+      "ISC",
+      "LGPL-2.1",
+      "LGPL-2.1-only",
+      "LGPL-2.1-or-later",
+      "LGPL-3.0-only",
+      "LGPL-3.0-or-later",
+      "LGPL-unknown",
+      "MIT",
+      "MIT-0",
+      "MPL-1.1",
+      "MPL-2.0",
+      "MS-PL",
+      "MS-RL",
+      "NCSA",
+      "OpenSSL",
+      "PHP-3.01",
+      "PSF-2.0",
+      "PostgreSQL",
+      "Python-2.0",
+      "SSPL-1.0",
+      "UPL-1.0",
+      "Unlicense",
+      "WTFPL",
+      "Zlib"
+    ],
+    "ruleset_source": "references/curated/tiers.json",
+    "license_list_version": "3.29.0",
+    "captured_on": "2026-10-17"
+  },
+  "expect": {
+    "profiles": [
+      {
+        "spdx_id": "0BSD",
+        "tier": "permissive",
+        "obligations": [],
+        "is_osi_approved": true,
+        "is_fsf_libre": null,
+        "patent_clause_present": false,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "AGPL-3.0",
+        "tier": "network-copyleft",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "mark-modifications",
+          "provide-source",
+          "network-source",
+          "patent-grant",
+          "same-license"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": true,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "AGPL-3.0-only",
+        "tier": "network-copyleft",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "mark-modifications",
+          "provide-source",
+          "network-source",
+          "patent-grant",
+          "same-license"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": true,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "AGPL-3.0-or-later",
+        "tier": "network-copyleft",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "mark-modifications",
+          "provide-source",
+          "network-source",
+          "patent-grant",
+          "same-license"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": true,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "Apache-1.1",
+        "tier": "permissive",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "trademark-restriction"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": false,
+        "trademark_clause_present": true
+      },
+      {
+        "spdx_id": "Apache-2.0",
+        "tier": "permissive",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "patent-grant",
+          "trademark-restriction"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": true,
+        "trademark_clause_present": true
+      },
+      {
+        "spdx_id": "Artistic-2.0",
+        "tier": "permissive",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "mark-modifications"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": false,
+        "trademark_clause_present": true
+      },
+      {
+        "spdx_id": "BSD-2-Clause",
+        "tier": "permissive",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": false,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "BSD-3-Clause",
+        "tier": "permissive",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": false,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "BSD-3-Clause-Clear",
+        "tier": "permissive",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text"
+        ],
+        "is_osi_approved": false,
+        "is_fsf_libre": true,
+        "patent_clause_present": false,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "BSL-1.0",
+        "tier": "permissive",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": false,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "BUSL-1.1",
+        "tier": "source-available",
+        "obligations": [
+          "retain-copyright",
+          "trademark-restriction"
+        ],
+        "is_osi_approved": false,
+        "is_fsf_libre": null,
+        "patent_clause_present": false,
+        "trademark_clause_present": true
+      },
+      {
+        "spdx_id": "Beerware",
+        "tier": "permissive",
+        "obligations": [],
+        "is_osi_approved": false,
+        "is_fsf_libre": null,
+        "patent_clause_present": false,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "CC0-1.0",
+        "tier": "permissive",
+        "obligations": [],
+        "is_osi_approved": false,
+        "is_fsf_libre": true,
+        "patent_clause_present": false,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "CDDL-1.0",
+        "tier": "weak-copyleft",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "mark-modifications",
+          "provide-source",
+          "patent-grant",
+          "same-license"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": true,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "CDDL-1.1",
+        "tier": "weak-copyleft",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "mark-modifications",
+          "provide-source",
+          "patent-grant",
+          "same-license"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": null,
+        "patent_clause_present": true,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "EPL-1.0",
+        "tier": "weak-copyleft",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "mark-modifications",
+          "provide-source",
+          "patent-grant",
+          "same-license"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": true,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "EPL-2.0",
+        "tier": "weak-copyleft",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "mark-modifications",
+          "provide-source",
+          "patent-grant",
+          "trademark-restriction",
+          "same-license"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": true,
+        "trademark_clause_present": true
+      },
+      {
+        "spdx_id": "Elastic-2.0",
+        "tier": "source-available",
+        "obligations": [
+          "retain-copyright",
+          "trademark-restriction"
+        ],
+        "is_osi_approved": false,
+        "is_fsf_libre": null,
+        "patent_clause_present": false,
+        "trademark_clause_present": true
+      },
+      {
+        "spdx_id": "GPL-2.0",
+        "tier": "strong-copyleft",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": false,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "GPL-2.0-only",
+        "tier": "strong-copyleft",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": false,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "GPL-2.0-or-later",
+        "tier": "strong-copyleft",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": false,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "GPL-3.0",
+        "tier": "strong-copyleft",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "mark-modifications",
+          "provide-source",
+          "patent-grant",
+          "same-license"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": true,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "GPL-3.0-only",
+        "tier": "strong-copyleft",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "mark-modifications",
+          "provide-source",
+          "patent-grant",
+          "same-license"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": true,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "GPL-3.0-or-later",
+        "tier": "strong-copyleft",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "mark-modifications",
+          "provide-source",
+          "patent-grant",
+          "same-license"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": true,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "ISC",
+        "tier": "permissive",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": false,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "LGPL-2.1",
+        "tier": "weak-copyleft",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": false,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "LGPL-2.1-only",
+        "tier": "weak-copyleft",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": false,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "LGPL-2.1-or-later",
+        "tier": "weak-copyleft",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": false,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "LGPL-3.0-only",
+        "tier": "weak-copyleft",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": true,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "LGPL-3.0-or-later",
+        "tier": "weak-copyleft",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": true,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "MIT",
+        "tier": "permissive",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": false,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "MIT-0",
+        "tier": "permissive",
+        "obligations": [],
+        "is_osi_approved": true,
+        "is_fsf_libre": null,
+        "patent_clause_present": false,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "MPL-1.1",
+        "tier": "weak-copyleft",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": true,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "MPL-2.0",
+        "tier": "weak-copyleft",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "mark-modifications",
+          "provide-source",
+          "patent-grant",
+          "trademark-restriction",
+          "same-license"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": true,
+        "trademark_clause_present": true
+      },
+      {
+        "spdx_id": "MS-PL",
+        "tier": "permissive",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "patent-grant"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": true,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "MS-RL",
+        "tier": "weak-copyleft",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "mark-modifications",
+          "provide-source",
+          "same-license"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": true,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "NCSA",
+        "tier": "permissive",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": false,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "OpenSSL",
+        "tier": "permissive",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "trademark-restriction"
+        ],
+        "is_osi_approved": false,
+        "is_fsf_libre": true,
+        "patent_clause_present": false,
+        "trademark_clause_present": true
+      },
+      {
+        "spdx_id": "PHP-3.01",
+        "tier": "permissive",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "trademark-restriction"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": false,
+        "trademark_clause_present": true
+      },
+      {
+        "spdx_id": "PSF-2.0",
+        "tier": "permissive",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text"
+        ],
+        "is_osi_approved": false,
+        "is_fsf_libre": null,
+        "patent_clause_present": false,
+        "trademark_clause_present": true
+      },
+      {
+        "spdx_id": "PostgreSQL",
+        "tier": "permissive",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": null,
+        "patent_clause_present": false,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "Python-2.0",
+        "tier": "permissive",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": false,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "SSPL-1.0",
+        "tier": "network-copyleft",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text",
+          "mark-modifications",
+          "provide-source",
+          "network-source",
+          "patent-grant",
+          "same-license"
+        ],
+        "is_osi_approved": false,
+        "is_fsf_libre": null,
+        "patent_clause_present": true,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "UPL-1.0",
+        "tier": "permissive",
+        "obligations": [
+          "retain-copyright",
+          "include-license-text"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": false,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "Unlicense",
+        "tier": "permissive",
+        "obligations": [],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": false,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "WTFPL",
+        "tier": "permissive",
+        "obligations": [],
+        "is_osi_approved": false,
+        "is_fsf_libre": true,
+        "patent_clause_present": false,
+        "trademark_clause_present": false
+      },
+      {
+        "spdx_id": "Zlib",
+        "tier": "permissive",
+        "obligations": [
+          "retain-copyright",
+          "mark-modifications"
+        ],
+        "is_osi_approved": true,
+        "is_fsf_libre": true,
+        "patent_clause_present": false,
+        "trademark_clause_present": false
+      }
+    ],
+    "pending": [
+      {
+        "spdx_id": "BlueOak-1.0.0",
+        "reasons": [
+          "tier_uncovered"
+        ]
+      },
+      {
+        "spdx_id": "CC-BY-4.0",
+        "reasons": [
+          "tier_uncovered"
+        ]
+      },
+      {
+        "spdx_id": "GPL-unknown",
+        "reasons": [
+          "tier_uncovered",
+          "unknown_family"
+        ]
+      },
+      {
+        "spdx_id": "LGPL-unknown",
+        "reasons": [
+          "tier_uncovered",
+          "unknown_family"
+        ]
+      }
+    ]
+  }
+}
