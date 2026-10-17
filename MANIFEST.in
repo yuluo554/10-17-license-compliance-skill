@@ -30,6 +30,7 @@ exclude tools/_mutate_m2.py
 exclude tools/_mutate_m3.py
 exclude tools/_mutate_m4.py
 exclude tools/_mutate_m5.py
+exclude tools/_mutate_m6.py
 exclude tools/_scan_desensitize.py
 prune out
 prune dist

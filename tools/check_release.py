@@ -83,6 +83,10 @@ PLACEHOLDERS = (
 FENCE_RE = re.compile(r"^```([A-Za-z0-9_-]*)\s*$")
 SUMS_LINE_RE = re.compile(r"^([0-9a-f]{64})\s{1,2}(\S+)\s*$")
 
+# 附件里的校验和清单文件。```sums 块登记的是**被哈希的载荷文件**，这个文件是它们的
+# 伴随清单（自身不进 ```sums 块），因此远端附件集合 = 登记的载荷 + 它。
+SUMS_FILE = "SHA256SUMS"
+
 
 def read_text(path):
     with io.open(path, encoding="utf-8") as stream:
@@ -232,10 +236,14 @@ def check_release_note_exists(problems):
         problems.append("缺少 plan/RELEASE-M6.md（发布留档必须在 tag 之前入库）")
         return None
     text = read_text(RELEASE_NOTE)
-    missing = [name for name in REQUIRED_SECTIONS if name not in text]
+    # 必须是真的**标题行**，不能靠正文里提到过这两个词就算数。
+    headings = [line.strip() for line in text.split("\n") if line.startswith("## ")]
+    missing = [
+        name for name in REQUIRED_SECTIONS if not any(name in heading for heading in headings)
+    ]
     if missing:
         problems.append(
-            "留档缺少必需的栏目：{0}（口径：tag 时点事实 / tag 后追加事实两栏）".format(
+            "留档缺少必需的栏目标题：{0}（口径：tag 时点事实 / tag 后追加事实两栏）".format(
                 "、".join(missing)
             )
         )
@@ -294,14 +302,41 @@ def check_ruleset_versions(fields, problems):
             )
 
 
+def recursive_includes(text):
+    """把 MANIFEST.in 的 ``recursive-include <dir> <pattern...>`` 解析成 {目录: [pattern]}。"""
+    table = {}
+    for line in text.split("\n"):
+        line = line.strip()
+        if not line.startswith("recursive-include"):
+            continue
+        parts = line.split()
+        if len(parts) < 3:
+            continue
+        table.setdefault(parts[1], []).extend(parts[2:])
+    return table
+
+
 def check_sdist_self_sufficient(problems):
+    """sdist 必须带上规则包与真值，否则「源码包」解包即 exit 3。
+
+    权威证明是**真去解包构建出来的 sdist** 跑一遍 `licaudit status`
+    （记录在 `plan/RELEASE-M6.md` §2.5）；这里守的是清单本身别退化——
+    只要求「有 recursive-include references」太松，得要求它确实覆盖 `.json`。
+    """
     if not os.path.isfile(MANIFEST_PATH):
         problems.append("缺少 MANIFEST.in；sdist 会丢掉 references/ 规则包，源码包不自足")
         return
-    text = read_text(MANIFEST_PATH)
+    table = recursive_includes(read_text(MANIFEST_PATH))
     for needed in ("references", "data"):
-        if not re.search(r"recursive-include\s+" + needed + r"\b", text):
-            problems.append("MANIFEST.in 没有把 {0}/ 打进 sdist".format(needed))
+        patterns = table.get(needed)
+        if not patterns:
+            problems.append("MANIFEST.in 没有 recursive-include {0}/".format(needed))
+        elif "*.json" not in patterns:
+            problems.append(
+                "MANIFEST.in 的 recursive-include {0} 不覆盖 *.json（规则包/快照/真值都是 JSON）：{1}".format(
+                    needed, patterns
+                )
+            )
 
 
 def check_status_flipped(version, problems):
@@ -398,10 +433,12 @@ def check_online(fields, sums, problems):
         problems.append("Release {0} 仍是 draft".format(tag))
 
     remote = sorted(asset.get("name") for asset in release.get("assets") or [])
-    recorded_names = sorted(name for _, name in sums)
-    if remote != recorded_names:
+    expected = sorted(set(name for _, name in sums) | {SUMS_FILE})
+    if remote != expected:
         problems.append(
-            "Release 附件与留档登记不一致：远端={0} 留档={1}".format(remote, recorded_names)
+            "Release 附件与留档登记不一致：远端={0} 期望={1}（登记的载荷 + {2}）".format(
+                remote, expected, SUMS_FILE
+            )
         )
 
     check_downloaded_sums(slug, tag, sums, problems)
@@ -471,6 +508,33 @@ def check_downloaded_sums(slug, tag, sums, problems):
                         name, actual, digest
                     )
                 )
+
+        # 伴随清单自身也要核对：它必须恰好登记同一批载荷（否则「校验和文件」可以撒谎）。
+        rc, _ = gh(
+            ["release", "download", tag, "--repo", slug, "--pattern", SUMS_FILE, "--dir", tmp],
+            problems,
+        )
+        if rc != 0:
+            return
+        path = os.path.join(tmp, SUMS_FILE)
+        if not os.path.isfile(path):
+            problems.append("Release 附件里缺少 {0}".format(SUMS_FILE))
+            return
+        listed = []
+        for line in read_text(path).split("\n"):
+            if not line.strip():
+                continue
+            match = SUMS_LINE_RE.match(line)
+            if not match:
+                problems.append("{0} 里有无法解析的行：{1}".format(SUMS_FILE, line))
+                continue
+            listed.append((match.group(1), match.group(2)))
+        if sorted(listed) != sorted(sums):
+            problems.append(
+                "下载回来的 {0} 与留档 ```sums 块登记的不是同一批：{1} vs {2}".format(
+                    SUMS_FILE, sorted(listed), sorted(sums)
+                )
+            )
 
 
 # --------------------------------------------------------------------------

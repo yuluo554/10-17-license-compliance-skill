@@ -97,10 +97,42 @@ py -3.12 -X utf8 tools/check_release.py --online   # 追加：仓库公开 / tag
 与 `sums` 围栏块（附件 sha256），因此**发布终态必须没有占位标记**
 （`TODO` / `待追加` / 待首推 …）——这一条在发布前故意是红的。
 
+**附件契约**：`sums` 块登记的是**被哈希的载荷文件**；`SHA256SUMS` 是它们的伴随清单，
+自身不进 `sums` 块。因此 `--online` 的判定是
+「远端附件集合 == 登记的载荷 + `SHA256SUMS`」，并且**下载回来的 `SHA256SUMS` 必须恰好登记同一批载荷**
+（否则一个会撒谎的校验和文件就能蒙混过关）。
+
+**两处刻意的严格**（都是被变异验证逼出来的，见下表 M1/M6）：
+栏目标题必须是**标题行**（正文里提到过这两个词不算）；`MANIFEST.in` 的
+`recursive-include references` 必须真的覆盖 `*.json`（只要求「有这一行」太松）。
+
 `sdist` 的完整性由 `MANIFEST.in` 负责：它把 `references/` 规则包与 SPDX 快照、`data/` 真值、
 `examples/`、`plan/`、`tools/`、`tests/` 一起打进源码包，使「源码包」这一发布形态自足
 （解包 → `pip install -e .` → `licaudit status` 不再 exit 3）；一次性变异脚本与 `out/`、`dist/`、
-`*.egg-info` 不入包。
+`*.egg-info` 不入包。这里守的是**清单别退化**；权威证明是真去解包构建出来的 sdist 跑一遍
+`licaudit status`（记录在 `plan/RELEASE-M6.md` §2.5）。
+
+`_mutate_m6.py` 是一次性变异验证脚本（11 组：「弄坏 → 变红 → 恢复 → 变绿」，
+含 3 组要联网真下载附件），不参与发布：
+
+```bash
+py -3.12 -X utf8 tools/_mutate_m6.py                 # 11 组（含联网组）
+py -3.12 -X utf8 tools/_mutate_m6.py --offline-only  # 8 组（快）
+```
+
+| # | 弄坏什么 | 变红的检查 |
+| --- | --- | --- |
+| M1 | 留档少了「tag 后追加事实」标题行 | 栏目标题（只有正文提到不算） |
+| M2 | 留档里插入一个占位标记 | 无占位标记 |
+| M3 | 校验和行截断成 40 位 | `sums` 行文法是 sha256 |
+| M4 | 留档登记的规则包版本与 manifest 不符 | 规则包版本一致 |
+| M5 | `plan/00` 的 M6 行回退成 ⬜ | 状态已翻转 |
+| M6 | `MANIFEST.in` 的 `references` 不再覆盖 `*.json` | sdist 自足 |
+| M7 | 包版本与 `SKILL.md` 版本不一致 | 版本三方一致 |
+| M8 | 留档 tag 与包版本不匹配 | tag ↔ 版本 |
+| M9 | `tag_commit` 与远端 tag 指向不符 | 远端 tag 指向 |
+| M10 | 登记的附件名远端不存在 | 远端附件集合 |
+| M11 | 校验和是合法 sha256 但值不对 | 附件下载回验 |
 
 `_scan_desensitize.py` 是一次性的**脱敏自查**脚本（绝对路径 / 凭证 / 跨项目引用 / 模板占位），
 不参与发布，也不被 pytest 收集。

@@ -160,57 +160,104 @@ license_list_version: 3.29.0
 
 ## 二、tag 后追加事实
 
-> 本节只允许在 tag / Release 产生**之后**追加。tag 之前的提交里，下面各表填「待追加」。
+> 本节只允许在 tag / Release 产生**之后**追加；本次追加发生在 tag `v0.1.0` 建成之后，
+> 属「tag 之后只允许追加类提交」的允许范围（只加事实，不改 §一 的任何结论）。
 
 ### 2.1 tag 与 Release
 
 | 项 | 值 |
 | --- | --- |
 | tag | `v0.1.0` |
-| tag 类型 | 待追加 |
-| tag 指向的提交 | 待追加 |
-| 指向提交的提交信息 | 待追加 |
-| 推送方式 | 待追加 |
-| Release 地址 | 待追加 |
-| Release 状态 | 待追加（必须非 draft、非 prerelease 判定留痕） |
+| tag 类型 | 附注 tag（annotated）；tag 对象 `32a11be17ec38079ab5f7bf16192cc0f3083606d` |
+| tag 指向的提交 | `4f4951c3dfe038a5c2b11e3cf95e2390d950e2cd` |
+| 指向提交的提交信息 | `M6 发布提交：发布留档 + 状态翻转 + CI 首推实测` |
+| 推送方式 | SSH（`git@github.com:yuluo554/10-17-license-compliance-skill.git`） |
+| Release 地址 | <https://github.com/yuluo554/10-17-license-compliance-skill/releases/tag/v0.1.0> |
+| Release 状态 | 已发布：`isDraft = false`、`isPrerelease = false`、`publishedAt = 2026-10-17T12:54:41Z` |
+| 附件数 | 7（全部 `state = uploaded`） |
+
+> **推送方式为何是 SSH**：本机到 `github.com:443` 的 HTTPS 连接不通（`gh api` 与
+> `ssh -T git@github.com` 都正常，唯独 `git push` 走 HTTPS 时连不上），因此
+> `origin` 改用 SSH。这是本机网络环境的事实，不影响仓库内容与公开性。
 
 ```release
-tag_commit: 待追加
-release_url: 待追加
+tag_commit: 4f4951c3dfe038a5c2b11e3cf95e2390d950e2cd
+release_url: https://github.com/yuluo554/10-17-license-compliance-skill/releases/tag/v0.1.0
 ```
 
 ### 2.2 发布提交（tag 指向的提交）的 CI 四矩阵结果
 
 tag 指向哪个提交只有在 tag 之后才知道，因此本节属追加事实。
 
-| 矩阵 | 结论 | 摘要 |
+| 矩阵 | 结论 | 摘要（日志实测） |
 | --- | --- | --- |
-| 待追加 | 待追加 | 待追加 |
+| `ubuntu-latest / py3.8` | success | `467 passed in 5.33s` |
+| `ubuntu-latest / py3.12` | success | `467 passed in 2.96s` |
+| `windows-latest / py3.8` | success | `467 passed in 5.90s` |
+| `windows-latest / py3.12` | success | `467 passed in 6.83s` |
+
+run `39034225029`（提交 `4f4951c`，2026-10-17），整体 `conclusion = success`，
+四个 job 全 success。这一步同时验证了 §1.5 记的 CI 改动：pytest 汇总行现在出现在日志里。
 
 ### 2.3 附件与校验和（发布物本体）
 
 | 附件 | 内容 | 字节 |
 | --- | --- | --- |
-| 待追加 | 待追加 | 待追加 |
+| `licaudit-0.1.0.tar.gz` | sdist 源码包（自带 `references/` 规则包与 SPDX 快照） | 870853 |
+| `licaudit-r0.1.0-data.tar.gz` | 规则包 `r0.1.0` + SPDX 3.29.0 快照 + curated 表 + 四份真值（129 条目） | 598201 |
+| `license-report.md` | 示例中文清单（SaaS 运行） | 20240 |
+| `license-report.csv` | 同上，机读版 | 5465 |
+| `license-report-distribute.md` | 示例中文清单（分发二进制运行） | 21656 |
+| `license-report-distribute.csv` | 同上，机读版 | 5901 |
+| `SHA256SUMS` | 以上 6 项的 sha256 | 542 |
+
+产物由 **tag 本体**生成：sdist 在 `git clone -b v0.1.0` 的干净检出上
+`python -m build --sdist --no-isolation`；数据留档用 `git archive v0.1.0 references data`；
+示例报告直接取自 tag 内的 `examples/report/`（测试逐字节守着）。
+两份 tar 包内的冻结数据都与仓库字节一致（抽查 `references/spdx/manifest.json`、
+`references/spdx/texts/GPL-3.0-only.json`、`references/spdx/licenses.json`、
+`references/ruleset/manifest.json`、`references/curated/tiers.json`、`data/truth/actions.json`，
+逐个 sha256 相等）。
 
 ```sums
+aab14a19b749568f2523995d24cbabc3aeea764b4299412fbf4dd651ba9812ac  licaudit-0.1.0.tar.gz
+47328cc42a493883d9977315c36593ae8fed692c65f38385c12220625121ff08  licaudit-r0.1.0-data.tar.gz
+5a8a47da65d3a3329d8f136fdaf3867803091bde4a7b69b6bafb711b8a267bcf  license-report-distribute.csv
+5815fe7e3b40bb08eab2677a04194d638808e6b2ae07d63be0000b015827a3c4  license-report-distribute.md
+0c9f31b83f244e49bc2d7610d18bf129b4e9ae7c0f9a9ae398339c872e70080a  license-report.csv
+6b652c2f6c74485d9a81bc722211d1efc222d478f5a10f9bdf10cb9eb81cb264  license-report.md
 ```
 
 ### 2.4 下载回验（发布物本体真下载）
 
 | 项 | 值 |
 | --- | --- |
-| 下载方式 | 待追加 |
-| 逐个重算 sha256 | 待追加 |
-| 与 §2.3 登记值比对 | 待追加 |
+| 下载方式 | `gh release download v0.1.0 --dir <临时目录>`（7 个附件全部取回） |
+| 逐个重算 sha256 | 6 个登记附件的 sha256 **全部**与 §2.3 一致 |
+| 与 §2.3 登记值比对 | 一致；额外只有一个 `SHA256SUMS` 本身（它不自哈希），下载回来的 `SHA256SUMS` 与本地生成的那份**逐字节相同** |
 
 ### 2.5 干净 clone 复核（tag 本体）
 
 tag 存在之后才能在全新目录里 clone 出**发布物本体**来复核，因此本节属追加事实。
+在仓库外全新目录 `git clone -b v0.1.0`（走公开远端）后，**不使用 `PYTHONPATH`**
+（证明安装面而非源码面可用）：
 
 | 步骤 | 命令 | 退出码 / 摘要 |
 | --- | --- | --- |
-| 待追加 | 待追加 | 待追加 |
+| 建虚拟环境 | `py -3.12 -m venv .venv` | rc=0（Python 3.12.10） |
+| 安装 | `.venv/Scripts/python.exe -m pip install -e ".[dev]"` | rc=0（`licaudit 0.1.0` + `pytest 8.4.2`） |
+| 全量测试 | `.venv/Scripts/python.exe -m pytest -o addopts= -q` | rc=0，**467 passed** |
+| 版本 | `.venv/Scripts/licaudit.exe --version` | rc=0，`licaudit 0.1.0` |
+| 自检 | `.venv/Scripts/licaudit.exe selftest --core` | rc=0 |
+| 真值对账 | `.venv/Scripts/licaudit.exe verify-data` | rc=0（12 用例 / 59 记录 / F1 1.0；规则包与真值均从 clone 内解析） |
+| 基准 | `.venv/Scripts/licaudit.exe bench` | rc=0（m1 59/59、m2 52/52、m3 231/231、m4 16/16、m5 196/196） |
+| 七个生成器 `--check` | `tools/{fetch_spdx,gen_ruleset,gen_synthetic,gen_profile_truth,gen_scenario_truth,gen_conflict_truth,gen_action_truth}.* --check` | 7 × rc=0（位级一致） |
+| 端到端 `scan` | `.venv/Scripts/licaudit.exe scan <6 份清单> --out-dir out/saas` | rc=0（依赖 13 / 已归一化 13 / 待确认 2） |
+| 端到端 `assess`（SaaS） | `--scenario saas --network-interaction yes --outbound-license Elastic-2.0` | rc=1（`ok` 8 / `declare` 1 / `isolate` 0 / `replace_or_license` 4 / 待确认 2） |
+| 端到端 `assess`（分发） | `--scenario distribute-binary --outbound-license MIT` | rc=1（`ok` 6 / `declare` 0 / `isolate` 3 / `replace_or_license` 4 / 待确认 2） |
+| 端到端 `report` × 4 | `--format md` / `--format csv`（两次运行各一次） | 4 × rc=1（含阻断级项，既定语义）；四份产物与 tag 内 `examples/report/` **逐字节相同** |
+| sdist 自足性 | 解包 Release 附件 → `pip install -e .` → 从**解包目录之外**的 CWD 跑 `licaudit status` | rc=0，规则包从包内推导命中（`ruleset r0.1.0`，被拒绝 0）——D37 成立 |
+| sdist 内自检 | 解包目录为 CWD：`verify-data` / `bench --only m5` / `scan` | 3 × rc=0 |
 
 ### 2.6 发布终态自检
 
@@ -221,4 +268,46 @@ py -3.12 -X utf8 tools/check_release.py --online   # 核对远端 tag / CI / Rel
 
 | 命令 | 退出码 | 摘要 |
 | --- | --- | --- |
-| 待追加 | 待追加 | 待追加 |
+| `tools/check_release.py` | 0 | 留档两栏标题齐备且无未填标记；版本三方一致（`pyproject` / `SKILL` / tag）；规则包版本与留档一致；sdist 自足；README・SKILL・`plan/00` 状态已翻转；附件校验和可机读 |
+| `tools/check_release.py --online` | 0 | 追加核对：仓库公开、tag 指向 `4f4951c`、该提交 CI 四 job 全 success、Release 非 draft、附件集合 == 登记的 6 个载荷 + `SHA256SUMS`、逐个附件**下载回来重算 sha256** 相符，且下载回来的 `SHA256SUMS` 恰好登记同一批载荷 |
+
+### 2.7 发布后追加的修复（tag 之后发现，属追加事实）
+
+**tag 内的 `tools/check_release.py` 有一处缺陷，已在本追加提交里修好，`v0.1.0` 的 tag 与 Release 未改动。**
+如实记录，避免读者以为 tag 内那份工具与下面这版行为一致：
+
+| 项 | 内容 |
+| --- | --- |
+| 现象 | tag 内那版 `check_release.py --online` 把远端附件集合（7 个）与 `sums` 块登记的载荷（6 个）直接比较，于是对**一次完全正常的发布**报 `[FAIL] Release 附件与留档登记不一致` |
+| 根因 | 定契约时漏了 `SHA256SUMS` 这个「自身不进 `sums` 块」的伴随清单文件；且没有校验下载回来的 `SHA256SUMS` 是否恰好登记同一批载荷 |
+| 影响面 | 只影响 `--online` 这一个模式；tag 内那版的**离线模式**结论正确。交付物本体（判定链、规则包、真值、示例报告、CLI）与 §2.1–§2.5 的全部事实不受影响 |
+| 处置 | 在本追加提交里修正：远端附件集合判定改为「登记的载荷 + `SHA256SUMS`」，并追加「下载回来的 `SHA256SUMS` 必须恰好登记同一批载荷」这条检查。**未重打 tag、未重传附件**——已发布的 tag 与附件不重写，修正只出现在 `main` 上 |
+| 读者须知 | 想用修好的发布门：用 `main`（或 `main` 之后的版本）里的 `tools/check_release.py`；`v0.1.0` 的 tag 内那份在 `--online` 下会误报 |
+
+同一轮里还把两条**过松**的检查收紧了（它们不会误报，但会漏报，由 §2.8 的变异验证据暴露）：
+
+- 栏目标题原先只查「全文里出现过这两个词」，正文提过一行就能满足 → 改为必须存在**标题行**；
+- sdist 自足原先只查「`MANIFEST.in` 里有 `recursive-include references`」，把 `references` 的
+  pattern 改成只剩 `*.md` 也能过 → 改为要求 `references` 与 `data` 的 pattern 都真的覆盖 `*.json`。
+
+### 2.8 发布门变异验证（11 组）
+
+`tools/_mutate_m6.py`（一次性脚本，不入发布面）对**发布态本身**做
+「弄坏 → 变红 → 恢复 → 变绿」：8 组离线 + 3 组联网，全部通过。
+
+| # | 弄坏什么 | 变红的检查 |
+| --- | --- | --- |
+| M1 | 留档少了「tag 后追加事实」标题行 | 栏目标题 |
+| M2 | 留档里插入一个占位标记 | 无占位标记 |
+| M3 | 校验和行截断成 40 位 | `sums` 行文法 |
+| M4 | 留档登记的规则包版本与 manifest 不符 | 规则包版本一致 |
+| M5 | `plan/00` 的 M6 行回退成 ⬜ | 状态已翻转 |
+| M6 | `MANIFEST.in` 的 `references` 不再覆盖 `*.json` | sdist 自足 |
+| M7 | 包版本与 `SKILL.md` 版本不一致 | 版本三方一致 |
+| M8 | 留档 tag 与包版本不匹配 | tag ↔ 版本 |
+| M9 | `tag_commit` 与远端 tag 指向不符 | 远端 tag 指向 |
+| M10 | 登记的附件名远端不存在 | 远端附件集合 |
+| M11 | 校验和是合法 sha256 但值不对 | 附件下载回验 |
+
+> M1 与 M6 是第一次跑时**真的红了**的两组——门当时确实没在看那两个点。修完再跑才 11/11。
+> 「发布门自己也要被证伪」这条要求，正因为会红才有意义。
