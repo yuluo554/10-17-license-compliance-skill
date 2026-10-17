@@ -3,6 +3,10 @@
 > 上一棒：M5 处置建议与清单输出（2026-10-17 完成）。本文件是下一棒的**唯一入口**。
 > 库内一律相对路径；用户侧启动命令用绝对路径指向本文件。
 > **注意**：本轮未要求 commit，工作区保留全部变更（其中也包含 M1–M4 尚未提交的部分）。
+>
+> **M6 已执行完毕（2026-10-17）**：下方 §二 的六项待办全部完成，§五 的两项未勾选项已勾上并附证据。
+> 发布事实（tag / Release 附件 / 校验和 / CI 四矩阵 / 干净 clone 复核 / 发布门自检）
+> 一律以 **`plan/RELEASE-M6.md`** 为准；本文件只保留交接时的原始表述 + 完成状态。
 
 ## 一、当前进度与证据
 
@@ -53,6 +57,10 @@
 | --- | --- | --- | --- |
 | 主示例 | `--scenario saas --network-interaction yes --outbound-license Elastic-2.0` | ok 8 / **declare 1** / isolate 0 / replace 4 / 待确认 2 | `examples/report/license-report.{md,csv}` |
 | 分发示例 | `--scenario distribute-binary --outbound-license MIT` | ok 7 / declare 0 / **isolate 3** / replace 4 / 待确认 2 | `examples/report/license-report-distribute.{md,csv}` |
+
+> **勘误（M6 实测）**：上表分发示例的 `ok 7` 测得为 **`ok 6`**（6 + 0 + 3 + 4 + 2 = 15 行）。
+> 入仓示例报告（测试逐字节锁定）与 `plan/RELEASE-M6.md` §1.3 都是 `ok 6`，以实测为准。
+> 另：示例项目 15 个依赖 = 13 个已归一化 + 2 个待确认（`scan` 摘要行只报 13 / 2 两项）。
 
 **单场景下四级处置无法同时出现**（plan/06 §五有证明）：`declare` 需要「SaaS 场景 + 源可用档位 outbound」，
 而那时档位级判定再也不会出现 `incompatible`；`replace_or_license` 只能靠依赖间不兼容对产生，
@@ -128,24 +136,44 @@ py -3.12 -X utf8 tools/gen_action_truth.py --check                 → rc=0
 
 ## 二、下一棒待办（M6 发布动作）
 
+> **全部完成（2026-10-17）**。下面保留交接时的原始表述（作为任务口径的留档），
+> 每项后面加一行实测结果；完整事实与命令见 `plan/RELEASE-M6.md`。
+
 按 `plan/05-里程碑.md` §一 M6 行与 `plan/00` 的发布口径执行。M6 **不新增判定能力**，
 只做「让交付物真的到得了用户手里」：
 
 1. **脱敏自查**：全仓无绝对路径（除 `plan/HANDOFF-*.md` 里的用户侧启动命令）、无凭证、
    无其他项目名/模板引用；`data/synthetic/known-traps/` 是唯一含真实包名的目录，
    且已被 `test_synthetic_packages_are_whitelisted` / 示例报告断言隔离。
+   → 实测（`tools/_scan_desensitize.py`，197 文件）：本仓路径/凭证/模板命中 **0**；
+   邮箱本仓 8 / 上游 18，全部来自许可证原文与版权声明。见 `plan/RELEASE-M6.md` §1.4。
 2. **`plan/RELEASE-M6.md` 必须在打 tag 之前入库**，内容为「tag 时点事实 / tag 后追加事实」两栏，
    禁止预填未发生的事实。
+   → 已入库（提交 `5e7ad6f` 建档、`4f4951c` 补全 tag 时点事实；tag `v0.1.0` 指向后者），
+   两栏齐备，tag 后只做追加提交。见 §1 / §2.7。
 3. **CI 首推**：M1–M5 的配置已就绪（含七个生成器 `--check` 与 `bench --only m1..m5`），
    但**从未推送、从未运行**。首推后据实记录四矩阵结果；失败就是失败，照实写。
+   → 首推成功：windows/ubuntu × 3.8/3.12 **四个 job 全 success**（run `39033849070`，
+   提交 `5e7ad6f`），日志含 `selftest` / 七个 `--check` / `verify-data` / `bench m1–m5` 的实测输出。
+   发布提交（`4f4951c`）另跑一次同样全绿，日志含 `467 passed`（run `39034225029`）。见 §1.5 / §2.2。
 4. **干净 clone 复核**：在全新目录 `git clone` → `python -m venv` → `pip install -e ".[dev]"` →
    `pytest -q` → `licaudit verify-data` → `licaudit bench` → 端到端 `scan → assess → report`，
    记录命令与退出码（本机双解释器不算「干净环境」）。
+   → 已按 tag `v0.1.0` 本体做完（不用 `PYTHONPATH`）：`467 passed`、`verify-data` rc=0、
+   `bench` m1–m5 全绿、七个生成器 `--check` 7×rc=0、端到端四份报告与 tag 内
+   `examples/report/` **逐字节相同**。逐条命令与退出码见 §2.5。
 5. **tag + Release**：tag 与 `ruleset_version`/`licenseListVersion` 一起写进留档；
    Release 附件按 `plan/00` 的口径挂**真实产物**（不是「源码 zipball 即产物」）；
    下载回来核对 sha256。
+   → tag `v0.1.0`（附注 tag）→ 提交 `4f4951c`；Release 挂 7 个附件（sdist 源码包、规则包与快照
+   数据留档、示例报告 MD/CSV 各两份、`SHA256SUMS`）；**全部下载回来重算 sha256 与留档一致**。
+   见 §2.1 / §2.3 / §2.4。
 6. **口径复核**：`SKILL.md` / `README.md` 的「当前状态」与限制段必须与 tag 时点一致；
    `plan/00` 的状态表与承诺-证据台账同步翻转（M5 行已 ✅，M6 行待填）。
+   → 已翻转：README / SKILL → 「M0–M6 已完成，本版为 `v0.1.0` 发布版」；
+   `plan/00` 里程碑表 M6 行 ✅ + 台账新增发布三件套 / CI 四矩阵 / 源码包自足三行；
+   `plan/05` 新增 §二之六 M6 DoD 明细（14 项）；`plan/06` §1.4 状态翻转 + 新增 D37。
+   发布门 `tools/check_release.py`（离线 + `--online`）两条都是 rc=0，见 §2.6。
 
 ### M6 开工前必须知道的既有约束
 
@@ -237,9 +265,10 @@ py -3.12 -X utf8 tools/gen_action_truth.py --check                 → rc=0
 - [x] 双解释器 **467 passed, 0 skipped**
 - [x] 13 组变异验证（`tools/_mutate_m5.py`）+ 复跑 M2/M3/M4 各 9/9/12 组
 - [x] D35/D36/P2/P5/P6/P7 已登记 `plan/06`；`plan/00/02/03/04/05` 与 SKILL/README/references/tools/data/examples/CI 已回写
-- [ ] **CI 首推**：配置已更新到 M5（七个生成器 `--check` + `bench --only m1..m5`），
-      但仍**未推送、未运行**；M6 首推时据实补记
-- [ ] **发布留档**：`plan/RELEASE-M6.md`、tag、Release 附件、干净 clone 复核 —— 全部属 M6
+- [x] **CI 首推**：配置已更新到 M5（七个生成器 `--check` + `bench --only m1..m5`），
+      首推后四矩阵（windows/ubuntu × 3.8/3.12）**全绿**；据实补记在 `plan/RELEASE-M6.md` §1.5 / §2.2
+- [x] **发布留档**：`plan/RELEASE-M6.md`（tag 前入库，两栏）、tag `v0.1.0`、
+      Release 附 7 个真实产物且逐个下载回验 sha256、干净 clone 复核（tag 本体）—— 全部属 M6
 
 ## 六、关键命令速查
 
