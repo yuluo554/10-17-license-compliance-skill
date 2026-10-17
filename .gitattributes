@@ -1,0 +1,14 @@
+# 源码行尾归一（管住 Windows/Linux 差异）
+* text=auto eol=lf
+
+# 冻结快照：必须保持字节原样，禁止 EOL 归一化
+# （sha256 台账登记过的文件一旦被改写，哈希必然失配）
+references/spdx/*.json -text
+references/spdx/texts/*.json -text
+data/truth/*.json -text
+
+# 二进制
+*.png binary
+*.gif binary
+*.zip binary
+*.pdf binary

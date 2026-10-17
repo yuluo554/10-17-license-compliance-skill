@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: ${{ matrix.os }} / py${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ["3.8", "3.12"]
+    env:
+      PYTHONUTF8: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install
+        run: python -m pip install -e ".[dev]"
+
+      - name: Pytest
+        run: python -m pytest -q
+
+      - name: Smoke (console script)
+        run: licaudit selftest --core
+
+      - name: Smoke (module)
+        run: python -m licaudit --version
+
+      - name: Smoke (launcher)
+        run: python scripts/launcher_licaudit.py --version
