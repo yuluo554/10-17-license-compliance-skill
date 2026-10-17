@@ -87,23 +87,28 @@ py -3.12 -X utf8 -m pytest -o addopts= -q   # 467 passed, 0 skipped
 ### 1.4 脱敏自查（public 之前的硬门）
 
 `tools/_scan_desensitize.py`（一次性脚本，不入发布面）按下列模式全仓扫描
-（`git ls-files -co --exclude-standard`，192 个文件）：
+（`git ls-files -co --exclude-standard`，197 个文件）。表里的模式**不逐字抄写**
+（抄进来会被扫描器命中，也算一种自证污染），要看字面量直接读脚本的 `PATTERNS`：
 
 | 模式 | 命中 |
 | --- | --- |
-| Windows 盘符绝对路径（`X:\` / `X:/`） | 0 |
-| 正斜杠家目录（`/home/...`、`/Users/...`） | 0 |
-| Git Bash 盘符路径（`/d/ProgramData/...`） | 0 |
+| 盘符绝对路径（单个盘符字母 + 冒号 + 反斜杠或正斜杠） | 0 |
+| 类 Unix 家目录前缀路径 | 0 |
+| Git Bash 的盘符路径写法 | 0 |
 | UNC 路径 | 0 |
-| token 形态（`ghp_*` / `github_pat_*` / `sk-*`） | 0 |
-| 私钥头（`-----BEGIN ... PRIVATE KEY-----`） | 0 |
-| 赋值式口令 / 密钥（`password = "..."` 等） | 0 |
-| 邮箱 | 24（**全部**来自上游许可证原文与 curated 引用：Apache-1.1/2.0 与 OpenSSL、PHP 的
-  NOTICE 条款、Beerware / WTFPL 作者地址、`data/synthetic/known-traps/` 与
-  `references/curated/trap-packages.json` 里 pandas 的 `license` 原文字段，以及
-  SPDX `licenses.json` 的一条 seeAlso 链接） |
-| 模板占位标记（脚手架残留：示例仓库名 / 通用占位词 / 未替换的项目名变量） | 0 |
-| 其他项目名 / 模板引用（跨项目 skill、其他仓库名、其他厂商名） | 0 |
+| token 形态（GitHub 的几种 token 前缀、`sk-` 打头的密钥串） | 0 |
+| PEM 私钥头 | 0 |
+| 赋值式口令 / 密钥字段 | 0 |
+| 模板脚手架残留（全大写花括号占位 / 占位人名变量 / 脚手架提示词 / 尖括号全大写项目名） | 0 |
+| 邮箱 | 本仓 8 / 上游 18（**全部**来自许可证原文与版权声明：`references/curated/tiers.json` 与
+  `references/ruleset/tiers.json` 里 Apache-2.0 / OpenSSL / PHP 的 NOTICE 条款引用各 3 处，
+  `data/synthetic/known-traps/pandas/package.json` 与 `references/curated/trap-packages.json`
+  里 pandas 的 `license` 原文字段各 1 处；上游 18 处是 SPDX `texts/` 与 `licenses.json` 的原文内容） |
+| 跨项目引用（其他仓库名 / 其他 skill 名 / 其他厂商名） | 0（另行 grep 复核，未固化进脚本以避免把别的项目名写进本仓） |
+
+扫描面分两档：**本仓命中**须为 0（脚本退出码即此判定）；**上游冻结数据
+（`references/spdx/`）**单独计数（18 处），全部是许可证原文里的反斜杠、人名与邮箱，
+不是本仓引入的内容。
 
 结论：**无绝对路径、无凭证、无跨项目引用**；唯一含真实包名的目录是
 `data/synthetic/known-traps/`（K28 白名单例外），且被
@@ -289,6 +294,20 @@ py -3.12 -X utf8 tools/check_release.py --online   # 核对远端 tag / CI / Rel
 - 栏目标题原先只查「全文里出现过这两个词」，正文提过一行就能满足 → 改为必须存在**标题行**；
 - sdist 自足原先只查「`MANIFEST.in` 里有 `recursive-include references`」，把 `references` 的
   pattern 改成只剩 `*.md` 也能过 → 改为要求 `references` 与 `data` 的 pattern 都真的覆盖 `*.json`。
+
+脱敏自查脚本也在这一轮改了（**结论不变**：无绝对路径、无凭证、无跨项目引用；改动是口径与噪声，
+不是发现了新问题）：
+
+| 改动 | 原因 |
+| --- | --- |
+| 邮箱模式排除 VCS 远端写法（`git@<主机>` 一类） | 记录推送方式时合法地写了一次 SSH 远端，被当成邮箱命中；那是 URL 不是地址 |
+| 扫描面分「本仓」与「上游冻结数据（`references/spdx/`）」两档，退出码只看本仓 | 许可证原文里本来就有反斜杠、人名、邮箱；混在一起会掩盖真命中 |
+| 模板类模式收窄为「不可能是正文」的形态 | 原先的宽口径会把 `${{ ... }}`（Actions 表达式）、Python 的 `{{` 转义、许可证原文里的措辞、XML 的 `<project>` 标签全判成占位 |
+| §1.4 的模式清单不再逐字抄写字面量 | 抄进文档会被扫描器命中自己的说明；要看字面量直接读脚本 `PATTERNS` |
+
+首版脚本还有一个更硬的毛病：写它时用了 shell heredoc，`UNC` 那条正则里的反斜杠被 shell 吞掉，
+模式实际是坏的。已改用文件写入工具重写并复跑。**这也是 `plan/HANDOFF-M6.md` §四
+「往 heredoc 里嵌含反斜杠的文本会被转义吃掉」那条坑的又一次现场复现。**
 
 ### 2.8 发布门变异验证（11 组）
 
