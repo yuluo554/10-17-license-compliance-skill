@@ -2,7 +2,7 @@
 
 开源许可证合规审查 Skill：读依赖清单，归一化为 SPDX 标识，结合分发 / 链接 / 网络交互判定传染与冲突，输出中文《第三方开源清单》。
 
-> 当前状态：**M0–M5 已完成；M6 发布动作进行中**（tag 之前的留档见 [plan/RELEASE-M6.md](plan/RELEASE-M6.md)）。
+> 当前状态：**M0–M6 已完成，本版为 `v0.1.0` 发布版**（发布事实与校验和见 [plan/RELEASE-M6.md](plan/RELEASE-M6.md)）。
 > SPDX 快照、规则包（含场景触发表、冲突对表与处置决策表）、合成清单与四份真值库已冻结入仓；
 > `scan` → `assess`（`profile.json` / `scenario.json` / `conflicts.json` / `actions.json`）→ `report`（MD / CSV）
 > 全链可用；`verify-data` 与 `bench --only m1|m2|m3|m4|m5` 可跑。

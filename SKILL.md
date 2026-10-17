@@ -232,9 +232,9 @@ CSV 列序固定、UTF-8 无 BOM、LF 行尾）；规则包含 8 条已核验处
 传染范围聚合（按链接/分发边界）**仍未实现**：处置分级用决策表的 `link_mode` 维度表达
 「边界是否可分离」，`conflicts.json.notes` 与 `actions.json.notes` 里有明文登记。
 
-**M6 发布动作进行中**：本版目标为 `v0.1.0`。GitHub 公开仓库 + git tag + Release（附真实产物：
-sdist 源码包、规则包与快照数据留档、示例报告 MD/CSV、`SHA256SUMS`）；
-`plan/RELEASE-M6.md` 在 tag 之前入库，按「tag 时点事实 / tag 后追加事实」两栏记录，
+**M6 已完成**：本版为 `v0.1.0` 发布版。GitHub 公开仓库（`yuluo554/10-17-license-compliance-skill`）
++ git tag `v0.1.0` + Release（附真实产物：sdist 源码包、规则包与快照数据留档、示例报告 MD/CSV、
+`SHA256SUMS`）；`plan/RELEASE-M6.md` 在 tag 之前入库，按「tag 时点事实 / tag 后追加事实」两栏记录，
 禁止预填；`tools/check_release.py` 是发布终态自检门（离线查留档与版本一致性，
 `--online` 核对 tag / Release 附件 / sha256）。M6 **不新增任何判定能力**。
 

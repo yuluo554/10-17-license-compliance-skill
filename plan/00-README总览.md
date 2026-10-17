@@ -3,7 +3,7 @@
 - **项目**：开源许可证合规审查 Skill（Agent Skill：`SKILL.md` + 确定性 CLI 引擎 + 可版本化规则包）
 - **性质**：不参赛项目题（模拟项目），发布 GitHub **公开仓库**，署名 `yuluo554`
 - **版本**：v1（2026-10-17 定稿）
-- **当前里程碑**：**M0 / M1 / M2 / M3 / M4 / M5 已完成（2026-10-17）**；M6（发布动作）未开工。
+- **当前里程碑**：**M0 / M1 / M2 / M3 / M4 / M5 / M6 已完成（2026-10-17）**；已发布 `v0.1.0`（tag + Release 附产物 + 留档）。
 - **定位**：现有工具出事实（syft / scancode / ORT），本题做**判定层**——把"场景 × 传染 × 冲突 × 中文处置"串成可回归测试的判定链。
 
 ## 一、文档索引
@@ -23,6 +23,8 @@
 | `plan/HANDOFF-M4.md` | M3→M4 交接（六节） | ✅ 已完成其内容 |
 | `plan/HANDOFF-M5.md` | M4→M5 交接（六节） | ✅ 已完成其内容 |
 | `plan/HANDOFF-M6.md` | M5→M6 交接（六节） | ✅ M5 |
+| `plan/RELEASE-M6.md` | 发布留档：tag 时点事实 / tag 后追加事实两栏 + tag / Release 附件 / 校验和 | ✅ M6（tag 前入库） |
+| `tools/check_release.py` | 发布终态自检门（离线 + `--online`） | ✅ M6 |
 | `data/README.md` | 依据查证记录（三态）、数据源可获取性、合成数据纪律、数值口径 | ✅ 已建立 + M5 实测 |
 | `data/synthetic/README.md` | 合成数据与真值库说明 | ✅ M1 + M5 |
 | `references/README.md` | 规则包结构与生成纪律 + M1/M3/M4/M5 实测数字 | ✅ M1 + M3 + M4 + M5 |
@@ -68,7 +70,7 @@
 | D36 | 处置分级用「义务轴 + 冲突结论 + 依赖间冲突 + 链接方式」查有序决策表；「边界可分离」由 `link_mode` 维度承担，聚合仍不实现 | 按 `tier` 直接映射四级 / 本轮补聚合表 | 档位直接映射等于把枚举搬进代码（违 K4），且无法表达同档位内差别；聚合表无独立证据源 |
 
 > D1–D9 原载于出题阶段；D10–D18 于 M0 新增；D19–D22 于 M1 新增；D23–D26 于 M2 新增；
-> D27–D31 于 M3 新增；D32–D34 于 M4 新增；D35–D36 于 M5 新增。编号只增不改。
+> D27–D31 于 M3 新增；D32–D34 于 M4 新增；D35–D36 于 M5 新增；D37 于 M6 新增。编号只增不改。
 
 ## 三、承诺-证据台账（全项目唯一一份）
 
@@ -91,7 +93,10 @@
 | 退出码四语义 | `exit_codes.py` | CLI | 0/1/2/3 逐码测试；`1` 由 M5 处置分级真实产出 | ✅ M5 |
 | 规则包加载硬门 | `ruleset/loader.py` | CLI 每次运行 | 未核验/缺锚点/缺核对日期/哈希不符/缺文件 → exit 3 | ✅ M0 |
 | 自检可证伪 | `selftest.py` | `licaudit selftest` | 空规则包 → exit 1；6 项核心 check 各有变异用例 | ✅ M0 |
-| 纯本地 / 零上传（源码层） | 架构 | 运行时无出站请求 | AST 扫描禁止网络模块 import | ✅ M0（产物层待 M6） |
+| 纯本地 / 零上传（源码层） | 架构 | 运行时无出站请求 | AST 扫描禁止网络模块 import | ✅ M0（产物层：报告与产物只写 `--out-dir`，M6 复核） |
+| 发布三件套：tag / Release 附产物 / 留档 | GitHub 公开仓库 | Release 页面 + `plan/RELEASE-M6.md` | `gh release view` + 附件**真下载**后重算 sha256 + `tools/check_release.py --online` | ✅ M6 |
+| CI 四矩阵全绿 | `.github/workflows/ci.yml` | 每次 push 自动跑 | `gh run view`：windows/ubuntu × 3.8/3.12 四个 job 全 success，日志含 `selftest` / 七个 `--check` / `verify-data` / `bench` | ✅ M6（首推提交 `5e7ad6f`） |
+| 「源码包」发布形态自足 | `MANIFEST.in` | sdist 自带 `references/` 规则包与 SPDX 快照 | 解包 → `pip install -e .` → `licaudit status` 不再 exit 3 | ✅ M6 |
 | 三条调用通路等价 | `cli.py` / `__main__.py` / `scripts/launcher_licaudit.py` | — | 子进程实跑 + 退出码一致 | ✅ M0 |
 | 合成数据白名单 | `data/synthetic/` | 随包 | `test_synthetic_packages_are_whitelisted` | ✅ M1 |
 | 中文合规 skill 形态空白 | `gh api` 检索，基准日 2026-10-17 | — | 软论据，记录检索式与基准日 | ⬜ 软论据（不可硬化为结论） |
@@ -106,7 +111,7 @@
 | **M3 场景判定** | 八场景 × 链接方式触发表；用户回答落盘 | 判定表全绿；SaaS 未分发但网络交互 → 触发；「商用」不在输入 | ✅ 2026-10-17 |
 | **M4 冲突分析** | `conflict-pairs.json`（4 条已核验冲突对）；`OR`/`AND` 求值；outbound 判定；`conflicts.json` | 已知冲突对全命中（含 GPL-2.0-only × Apache-2.0）；冲突对无向匹配；outbound 未知 → 全部待定 | ✅ 2026-10-17 |
 | **M5 输出与基准** | `scan → assess → report`；MD/CSV；四级处置；五锚点；`bench --only m5` | 交付态全链；契约三方断言；AST 零判定守门；锚点完整性 | ✅ 2026-10-17 |
-| **M6 发布** | GitHub 公开仓库 | 三件套：tag / Release 附件 / `plan/RELEASE-M6.md`（tag 前入库）；干净 clone 复核；CI 首推全绿 | ⬜ |
+| **M6 发布** | GitHub 公开仓库 `yuluo554/10-17-license-compliance-skill` | 三件套：tag `v0.1.0` / Release 附件（真实产物）/ `plan/RELEASE-M6.md`（tag 前入库）；干净 clone 复核；CI 首推四矩阵全绿 | ✅ 2026-10-17 |
 
 > M6 口径采用 "Release 附产物"，不采用"源码 zipball 即产物"。发布留档文件必须在 tag **之前**入库；
 > tag 之后只允许追加类提交，并在留档里分栏写"tag 时点事实 / tag 后追加事实"。
@@ -144,6 +149,16 @@
   `bench --only m5` 196/196 命中；示例项目（15 依赖 / 六种清单形态）与两份示例报告入仓并可逐字节复现；
   双解释器 **467 passed, 0 skipped**；13 组变异验证（`_mutate_m2/m3/m4` 复跑仍全绿）。
   **D35/D36** 登记了「actions.json 由 assess 产出」与「分级查表 + 聚合仍不做」两条口径。
-- **未做**：M6（发布动作：tag / Release / 留档）；任何远端推送与 CI 运行；传染范围聚合（D36，明文登记）。
-- **下一棒**：读 `plan/HANDOFF-M6.md`，执行发布动作（tag / Release 附件 / `plan/RELEASE-M6.md`）。
-- **诚实口径**：本轮所有 CI 相关表述仍为「本地等价校验，未接远端，CI 待首推验证」。
+- **M6 已完成（2026-10-17）**：发布动作全部落地——脱敏自查（绝对路径 / 凭证 / 跨项目引用 / 模板占位
+  全部为 0）、`MANIFEST.in` 让 sdist 自带 `references/` 规则包（「源码包」形态自足）、
+  `tools/check_release.py` 发布终态自检门；GitHub **公开仓库**创建并**首推**，
+  CI 四矩阵（windows/ubuntu × 3.8/3.12）**全绿**；打 tag `v0.1.0` 并建 Release
+  （附真实产物，非「源码 zipball 即产物」），附件**下载回来逐个重算 sha256** 与留档一致；
+  干净 clone 复核通过。`plan/RELEASE-M6.md` 在 tag **之前**入库，按
+  「tag 时点事实 / tag 后追加事实」两栏记录，不预填。M6 **未新增任何判定能力**
+  （`src/licaudit/` 判定链一行未改）；新增口径 D37（`MANIFEST.in` 让 sdist 自带规则包）。
+- **未做**：传染范围聚合（D36，明文登记）；wheel 形态的规则包内置（D12 明文不承诺）。
+- **下一棒**：无。里程碑表 M0–M6 全部 ✅；如需再迭代，按 `plan/05` §四 的收尾固定动作另起里程碑。
+- **诚实口径**：本轮的 CI 表述从「本地等价校验，未接远端」改为**实测四矩阵全绿**
+  （首推提交 `5e7ad6f`，run `39033849070`）；`check_release.py` **刻意不进 CI**，
+  因为它是发布终态门、发布之前必然红（理由记在 `plan/RELEASE-M6.md` §1.5）。

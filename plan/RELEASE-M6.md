@@ -109,11 +109,37 @@ py -3.12 -X utf8 -m pytest -o addopts= -q   # 467 passed, 0 skipped
 `data/synthetic/known-traps/`（K28 白名单例外），且被
 `test_synthetic_packages_are_whitelisted` 与示例报告（全合成包名）隔离。
 
-### 1.5 CI 首推
+### 1.5 CI 首推（首推提交 = `5e7ad6f`）
 
-M1–M5 的 `.github/workflows/ci.yml` 已就位（四矩阵 windows/ubuntu × 3.8/3.12；
-`PYTHONUTF8=1`；三步烟测 + 七个生成器 `--check` + `bench --only m1..m5`），
-仓库在本里程碑之前**没有远端**，配置从未运行。首推结果见 §二 2.2。
+`plan/HANDOFF-M6.md` 交接时仓库**没有远端**，CI 配置从未运行。本次首推后实测：
+
+| 矩阵 | 结论 | 耗时（job 起止，UTC） |
+| --- | --- | --- |
+| `ubuntu-latest / py3.12` | success | 12:46:18 → 12:46:40 |
+| `ubuntu-latest / py3.8` | success | 12:46:19 → 12:46:48 |
+| `windows-latest / py3.12` | success | 12:46:18 → 12:46:58 |
+| `windows-latest / py3.8` | success | 12:46:18 → 12:47:40 |
+
+运行整体 `conclusion = success`（run `39033849070`，提交 `5e7ad6f`，2026-10-17）。
+
+**四个 job 都真跑了断言，不是空壳绿**：日志里能看到每个矩阵各自的
+`selftest` 6 项 `[OK]`、七个生成器 `--check` 的 8 行 `[OK]`（含逐字节一致）、
+`verify-data` 的「命中 59 条」、以及 `bench` m1–m5 的
+`59/59`、`52/52`、`231/231`、`16/16`、`196/196`。
+
+两点如实记录：
+
+- `actions/checkout@v4` 与 `actions/setup-python@v5` 在 runner 上触发
+  「Node.js 20 已弃用」notice（actions 自身告警，非本仓库问题，不影响结论）；
+  `ubuntu-latest` 另有一条「标签将于 2026-10-19 迁移到 Ubuntu 26」notice。
+- CI 的 pytest 步骤写的是 `python -m pytest -q`，而 `pyproject.toml` 有
+  `addopts = "-q"`，两者叠加成 `-qq` 会吞掉「467 passed」汇总行。
+  本地已用 `-o addopts=` 复核（见 §1.2）；发布提交起 CI 步骤改为 `python -m pytest`
+  （只保留 `addopts` 里的那一层 `-q`），让汇总行出现在日志里。
+
+> `check_release.py` **刻意不进 CI**：它是**发布终态**门，发布之前必然因
+> 「留档仍有未填项」而红（这是设计，见 §二 2.6 与 `tools/README.md`）。
+> 把它挂进 CI 会让「tag 之前的正常提交」永远红，反而掩盖真问题。
 
 ### 1.6 发布形态与产物构成
 
@@ -153,11 +179,13 @@ tag_commit: 待追加
 release_url: 待追加
 ```
 
-### 2.2 CI 四矩阵结果（首推）
+### 2.2 发布提交（tag 指向的提交）的 CI 四矩阵结果
 
-| 矩阵 | 结果 |
-| --- | --- |
-| 待追加 | 待追加 |
+tag 指向哪个提交只有在 tag 之后才知道，因此本节属追加事实。
+
+| 矩阵 | 结论 | 摘要 |
+| --- | --- | --- |
+| 待追加 | 待追加 | 待追加 |
 
 ### 2.3 附件与校验和（发布物本体）
 
