@@ -1,0 +1,76 @@
+name: Bug / 安装或运行失败
+description: 工具无法安装、崩溃，或输出格式异常
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: 工具版本
+      description: 运行 `<cli> --version` 的输出
+      placeholder: "0.1.1"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: 操作系统
+      options:
+        - Windows 11
+        - Windows 10
+        - macOS
+        - Linux
+        - 其他
+    validations:
+      required: true
+
+  - type: input
+    id: python
+    attributes:
+      label: Python 版本
+      description: 运行 `python --version`
+      placeholder: "3.12.4"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: install
+    attributes:
+      label: 安装方式
+      options:
+        - pip install <pkg>
+        - git clone + pip install -e .
+        - 下载 Release 中的 exe / 压缩包
+        - 其他
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 按顺序列出，能让他人照做复现
+      placeholder: |
+        1. 运行 ...
+        2. 输入 ...
+        3. 出现 ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: error
+    attributes:
+      label: 完整报错
+      description: 粘贴完整堆栈，不要只贴最后一行
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: 其他信息
+      description: 是否在干净环境复现过、是否装过其他版本等
+    validations:
+      required: false

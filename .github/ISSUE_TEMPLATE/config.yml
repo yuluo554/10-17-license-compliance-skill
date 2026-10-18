@@ -1,0 +1,27 @@
+blank_issues_enabled: false
+
+# ⚠️ 前置检查：本文件里的 contact_links 指向的页面必须真实存在。
+# 实测（2026-10-18）：三个旗舰仓的 has_discussions 均为 false ——
+# 若直接照抄指到 /discussions，用户点开是 404。
+# 二选一：
+#   A) 保持 discussions 关闭 → 用下面的默认版本（提问走 issue）
+#   B) 打开 discussions（仓库 Settings → Features → Discussions，或
+#      `gh api -X PATCH repos/<owner>/<repo> -F has_discussions=true`）
+#      → 把已注释的两行换成 discussions 版本
+#
+# 用法：把 yuluo554/10-17-license-compliance-skill 替换成实际仓库。
+
+contact_links:
+  # —— 版本 A（默认，Discussions 关闭）——
+  - name: 使用提问 / 用法咨询
+    url: https://github.com/yuluo554/10-17-license-compliance-skill/issues/new?labels=question
+    about: 用法问题请选此入口（会自动打上 question 标签）。issue 区优先处理缺陷与判定错误。
+
+  - name: 标准 / 法规已更新
+    url: https://github.com/yuluo554/10-17-license-compliance-skill/issues/new?labels=standard-update
+    about: 如果某条判定依据的标准已修订，请选此入口并写明标准号与生效日期。
+
+  # —— 版本 B（仅当 has_discussions=true 时启用）——
+  # - name: 使用提问 / 用法咨询
+  #   url: https://github.com/yuluo554/10-17-license-compliance-skill/discussions
+  #   about: 用法问题请走 Discussions，issue 区只处理缺陷与判定错误。
