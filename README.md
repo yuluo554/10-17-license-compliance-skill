@@ -30,8 +30,8 @@ licaudit report --out-dir out --format md   # → out/license-report.md
 开发或定制规则包时用源码安装：
 `git clone … && cd 10-17-license-compliance-skill && pip install -e ".[dev]"`。
 
-预期产物 out/license-report.md（中文清单，8 章节）：`assess` 退出码 `1` 表示检出阻断/待确认项，
-是**既定语义不是故障**（退出码表见下）。
+预期产物 out/license-report.md（中文清单，8 章节）：`assess` 与 `report` 退出码 `1` 表示检出阻断/待确认项
+（本示例即如此），是**既定语义不是故障**（退出码表见下）。
 
 ## 它解决什么问题
 

@@ -45,20 +45,23 @@ _REQUIRED_ANCHOR_KEYS = ("source", "ref")
 
 
 def repo_root_from_package():
-    """``src/licaudit/ruleset/loader.py`` → 仓库根。"""
-    here = os.path.dirname(os.path.abspath(__file__))
-    return os.path.dirname(os.path.dirname(os.path.dirname(here)))
+    """``src/licaudit/ruleset/loader.py`` → 仓库根（源码态）。"""
+    return resource_roots()[0]
 
 
-def site_packages_from_package():
-    """``<site-packages>/licaudit/ruleset/loader.py`` → ``<site-packages>``。
+def resource_roots():
+    """随包资源根候选，按优先级：**源码态仓库根 → 安装态 site-packages**。
 
-    wheel 里 ``references/`` 与 ``data/`` 是顶层数据包（pyproject 的 package-dir 映射），
-    安装后位于 site-packages 根，因此规则包在 ``<site-packages>/references/ruleset``。
-    源码态下这里算出来是 ``src``（该目录下没有 references/，候选自然被跳过）。
+    源码态：``src/licaudit/ruleset/loader.py`` 上溯三级 = 仓库根；
+    安装态：``<site-packages>/licaudit/ruleset/loader.py`` 上溯两级 = ``<site-packages>``
+    （wheel 里 ``references/`` 与 ``data/`` 是顶层数据包，见 pyproject 的 package-dir 映射）。
+    两处都返回，由调用方按「文件是否真的在」挑选。
     """
     here = os.path.dirname(os.path.abspath(__file__))
-    return os.path.dirname(os.path.dirname(here))
+    return [
+        os.path.dirname(os.path.dirname(os.path.dirname(here))),
+        os.path.dirname(os.path.dirname(here)),
+    ]
 
 
 def candidate_dirs(explicit=None):
@@ -69,8 +72,8 @@ def candidate_dirs(explicit=None):
     env_value = os.environ.get(ENV_RULES_DIR)
     if env_value:
         candidates.append(os.path.abspath(env_value))
-    candidates.append(os.path.join(repo_root_from_package(), "references", "ruleset"))
-    candidates.append(os.path.join(site_packages_from_package(), "references", "ruleset"))
+    for root in resource_roots():
+        candidates.append(os.path.join(root, "references", "ruleset"))
     candidates.append(os.path.abspath(os.path.join(os.getcwd(), "references", "ruleset")))
     seen = []
     for candidate in candidates:

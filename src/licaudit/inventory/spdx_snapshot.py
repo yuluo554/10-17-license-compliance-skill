@@ -17,9 +17,19 @@ MANIFEST_FILE = "manifest.json"
 
 
 def default_spdx_dir():
-    from ..ruleset.loader import repo_root_from_package
+    """SPDX 快照目录：源码态取仓库根，安装态取 site-packages（见 loader.resource_roots）。
 
-    return os.path.join(repo_root_from_package(), "references", "spdx")
+    阶段三实测坑：只按「打包文件位置」上溯三级在安装态会得到 ``<venv>/Lib``，
+    于是 `licaudit assess` 报「SPDX 快照不可读」——随包资源必须两处都找。
+    """
+    from ..ruleset.loader import resource_roots
+
+    roots = resource_roots()
+    for root in roots:
+        candidate = os.path.join(root, "references", "spdx")
+        if os.path.isdir(candidate):
+            return candidate
+    return os.path.join(roots[0], "references", "spdx")
 
 
 def _read_json(path, what):

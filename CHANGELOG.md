@@ -27,6 +27,11 @@ licaudit 的版本分两层：
 
 ### 修复
 
+- **安装态资源定位（阶段三实测踩到并修掉）**：`default_spdx_dir()` 原先只按打包文件位置上溯三级，
+  wheel 安装后得到 `<venv>/Lib`，于是 `licaudit assess` / `report` 报「SPDX 快照不可读（exit 2）」——
+  即「装完不能用」。现将随包资源定位统一为「**源码态仓库根 + 安装态 site-packages**」两处都找
+  （`ruleset.loader.resource_roots`，规则包与 SPDX 快照共用），并新增
+  `tests/test_bundled_paths.py`（4 用例，含假安装态布局与缺快照报错）。
 - 包内 `__version__` 与 `pyproject.toml` 的 `version` 对齐。
 
 ### 规则集
@@ -42,8 +47,8 @@ licaudit 的版本分两层：
 ### 校验和
 
 ```
-0329a7eaba9f5c255482e5acb22bf45c3f7a1eb0790063a5c0b8160d8d1e93ad  licaudit-0.1.1-py3-none-any.whl
-18f70f3d9f14bfed4c1f55c3598fa334fade610bcb2e6e509d5162ffffd83dac  licaudit-0.1.1.tar.gz
+306b0625019f86be4158fd707f58c3d3bdd38dd57efd8716be23a0dd51d1d37f  licaudit-0.1.1-py3-none-any.whl
+5f399d9569343a6531511cc44ce77ccb7f497c43dc6d424a1756057276ab86cc  licaudit-0.1.1.tar.gz
 ```
 
 ## [0.1.0] - 2026-10-17
