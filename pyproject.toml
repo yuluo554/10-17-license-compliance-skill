@@ -23,6 +23,11 @@ dependencies = []
 [project.optional-dependencies]
 dev = ["pytest>=7,<9"]
 
+[project.urls]
+Homepage = "https://github.com/yuluo554/10-17-license-compliance-skill"
+Repository = "https://github.com/yuluo554/10-17-license-compliance-skill.git"
+Issues = "https://github.com/yuluo554/10-17-license-compliance-skill/issues"
+
 [project.scripts]
 licaudit = "licaudit.cli:main"
 
