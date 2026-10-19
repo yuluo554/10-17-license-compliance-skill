@@ -4,7 +4,7 @@
 ![Python](https://img.shields.io/badge/python-3.8%2B-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-![licaudit scan / assess / report 的实际输出](docs/images/cli-demo.png)
+![licaudit 实跑：status → scan → assess → report（14 秒，真实终端输出）](docs/images/demo.gif)
 
 **给要发布或商用开源项目的团队**：拿一份依赖清单（`requirements.txt` / `package.json`），
 回答「我这个用法会不会被传染、要不要开源、能不能卖」，输出中文《第三方开源清单》。
