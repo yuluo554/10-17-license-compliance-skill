@@ -53,6 +53,40 @@ RULESET_DIR = os.path.join(REPO_ROOT, "references", "ruleset")
 
 RULESET_VERSION = "r0.1.0"
 
+# 规则集复核元数据（阶段三 任务 5，字段规范见 plan/03 与 10-6-scaffold-formwork-checker v2.0.0）。
+# 只登记「复核事实」，不参与任何判定；随 manifest.json 一起打进 sdist 与 wheel。
+REVIEW = {
+    "ruleset_version": RULESET_VERSION,
+    "reviewed_on": "2026-10-19",
+    "cycle_months": 12,
+    "next_review_due": "2027-10-19",
+    "reviewer": "执行方（阶段三 任务 5，权威渠道直连核实）",
+    "standards": [
+        {
+            "standard": "SPDX License List",
+            "version": "3.29.0",
+            "issued": "2023-11-30",
+            "effective": "2023-11-30",
+            "currency": "现行（3.29.0 为本规则包冻结的快照版本；上游列表持续更新，本仓库以「随包冻结 + "
+                        "--check 逐字节比对」代替运行时联网，刷新需人工跑 fetch_spdx.py + gen_ruleset.py）",
+            "authority_url": "https://spdx.org/licenses/",
+            "conclusion": "本规则包的档位/义务/锚点全部由该版本快照的许可证原文与 curated 人工表推导，"
+                          "引用范围即该快照本身；上游发布新版本不改写历史报告的依据，"
+                          "刷新快照属规则集变更（按阶段三任务 3 的版本规则升版）。",
+        },
+        {
+            "standard": "SPDX License Exceptions",
+            "version": "3.29.0",
+            "issued": "2023-11-30",
+            "effective": "2023-11-30",
+            "currency": "现行（与 License List 同一 release 数据集；exceptions.json 为同批采集）",
+            "authority_url": "https://spdx.org/licenses/exceptions-index.html",
+            "conclusion": "例外条目只用于表达式拆分与展示，不参与档位判定；本轮复核确认快照内 "
+                          "exceptions.json 与 licenses.json 同批（captured_on 2026-10-17），无版本错配。",
+        },
+    ],
+}
+
 VALID_TIERS = set(contract.TIERS)
 VALID_OBLIGATIONS = set(contract.OBLIGATIONS)
 VALID_ACTIONS = set(contract.ACTION_LEVELS)
@@ -814,6 +848,8 @@ def generate(target_dir=None):
         "license_list_captured_on": _captured_on(),
         "ruleset_coverage": documents["tiers.json"]["coverage"],
         "files": files,
+        # 复核元数据：文件级 meta.review（阶段三 任务 5 的字段规范）
+        "meta": {"review": REVIEW},
     }
     write_text_atomic(os.path.join(target_dir, "manifest.json"), dumps(manifest))
     return documents, manifest, problems

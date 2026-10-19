@@ -18,6 +18,7 @@ Markdown 渲染器与 CSV 渲染器**共用本模块**：CSV 是「逐包明细�
 """
 
 from .. import contract
+from .. import __version__ as TOOL_VERSION
 
 # ---------------------------------------------------------------------------
 # 固定文案（口径声明 / 司法参照）
@@ -135,8 +136,11 @@ def _overview(artifacts, rows, pending):
         if row.get("action_level") in contract.BLOCKING_ACTION_LEVELS
     ])
     scenario = artifacts["scenario"]
+    profile = artifacts["profile"]
     pairs = [
+        ("工具版本", TOOL_VERSION),
         ("规则包版本", actions.get("ruleset_version")),
+        ("SPDX 许可证清单", profile.get("license_list_version")),
         ("依赖条目", "{0} 条".format(len(rows))),
         ("场景", "{0}（交付 {1} / 链接 {2}）".format(
             scenario.get("scenario"), scenario.get("delivery"), scenario.get("link_mode")

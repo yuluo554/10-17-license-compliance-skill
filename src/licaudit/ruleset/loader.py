@@ -2,7 +2,7 @@
 """规则包加载与校验。
 
 硬门（K10/K24）：
-  - 定位顺序：显式参数 > ``LICAUDIT_RULES_DIR`` > 仓库推导 > 当前目录
+  - 定位顺序：显式参数 > ``LICAUDIT_RULES_DIR`` > 仓库推导 > wheel 安装推导 > 当前目录
   - manifest 缺失 / schema 版本不支持 / 文件哈希不符 → :class:`RulesetError`（exit 3）
   - ``verified != true`` 或锚点缺失的条目**拒绝加载**，进 ``disabled`` 并显式输出
   - 不提供任何内置默认规则
@@ -50,6 +50,17 @@ def repo_root_from_package():
     return os.path.dirname(os.path.dirname(os.path.dirname(here)))
 
 
+def site_packages_from_package():
+    """``<site-packages>/licaudit/ruleset/loader.py`` → ``<site-packages>``。
+
+    wheel 里 ``references/`` 与 ``data/`` 是顶层数据包（pyproject 的 package-dir 映射），
+    安装后位于 site-packages 根，因此规则包在 ``<site-packages>/references/ruleset``。
+    源码态下这里算出来是 ``src``（该目录下没有 references/，候选自然被跳过）。
+    """
+    here = os.path.dirname(os.path.abspath(__file__))
+    return os.path.dirname(os.path.dirname(here))
+
+
 def candidate_dirs(explicit=None):
     """返回按优先级排列的候选规则包目录（去重，保持顺序）。"""
     candidates = []
@@ -59,6 +70,7 @@ def candidate_dirs(explicit=None):
     if env_value:
         candidates.append(os.path.abspath(env_value))
     candidates.append(os.path.join(repo_root_from_package(), "references", "ruleset"))
+    candidates.append(os.path.join(site_packages_from_package(), "references", "ruleset"))
     candidates.append(os.path.abspath(os.path.join(os.getcwd(), "references", "ruleset")))
     seen = []
     for candidate in candidates:

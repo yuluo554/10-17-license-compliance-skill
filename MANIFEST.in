@@ -1,11 +1,11 @@
-# 源码包（sdist）清单：让「源码包」这一发布形态真正自足。
+# 源码包（sdist）清单：让两种发布形态都自足。
 #
-# D12 说规则包**不打进 wheel**；这里的 sdist 是另一回事——首期发布物是
-# 「源码包 / git clone + editable 安装」，sdist 因此必须带上 references/ 规则包与
-# data/ 真值，否则解包后 `licaudit status` 会 exit 3（找不到规则包）。
+# D12 已于 2026-10-19（阶段三）修正：规则包不再只进 sdist，`references/` 与
+# `data/` 同时通过 `[tool.setuptools.package-data]` 打进 **wheel**，使
+# `pip install licaudit` 开箱可用。sdist 的这一段保留，两种形态都不依赖安装后另取规则包。
 #
 # 冻结数据（references/spdx/manifest.json、data/truth/*.json）的字节由
-# .gitattributes 的 `-text` 与生成器 `--check` 共同守着；sdist 只做原样打包。
+# .gitattributes 的 `-text` 与生成器 `--check` 共同守着；两种包都只做原样打包。
 
 include LICENSE
 include README.md

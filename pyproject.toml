@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "licaudit"
-version = "0.1.0"
+version = "0.1.1"
 description = "开源许可证合规审查 Skill：依赖清单 → SPDX 归一化 → 场景/冲突判定 → 中文清单"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -12,11 +12,15 @@ license = { text = "MIT" }
 authors = [{ name = "yuluo554" }]
 keywords = ["license", "compliance", "spdx", "sbom-alternative", "agent-skill"]
 classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: Chinese (Simplified)",
+    "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.12",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Quality Assurance",
 ]
 dependencies = []
 
@@ -27,15 +31,29 @@ dev = ["pytest>=7,<9"]
 Homepage = "https://github.com/yuluo554/10-17-license-compliance-skill"
 Repository = "https://github.com/yuluo554/10-17-license-compliance-skill.git"
 Issues = "https://github.com/yuluo554/10-17-license-compliance-skill/issues"
+Changelog = "https://github.com/yuluo554/10-17-license-compliance-skill/blob/main/CHANGELOG.md"
 
 [project.scripts]
 licaudit = "licaudit.cli:main"
 
 [tool.setuptools]
-package-dir = { "" = "src" }
+# D12 修正（2026-10-19，阶段三）：规则包与真值一并打进 wheel。
+# `references/` 与 `data/` 作为顶层「数据包」映射进 wheel 根目录，安装后位于
+# site-packages/references 与 site-packages/data，运行时定位顺序见 ruleset/loader.py。
+packages = [
+    "licaudit",
+    "licaudit.assess",
+    "licaudit.inventory",
+    "licaudit.report",
+    "licaudit.ruleset",
+    "references",
+    "data",
+]
+package-dir = { "" = "src", "references" = "references", "data" = "data" }
 
-[tool.setuptools.packages.find]
-where = ["src"]
+[tool.setuptools.package-data]
+references = ["**/*.json", "**/*.md"]
+data = ["**/*.json", "**/*.md", "**/*.txt"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -18,12 +18,17 @@
 ## 30 秒跑起来
 
 ```bash
-pip install -e ".[dev]"                 # 要求 Python ≥ 3.8，运行时零第三方依赖
-licaudit scan data/synthetic/npm-basic/package.json --out-dir out
+pip install licaudit                     # 要求 Python ≥ 3.8，运行时零第三方依赖
+licaudit scan requirements.txt --out-dir out
 licaudit assess --inventory out/inventory.json --scenario saas \
   --network-interaction yes --outbound-license MIT --out-dir out
 licaudit report --out-dir out --format md   # → out/license-report.md
 ```
+
+想直接看示例：`licaudit scan data/synthetic/npm-basic/package.json --out-dir out`
+（示例清单随仓库与源码包提供；wheel 自带规则包，不需要额外取数据）。
+开发或定制规则包时用源码安装：
+`git clone … && cd 10-17-license-compliance-skill && pip install -e ".[dev]"`。
 
 预期产物 out/license-report.md（中文清单，8 章节）：`assess` 退出码 `1` 表示检出阻断/待确认项，
 是**既定语义不是故障**（退出码表见下）。
@@ -40,13 +45,15 @@ licaudit report --out-dir out --format md   # → out/license-report.md
 
 ## 判定依据
 
-| 依据 | 版本 | 生效日期 | 最后复核 |
-| --- | --- | --- | --- |
-| SPDX License List 快照（`references/spdx/`） | 3.29.0 | 2026-10-17（快照入库日） | 2026-10-17 |
-| 规则包 `ruleset_version`（`references/ruleset/`） | r0.1.0 | 2026-10-17 | 2026-10-17 |
-| 门禁：契约块三方断言 + AST 零判定守门 + 七个生成器 `--check` 位级一致 | v0.1.0 | 2026-10-17 | 2026-10-17 |
+| 依据 | 版本 | 生效日期 | 本次复核（下次复核） | 结论 |
+| --- | --- | --- | --- | --- |
+| SPDX License List 快照（`references/spdx/`） | 3.29.0 | 2023-11-30 发布；快照采集 2026-10-17 | 2026-10-19（2027-10-19） | 现行；本仓以「随包冻结 + `--check` 逐字节比对」代替运行时联网，刷新需人工执行 |
+| 规则包 `ruleset_version`（`references/ruleset/`） | r0.1.0 | 2026-10-17 | 2026-10-19（2027-10-19） | 现行；档位/义务/锚点由该快照的许可证原文 + curated 人工表推导，本轮只补复核元数据 |
+| 门禁：契约块三方断言 + AST 零判定守门 + 七个生成器 `--check` 位级一致 | v0.1.1 | 2026-10-19 | 2026-10-19（2027-10-19） | 现行；随代码版本走 |
 
-规则包与快照都是**随仓库冻结**的生成物（`--check` 逐字节比对），不是运行时联网取的。
+复核结论与权威出处以 `references/ruleset/manifest.json` 的 `meta.review` 为准（字段规范见
+[DEVELOPMENT.md](DEVELOPMENT.md)），本节与之保持一致。规则包与快照都是**随仓库冻结**的生成物
+（`--check` 逐字节比对），不是运行时联网取的。
 刷新是人工步骤：`py -3.12 tools/fetch_spdx.py --out references/spdx` → `py -3.12 tools/gen_ruleset.py`。
 
 ## 退出码
@@ -69,8 +76,9 @@ licaudit report --out-dir out --format md   # → out/license-report.md
   `link_mode` 维度表达边界是否可分离，登记在 `conflicts.json.notes` / `actions.json.notes`。
 - 处置决策表只有 8 条规则（义务轴 + 冲突结论 + 链接方式 → 四级处置），是抽样口径；
   单场景下四级处置无法同时出现，示例报告因此给两份运行。
-- **不支持 wheel 安装后直接使用**：规则包在仓库 `references/`，wheel 不含它；sdist 走 `MANIFEST.in`
-  白名单自带规则包与快照，解包即自足。需要 wheel 时用 `--rules-dir` 显式指定。
+- wheel 与 sdist **都自带**规则包与 SPDX 快照：`pip install licaudit` 后 `licaudit status`
+  直接可用（D12 已于 2026-10-19 修正，见 [plan/06](plan/06-交付对标与决策记录.md) D38）。
+  需要指向自定义规则包时用 `--rules-dir` 或环境变量 `LICAUDIT_RULES_DIR`。
 - 输出是自动化清单，不是法律意见：
 
 > 本清单由自动化工具生成，不构成法律意见（非法律意见）。涉及商业分发、诉讼或高价值交易时，请咨询执业律师。
@@ -78,6 +86,7 @@ licaudit report --out-dir out --format md   # → out/license-report.md
 ---
 
 > 架构分层、CI 矩阵、规则包生成流程与发布对账见 [DEVELOPMENT.md](DEVELOPMENT.md)。
+> 变更记录（含规则集版本）见 [CHANGELOG.md](CHANGELOG.md)。
 > 本工具同时是一个 Agent Skill：agent 直接读仓库时的入口与契约块见 [SKILL.md](SKILL.md)；
 > 示例报告见 [examples/report/license-report.md](examples/report/license-report.md)。
 
