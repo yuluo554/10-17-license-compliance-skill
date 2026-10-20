@@ -95,7 +95,7 @@
 | 自检可证伪 | `selftest.py` | `licaudit selftest` | 空规则包 → exit 1；6 项核心 check 各有变异用例 | ✅ M0 |
 | 纯本地 / 零上传（源码层） | 架构 | 运行时无出站请求 | AST 扫描禁止网络模块 import | ✅ M0（产物层：报告与产物只写 `--out-dir`，M6 复核） |
 | 发布三件套：tag / Release 附产物 / 留档 | GitHub 公开仓库 | Release 页面 + `plan/RELEASE-M6.md` | `gh release view` + 附件**真下载**后重算 sha256 + `tools/check_release.py --online` | ✅ M6 |
-| CI 全绿（M6 时点为四矩阵） | `.github/workflows/ci.yml` | 每次 push 自动跑 | `gh run view`：M6 时点 windows/ubuntu × 3.8/3.12 四个 job 全 success，日志含 `selftest` / 七个 `--check` / `verify-data` / `bench`。**2026-10-20 起矩阵收为 3.12 × 双 OS（2 个 job），改动未推送、未跑远端**（见 §五 v0.1.1 条） | ✅ M6（首推提交 `5e7ad6f`；新矩阵待推送验证） |
+| CI 全绿（M6 时点为四矩阵，v0.1.2 起为 2 job） | `.github/workflows/ci.yml` | 每次 push 自动跑 | `gh run view`：M6 时点 windows/ubuntu × 3.8/3.12 四个 job 全 success（首推提交 `5e7ad6f`）。**v0.1.2（2026-10-20）改为 `3.12` × 双 OS = 2 个 job**，实测：提交 `4a901bf` 上两次 run（`39360702962` main 推送 / `39360849976` tag 推送）各 2 个 job、13 step 全 success，日志各含 `457 passed`，Node20 注解 0 条 | ✅ M6 + ✅ v0.1.2 |
 | 「源码包」发布形态自足 | `MANIFEST.in` | sdist 自带 `references/` 规则包与 SPDX 快照 | 解包 → `pip install -e .` → `licaudit status` 不再 exit 3 | ✅ M6 |
 | 三条调用通路等价 | `cli.py` / `__main__.py` / `scripts/launcher_licaudit.py` | — | 子进程实跑 + 退出码一致 | ✅ M0 |
 | 合成数据白名单 | `data/synthetic/` | 随包 | `test_synthetic_packages_are_whitelisted` | ✅ M1 |
@@ -174,7 +174,13 @@
   （口径与实测见 `plan/06` D39）；同时修掉 v0.1.1 遗留的陈旧口径（`SKILL.md` 的
   `metadata.version` 停在 `0.1.0`、README 不提 M6、SKILL 限制段仍写「不支持 wheel 安装后直接使用」）。
   判定面为零（`src/licaudit/` 只改 `__version__`，规则包/快照字节未动）。
-  发布事实（tag / Release 附件 / sha256 / 远端 CI）见 `plan/RELEASE-v0.1.2.md`。
+  **发布事实**：附注 tag `v0.1.2`（对象 `e2128fe9…`）→ 提交 `4a901bf`；Release 已发布
+  （非 draft / 非 prerelease，latest），附件 3 个（wheel 789640 B / sdist 896954 B / `SHA256SUMS` 186 B），
+  逐个**真下载**重算 sha256 与 GitHub digest、本地构建物三方一致；远端 CI 两次 run
+  （`39360702962` main 推送、`39360849976` tag 推送）各 2 个 job 全 success，日志各含 `457 passed`；
+  干净 clone（`--branch v0.1.2`）复核 457 passed + `selftest` / `verify-data` / `bench` rc=0 +
+  端到端产物与入仓示例报告逐字节相同；`tools/check_release.py --artifacts-dir dist --online` rc=0。
+  完整留档见 `plan/RELEASE-v0.1.2.md`。
 - **本轮收尾动作**：`tools/check_release.py` 的发布留档不再写死 `plan/RELEASE-M6.md`，改为按包
   版本匹配 `plan/RELEASE-*.md` 的 `tag`（旧的写死路径让包版本一抬就永远红）；`examples/report/`
   的两份 MD 因报告内嵌工具版本而按 `plan/04` 重生成（**只差版本号一行**，CSV 逐字节不变）；

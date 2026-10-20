@@ -125,4 +125,118 @@ py -3.8  -X utf8 -m pytest -o addopts= -q   # 457 passed, 0 skipped（3.8 已非
   要求「远端附件集合 == 登记的载荷 + `SHA256SUMS`」。`v0.1.1` 的 Release 用的是
   `SHA256SUMS.txt`，与该契约不符（本轮改名对齐，不改动已发布的 `v0.1.1` 附件）。
 - 校验和的权威登记处是 §二 与 Release 附件 `SHA256SUMS`：本留档与 `CHANGELOG.md` 都随 sdist
-  一起分发，产物里不可能写下自身的 sha256（自指）。
+  一起分发，产物里不可能写下自身的 sha256（自指）。随包分发的那一份是**登记之前**的版本
+  （sdist 内嵌的 `plan/RELEASE-v0.1.2.md` 只有 §一 这一栏）。
+
+## 二、tag 后追加事实
+
+> 本节只允许在 tag / Release 产生**之后**追加；本次追加发生在 tag `v0.1.2` 建成之后，
+> 属「tag 之后只允许追加类提交」的允许范围（只加事实，不改 §一 的任何结论）。
+
+### 2.1 tag 与 Release
+
+| 项 | 值 |
+| --- | --- |
+| tag | `v0.1.2` |
+| tag 类型 | 附注 tag（annotated）；tag 对象 `e2128fe950e7feda57f354ecb4370ee884e481d9` |
+| tag 指向的提交 | `4a901bf3472ecf72bcd88bcbcae14204cc669a24` |
+| 指向提交的提交信息 | `release(0.1.2): PEP 639 许可证元数据 + Python floor 3.12 + CI actions v7 + 发布留档 RELEASE-v0.1.2` |
+| tag 消息 | 含本轮范围与**两个附件的 sha256**（tag 消息不随包分发，可安全登记） |
+| 推送方式 | SSH（`git@github.com:yuluo554/10-17-license-compliance-skill.git`） |
+| Release 地址 | <https://github.com/yuluo554/10-17-license-compliance-skill/releases/tag/v0.1.2> |
+| Release 状态 | 已发布：`isDraft = false`、`isPrerelease = false`、`publishedAt = 2026-10-20T02:48:36Z`，**latest = 是** |
+| 附件数 | 3（全部 `state = uploaded`） |
+| PyPI | **未上传**（PyPI 上 `licaudit` 仍是 `0.1.1`，`requires_python >=3.8`）；上传需另行授权 |
+
+```release
+tag_commit: 4a901bf3472ecf72bcd88bcbcae14204cc669a24
+release_url: https://github.com/yuluo554/10-17-license-compliance-skill/releases/tag/v0.1.2
+```
+
+### 2.2 发布提交（tag 指向的提交）的 CI 结果
+
+tag 指向哪个提交只有在 tag 之后才知道，因此本节属追加事实。
+工作流对 `push` 与 tag 推送都触发，因此同一提交有**两次** run，两次都要全绿才算数：
+
+| run | 触发 | 结论 | job | 起止（UTC） |
+| --- | --- | --- | --- | --- |
+| `39360702962` | main 推送 | success | `ubuntu-latest / py3.12` | 02:46:12 → 02:46:29 |
+| `39360702962` | main 推送 | success | `windows-latest / py3.12` | 02:46:12 → 02:46:53 |
+| `39360849976` | tag `v0.1.2` 推送 | success | `ubuntu-latest / py3.12` | 02:47:53 → 02:48:10 |
+| `39360849976` | tag `v0.1.2` 推送 | success | `windows-latest / py3.12` | 02:47:53 → 02:48:28 |
+
+两次 run 的**每个 job 都是 13 个 step 全 success**，日志里能看到
+`457 passed in 4.92s`（ubuntu）/ `457 passed in 8.72s`（windows），以及
+`selftest --core`、七个生成器 `--check`、`verify-data`、`bench --only m1..m5` 的实测输出。
+
+两点如实记录：
+
+- **Node.js 20 弃用告警清零**：`checkout@v7` / `setup-python@v7` 之后，本次 check-run 注解只剩
+  `ubuntu-latest` 那条 GitHub 侧的「标签将于 2026-10-19 迁移到 Ubuntu 26」notice（actions 自身
+  计划，非本仓库问题）。`annotations_count`：ubuntu 1 / windows **0**。
+- 矩阵是 **2 个 job**（`3.12` × 双 OS），不是 M6 那次的四矩阵——`tools/check_release.py` 的
+  `--online` 检查写的是「该提交所有 job 都 success」，与 job 数无关，故不需要改门禁。
+
+### 2.3 附件与校验和（发布物本体）
+
+```sums
+ac5f9bd9826b4f9cf1d61690378b84e402b55b838e69b3f976c89e4b6069937f  licaudit-0.1.2-py3-none-any.whl
+728b9bdd2c4d7ac454094b6ebc3ad58c8c22a61529d76aef225b2cab123151e3  licaudit-0.1.2.tar.gz
+```
+
+| 附件 | 内容 | 字节 | GitHub 侧 digest |
+| --- | --- | --- | --- |
+| `licaudit-0.1.2-py3-none-any.whl` | wheel（自带 `references/` 65 + `data/` 39 个文件） | 789640 | `sha256:ac5f9bd9…9937f` |
+| `licaudit-0.1.2.tar.gz` | sdist 源码包（自带规则包、SPDX 快照、`plan/`、`examples/`） | 896954 | `sha256:728b9bdd…151e3` |
+| `SHA256SUMS` | 上面两个载荷的伴随清单（**自身不登记自己**） | 186 | `sha256:65af4d90e15e85c501b10f1fcb3e84d91c81aab42e4a1a7df1afe7d16e0dc66b` |
+
+### 2.4 下载回验（发布物本体真下载）
+
+把 3 个附件从 Release **真下载**回本地，逐个重算 sha256：
+
+| 对照 | 结果 |
+| --- | --- |
+| 本地 `dist/<name>` vs 下载回来的同名文件 | **逐字节相同**（两份载荷的 sha256 完全一致） |
+| 下载回来的文件 vs GitHub 附件元数据的 `digest` | **一致**（`sha256:ac5f9bd9…` / `sha256:728b9bdd…`） |
+| 下载回来的 `SHA256SUMS` vs 本地 `dist/SHA256SUMS` | **逐字节相同**；`sha256sum -c SHA256SUMS` 在本地 2/2 `OK` |
+
+即「本地构建物 == 上传通道传输物 == 远端登记值」三方对撞通过。
+
+### 2.5 干净 clone 复核（tag 本体，不使用 `PYTHONPATH`）
+
+在仓库外全新目录 `git clone --branch v0.1.2 --depth 1`（走公开 HTTPS 远端）后建 venv：
+
+| 步骤 | 命令 | 结果 |
+| --- | --- | --- |
+| 版本核对 | `grep '^version' pyproject.toml` | `0.1.2`；`git log -1` = `4a901bf` |
+| 建环境 | `py -3.12 -m venv .venv` | rc=0 |
+| 安装 | `.venv/Scripts/python.exe -m pip install -e ".[dev]"` | rc=0 |
+| 全量测试 | `.venv/Scripts/python.exe -m pytest -o addopts= -q` | **457 passed** |
+| 入口 | `licaudit --version` | `licaudit 0.1.2` |
+| 自检 | `licaudit selftest --core` / `licaudit selftest` | rc=0 / rc=0 |
+| 真值对账 | `licaudit verify-data` | rc=0 |
+| 基准 | `licaudit bench` | rc=0（m1–m5 全绿） |
+| 七个生成器 `--check` | `tools/{fetch_spdx,gen_*}.py --check` | 7 × rc=0（位级一致） |
+| 端到端 | `scan <6 份清单>` → `assess`（SaaS / Elastic-2.0）→ `report --format md` | rc=0 / 1 / 1（后两个含阻断级，既定语义）；产物与 tag 内 `examples/report/license-report.md` **逐字节相同** |
+
+### 2.6 发布终态自检
+
+```bash
+py -3.12 -X utf8 tools/check_release.py --artifacts-dir dist --online
+```
+
+`rc=0`：留档两栏齐备、无占位标记、版本三方一致（`pyproject` / `SKILL.md` / 留档 `tag`）、
+规则包版本一致、`MANIFEST.in` 覆盖 `references` 与 `data`、README/SKILL 已提到本版版本号、
+`plan/00` 的 M6 里程碑行是 ✅、14 项离线 + 4 项联网检查全通过（联网部分含「该提交所有 CI job
+success」「Release 附件集合 == 登记的载荷 + `SHA256SUMS`」「逐个附件下载回来重算 sha256」）。
+
+### 2.7 tag 之后追加的提交
+
+本次追加提交只做两件事，**没有重打 tag、没有重传附件、没有改 §一 的任何结论**：
+
+1. 本 §二（tag 对象 / tag 提交 / CI 结果 / 附件与校验和 / 下载回验 / 干净 clone 复核 / 发布门结果）。
+2. 把同一批校验和与发布事实回填到 `CHANGELOG.md` 的 `[0.1.2]` 段、`plan/00` §五 与
+   `plan/05` §二之九；并新增 `plan/HANDOFF-v0.1.2.md`。
+
+> 因此：仓库 `main` 上的 `CHANGELOG` / 留档 / `plan/05` 比 tag 本体**多**这些回填；
+> 已发布的附件与 tag 本体不被改写（`v0.1.0` 首次发布时踩过的「tag 后只做追加」纪律照旧）。
