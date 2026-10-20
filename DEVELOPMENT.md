@@ -48,7 +48,9 @@ tools/                  生成器与发布自检（不是用户 CLI）
 ## 三、CI 矩阵
 
 工作流：`.github/workflows/ci.yml`。矩阵 `os × python`：
-`ubuntu-latest` 与 `windows-latest` 各跑 `3.8`、`3.12` 共 4 个 job；
+`ubuntu-latest` 与 `windows-latest` 各跑 `3.12` 共 2 个 job
+（2026-10-20 起：floor 由 3.8 抬到 3.12，原因见 `plan/06` D39；actions 用 `checkout@v7` /
+`setup-python@v7`）；
 job env 统一 `PYTHONUTF8=1`、`PYTHONDONTWRITEBYTECODE=1`。
 步骤：`pip install -e ".[dev]"` → `pytest`（addopts 已是 `-q`，CI 不再叠 `-q`）。
 

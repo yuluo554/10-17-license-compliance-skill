@@ -1,24 +1,25 @@
 [build-system]
-requires = ["setuptools>=61"]
+# PEP 639（`license` 用 SPDX 表达式 + `license-files`）需要 setuptools>=77；
+# 77 起 setuptools 自身要求 Python>=3.9，故与 requires-python 一起抬到 3.12（见 plan/06 D39）。
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "licaudit"
-version = "0.1.1"
+version = "0.1.2"
 description = "开源许可证合规审查 Skill：依赖清单 → SPDX 归一化 → 场景/冲突判定 → 中文清单"
 readme = "README.md"
-requires-python = ">=3.8"
-license = { text = "MIT" }
+requires-python = ">=3.12"
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [{ name = "yuluo554" }]
 keywords = ["license", "compliance", "spdx", "sbom-alternative", "agent-skill"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Natural Language :: Chinese (Simplified)",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.12",
     "Topic :: Software Development :: Quality Assurance",
 ]

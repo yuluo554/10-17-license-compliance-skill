@@ -13,14 +13,16 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
-        python: ["3.8", "3.12"]
+        # 2026-10-20（D39）：floor 由 3.8 抬到 3.12 —— PEP 639 的 license 表达式需要
+        # setuptools>=77，而 setuptools 77 起自身要求 Python>=3.9；3.8 腿无法构建元数据。
+        python: ["3.12"]
     env:
       PYTHONUTF8: "1"
       PYTHONDONTWRITEBYTECODE: "1"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python }}
 

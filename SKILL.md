@@ -8,7 +8,7 @@ description: >-
   「依赖之间或与我要用的许可证是否冲突」「生成一份第三方开源清单/合规审查报告」时使用。
 license: MIT
 metadata:
-  version: 0.1.0
+  version: 0.1.2
   author: yuluo554
   language: zh-CN
 ---
@@ -194,8 +194,10 @@ licaudit report --out-dir out --format csv
 ## 限制与边界
 
 - 纯本地运行：不联网、不上传清单；SPDX 快照随包冻结。
-- 运行时零第三方依赖，Python ≥ 3.8。
-- 规则包位于仓库 `references/ruleset/`；首期发布形态是源码包 / git clone，**不支持 wheel 安装后直接使用**（用 `--rules-dir` 指定）。
+- 运行时零第三方依赖，Python ≥ 3.12（2026-10-20 起；此前为 3.8+，理由见 `plan/06` D39）。
+- 规则包位于仓库 `references/ruleset/`；wheel 与 sdist **都自带**规则包与 SPDX 快照，
+  `pip install licaudit` 装完 `licaudit status` 即可用（D12 已于 2026-10-19 由 D38 修正）。
+  需要指向自定义规则包时用 `--rules-dir` 或环境变量 `LICAUDIT_RULES_DIR`。
 - 只覆盖清单里出现的许可证；未覆盖的 SPDX ID 输出 `tier: null` + 待人工确认，不猜档位。
 - 版本语义保留：`GPL-2.0-only` 不会归一化成 `GPL-2.0`；族名不明输出 `<族>-unknown`。
 - 不做源码许可头扫描、不做 SBOM、不做 CVE 评分、不做许可证全文自动分类。
@@ -237,6 +239,14 @@ CSV 列序固定、UTF-8 无 BOM、LF 行尾）；规则包含 8 条已核验处
 `SHA256SUMS`）；`plan/RELEASE-M6.md` 在 tag 之前入库，按「tag 时点事实 / tag 后追加事实」两栏记录，
 禁止预填；`tools/check_release.py` 是发布终态自检门（离线查留档与版本一致性，
 `--online` 核对 tag / Release 附件 / sha256）。M6 **不新增任何判定能力**。
+
+**v0.1.1 已完成（2026-10-19）**：M6 之后的小版本（DoD 见 `plan/05-里程碑.md` §二之七）——
+wheel 首次自带规则包与真值（修正 D12），随包资源定位统一为「源码态仓库根 + 安装态
+site-packages」两处都找（修掉「装完不能用」），规则集 `meta.review` 复核元数据入库，
+`licaudit report` 概述区新增工具版本与 SPDX 许可证清单两行。**457 passed**；
+干净 venv 装 wheel 后 `licaudit status` / `licaudit selftest` 均 rc=0。
+2026-10-20 的元数据修补把 Python floor 抬到 **3.12**（PEP 639 license 表达式需要
+setuptools>=77，见 `plan/06` D39），并升级 CI actions 到 v7。
 
 各里程碑 DoD 见 `plan/05-里程碑.md`；发布事实见 `plan/RELEASE-M6.md`。
 

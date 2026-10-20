@@ -46,14 +46,14 @@
 | D7 | `-only` / `-or-later` 原样保留，族系不明归 `<族>-unknown` | 归一化为不带后缀的族名或默认最新版 | 会改变可升级性判定，属于实质性判定错误 |
 | D8 | 纯本地处理，SPDX 快照随包冻结，联网刷新为可选增强 | 运行时强制联网查 npm / PyPI | 清单本地可解；联网引入不可复现与隐私风险 |
 | D9 | 品牌隔离：本题只做开源软件许可证 | 与其他项目共用文档模板、素材或交叉引用 | 领域不同，交叉引用会污染定位与检索 |
-| D10 | Python 3.8+ 纯标准库，src 布局 + setuptools | Node / Go / poetry / hatch | 双解释器可用、零安装成本；pytest 仅在 dev extra |
+| D10 | Python **3.12+** 纯标准库，src 布局 + setuptools（2026-10-20 由 plan/06 D39 从 3.8+ 抬升） | Node / Go / poetry / hatch | 零安装成本；pytest 仅在 dev extra |
 | D11 | **完全不使用 LLM** | LLM 抽取兜底 / 复核 | 判定必须确定可复现；无解析兜底需求；免去 API 依赖与脱敏面 |
-| D12 | 规则包放仓库 `references/`，**不打进 wheel**；发布形态为源码包 + editable | 规则包收进包内 | 首期发布物是 git clone / 源码包；规则包需人工审阅与 `--check`。**不承诺 wheel 安装后规则可用** |
+| D12 | 规则包放仓库 `references/`，~~不打进 wheel~~；发布形态为源码包 + editable —— **2026-10-19 由 plan/06 D38 修正：规则包与真值同时打进 wheel** | 规则包收进包内 | 首期发布物是 git clone / 源码包；规则包需人工审阅与 `--check`。D38 起 wheel 开箱可用 |
 | D13 | 报告层零判定用 AST 三条守门 | 只靠代码评审 | 「不 import」只证明通道不证明内容 |
-| D14 | TOML 用受限子集自写解析器（3.8 无 `tomllib`） | 引入 `tomli` 运行时依赖 | 保持零依赖；超集显式 `toml_unsupported`，不静默跳过 |
+| D14 | TOML 用受限子集自写解析器（原口径：3.8 无 `tomllib`；floor 抬到 3.12 后该库可用，解析器仍保留自写，见 plan/06 D39） | 引入 `tomli` 运行时依赖 | 保持零依赖；超集显式 `toml_unsupported`，不静默跳过 |
 | D15 | 骨架阶段 `scan/assess/report` 因规则包缺失**真实返回 exit 3** | 返回空结果 exit 0 / 伪造占位数据 | 「零依赖、无风险」的 exit 0 是最危险的假成功 |
 | D16 | M3 对外八场景 ID 与 `(delivery, link_mode)` 双轴映射 | 只用 delivery 五值 | 题面要求八场景；链接方式本身是判定输入 |
-| D17 | CI 矩阵 windows/ubuntu × 3.8/3.12，`PYTHONUTF8=1` | 单平台单版本 | 本机可做本地等价校验；跨平台只能靠 CI |
+| D17 | CI 矩阵 windows/ubuntu × **3.12**（2 个 job；2026-10-20 由 plan/06 D39 从 × 3.8/3.12 收窄），`PYTHONUTF8=1` | 单平台单版本 | 本机可做本地等价校验；跨平台只能靠 CI |
 | D18 | 仓库公开、署名 `yuluo554` | 私有仓库 | 题目要求公开发布 |
 | D19 | 依赖级许可证只认清单显式写出的值，绝不按包名/生态推断 | 按包名查 npm/PyPI 或按生态默认 | 推断即猜测；清单没写就是不知道 |
 | D20 | 规则包锚点必须带可在原文逐字定位的 `quote` | 只记节号 / 只记文件名 | 节号会随版本漂移且无法机器校验 |
@@ -95,7 +95,7 @@
 | 自检可证伪 | `selftest.py` | `licaudit selftest` | 空规则包 → exit 1；6 项核心 check 各有变异用例 | ✅ M0 |
 | 纯本地 / 零上传（源码层） | 架构 | 运行时无出站请求 | AST 扫描禁止网络模块 import | ✅ M0（产物层：报告与产物只写 `--out-dir`，M6 复核） |
 | 发布三件套：tag / Release 附产物 / 留档 | GitHub 公开仓库 | Release 页面 + `plan/RELEASE-M6.md` | `gh release view` + 附件**真下载**后重算 sha256 + `tools/check_release.py --online` | ✅ M6 |
-| CI 四矩阵全绿 | `.github/workflows/ci.yml` | 每次 push 自动跑 | `gh run view`：windows/ubuntu × 3.8/3.12 四个 job 全 success，日志含 `selftest` / 七个 `--check` / `verify-data` / `bench` | ✅ M6（首推提交 `5e7ad6f`） |
+| CI 全绿（M6 时点为四矩阵） | `.github/workflows/ci.yml` | 每次 push 自动跑 | `gh run view`：M6 时点 windows/ubuntu × 3.8/3.12 四个 job 全 success，日志含 `selftest` / 七个 `--check` / `verify-data` / `bench`。**2026-10-20 起矩阵收为 3.12 × 双 OS（2 个 job），改动未推送、未跑远端**（见 §五 v0.1.1 条） | ✅ M6（首推提交 `5e7ad6f`；新矩阵待推送验证） |
 | 「源码包」发布形态自足 | `MANIFEST.in` | sdist 自带 `references/` 规则包与 SPDX 快照 | 解包 → `pip install -e .` → `licaudit status` 不再 exit 3 | ✅ M6 |
 | 三条调用通路等价 | `cli.py` / `__main__.py` / `scripts/launcher_licaudit.py` | — | 子进程实跑 + 退出码一致 | ✅ M0 |
 | 合成数据白名单 | `data/synthetic/` | 随包 | `test_synthetic_packages_are_whitelisted` | ✅ M1 |
@@ -157,8 +157,36 @@
   干净 clone 复核通过。`plan/RELEASE-M6.md` 在 tag **之前**入库，按
   「tag 时点事实 / tag 后追加事实」两栏记录，不预填。M6 **未新增任何判定能力**
   （`src/licaudit/` 判定链一行未改）；新增口径 D37（`MANIFEST.in` 让 sdist 自带规则包）。
-- **未做**：传染范围聚合（D36，明文登记）；wheel 形态的规则包内置（D12 明文不承诺）。
-- **下一棒**：无。里程碑表 M0–M6 全部 ✅；如需再迭代，按 `plan/05` §四 的收尾固定动作另起里程碑。
-- **诚实口径**：本轮的 CI 表述从「本地等价校验，未接远端」改为**实测四矩阵全绿**
+- **v0.1.1 已完成（2026-10-19）**：M6 之后的小版本（DoD 见 `plan/05-里程碑.md` §二之七）——
+  wheel 首次自带规则包与真值（修正 D12，见 D38）；随包资源定位统一为「源码态仓库根 + 安装态
+  site-packages」两处都找（修掉安装态 `assess` / `report` 报「SPDX 快照不可读」的 exit 2）；
+  规则集 `meta.review` 复核元数据入库（复核日 / 周期 / 下次到期 / 复核人 / `standards[]`）；
+  `licaudit report` 概述区新增工具版本与 SPDX 许可证清单两行；PyPI 上架 `licaudit 0.1.1`。
+  **实测 457 passed**（3.8 / 3.12 各一次；基线时点 `8173867` = tag `v0.1.1`）。
+  干净 venv 装 wheel 后 `licaudit status` / `licaudit selftest` 均 rc=0。
+  > 457 比 M5/M6 的 467 少 20 项，原因是 README 改产品页后 `test_readme_surface.py` 的
+  > 参数化样本减少（不是删断言），成因与代价记在 `plan/06` §五。
+  > `plan/05`、`plan/RELEASE-M6.md`、`plan/HANDOFF-M6.md` 里的 467 **保持不动**——那是 M5/M6
+  > （= `v0.1.0` 时点）的实测值，已与 `gh run view 39034225029` 的日志对齐。
+- **v0.1.2 已发布（2026-10-20）**：`license` 改 PEP 639 形式（`license = "MIT"` +
+  `license-files`）、`build-system` 抬到 `setuptools>=77`、Python floor **3.8 → 3.12**、
+  CI 矩阵收为 `3.12` × 双 OS（2 个 job）、actions 升 `checkout@v7` / `setup-python@v7`
+  （口径与实测见 `plan/06` D39）；同时修掉 v0.1.1 遗留的陈旧口径（`SKILL.md` 的
+  `metadata.version` 停在 `0.1.0`、README 不提 M6、SKILL 限制段仍写「不支持 wheel 安装后直接使用」）。
+  判定面为零（`src/licaudit/` 只改 `__version__`，规则包/快照字节未动）。
+  发布事实（tag / Release 附件 / sha256 / 远端 CI）见 `plan/RELEASE-v0.1.2.md`。
+- **本轮收尾动作**：`tools/check_release.py` 的发布留档不再写死 `plan/RELEASE-M6.md`，改为按包
+  版本匹配 `plan/RELEASE-*.md` 的 `tag`（旧的写死路径让包版本一抬就永远红）；`examples/report/`
+  的两份 MD 因报告内嵌工具版本而按 `plan/04` 重生成（**只差版本号一行**，CSV 逐字节不变）；
+  `update/`（诊断交接目录，含绝对路径）加入 `.gitignore`。
+- **未做**：传染范围聚合（D36，明文登记）；`v0.1.1` 的发布留档（同名文件 `plan/RELEASE-v0.1.1.md`
+  从未建立，本轮按版本补齐的是 `v0.1.2` 那一份；`v0.1.1` 的发布事实仍以 `plan/05` §二之七 与
+  `plan/RELEASE-M6.md` 的体例承载）。
+- **下一棒**：里程碑表 M0–M6 全部 ✅，无强制项。若要继续，优先：
+  ① 让 `tests/test_readme_surface.py` 也覆盖 `DEVELOPMENT.md`（v0.1.1 精简 README 时约 10 条命令
+  迁走且失去门禁）；② PyPI 上 `licaudit` 仍是 `0.1.1`（`requires_python >=3.8`），若要同步元数据
+  需另行授权上传 `0.1.2`；③ 传染病范围聚合（D36）。收尾固定动作见 `plan/05` §四。
+- **诚实口径**：M6 轮的 CI 表述从「本地等价校验，未接远端」改为**实测四矩阵全绿**
   （首推提交 `5e7ad6f`，run `39033849070`）；`check_release.py` **刻意不进 CI**，
   因为它是发布终态门、发布之前必然红（理由记在 `plan/RELEASE-M6.md` §1.5）。
+  2026-10-20 起 CI 矩阵是 **2 个 job**（`3.12` × 双 OS），四矩阵的表述只属于 M6 那一段历史。

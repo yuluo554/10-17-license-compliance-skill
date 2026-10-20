@@ -8,7 +8,9 @@
 离线检查（默认，不联网）
 ------------------------
 
-1. ``plan/RELEASE-M6.md`` 存在，且含「tag 时点事实」「tag 后追加事实」两栏。
+1. 发布留档存在且含「tag 时点事实」「tag 后追加事实」两栏。留档按**包版本**发现：
+   `plan/RELEASE-*.md` 里 `tag` 字段等于 `v<pyproject version>` 的那一份
+   （M0–M6 收口后按版本命名，如 `plan/RELEASE-v0.1.2.md`；M6 留档 `tag: v0.1.0` 不再被误当当前版本）。
 2. 留档里没有未填写的占位标记（``TODO`` / ``待追加`` / ``待首推`` 等）。
    发布终态必须无占位；这一条在发布前**故意**是红的。
 3. 版本三方一致：``pyproject.toml`` 的 ``version`` == ``SKILL.md`` 前言的
@@ -56,7 +58,9 @@ SRC = os.path.join(REPO_ROOT, "src")
 if SRC not in sys.path:
     sys.path.insert(0, SRC)
 
-RELEASE_NOTE = os.path.join(REPO_ROOT, "plan", "RELEASE-M6.md")
+RELEASE_DIR = os.path.join(REPO_ROOT, "plan")
+RELEASE_PREFIX = "RELEASE-"
+RELEASE_SUFFIX = ".md"
 README_PATH = os.path.join(REPO_ROOT, "README.md")
 SKILL_PATH = os.path.join(REPO_ROOT, "SKILL.md")
 PYPROJECT_PATH = os.path.join(REPO_ROOT, "pyproject.toml")
@@ -231,11 +235,77 @@ def gh_json(args, problems):
 # --------------------------------------------------------------------------
 
 
-def check_release_note_exists(problems):
-    if not os.path.isfile(RELEASE_NOTE):
-        problems.append("缺少 plan/RELEASE-M6.md（发布留档必须在 tag 之前入库）")
+def release_note_candidates():
+    """`plan/RELEASE-*.md` 的全部候选（字典序）。"""
+    if not os.path.isdir(RELEASE_DIR):
+        return []
+    return sorted(
+        os.path.join(RELEASE_DIR, name)
+        for name in os.listdir(RELEASE_DIR)
+        if name.startswith(RELEASE_PREFIX) and name.endswith(RELEASE_SUFFIX)
+    )
+
+
+def release_note_tag(path):
+    """取某个留档的 ```release 块里的 ``tag``；读不到返回 None。"""
+    try:
+        text = read_text(path)
+    except OSError:
         return None
-    text = read_text(RELEASE_NOTE)
+    for info, body in fenced_blocks(text):
+        if info != "release":
+            continue
+        for line in body:
+            if line.strip().startswith("tag:"):
+                return line.split(":", 1)[1].strip()
+    return None
+
+
+def resolve_release_note(version, problems):
+    """按包版本挑发布留档：``tag`` 字段 == ``v<version>`` 的那一份。
+
+    旧版把路径写死成 `plan/RELEASE-M6.md`，包版本一抬（0.1.1）就永远红——
+    那会把「门禁红」变成噪音。里程碑 M0–M6 收口后留档按版本命名，
+    因此这里用「留档自己登记的 tag」配对，而不是靠文件名或时间排序。
+    """
+    candidates = release_note_candidates()
+    if not candidates:
+        problems.append(
+            "plan/ 下没有 {0}*{1} 发布留档（发布留档必须在 tag 之前入库）".format(
+                RELEASE_PREFIX, RELEASE_SUFFIX
+            )
+        )
+        return None
+    if not version:
+        return None
+    wanted = "v" + version
+    matched = [path for path in candidates if release_note_tag(path) == wanted]
+    if not matched:
+        problems.append(
+            "plan/ 下没有 tag 为 {0} 的发布留档（现有留档：{1}）；"
+            "发布留档必须在 tag 之前入库".format(
+                wanted, "、".join(os.path.basename(p) for p in candidates)
+            )
+        )
+        return None
+    if len(matched) > 1:
+        problems.append(
+            "plan/ 下有多份 tag 为 {0} 的留档：{1}".format(
+                wanted, "、".join(os.path.basename(p) for p in matched)
+            )
+        )
+    return matched[0]
+
+
+def check_release_note_exists(note_path, problems):
+    if not os.path.isfile(note_path):
+        problems.append(
+            "缺少 {0}（发布留档必须在 tag 之前入库）".format(
+                os.path.relpath(note_path, REPO_ROOT).replace(os.sep, "/")
+            )
+        )
+        return None
+    text = read_text(note_path)
     # 必须是真的**标题行**，不能靠正文里提到过这两个词就算数。
     headings = [line.strip() for line in text.split("\n") if line.startswith("## ")]
     missing = [
@@ -543,7 +613,11 @@ def check_downloaded_sums(slug, tag, sums, problems):
 def run(args):
     problems = []
 
-    note = check_release_note_exists(problems)
+    version = parse_pyproject_version(problems)
+    note_path = resolve_release_note(version, problems)
+    if note_path is None:
+        return problems
+    note = check_release_note_exists(note_path, problems)
     if note is None:
         return problems
 
@@ -568,7 +642,7 @@ def run(args):
 def main(argv=None):
     parser = argparse.ArgumentParser(
         prog="check_release",
-        description="M6 发布终态自检：tag / Release 附件 / 留档三件套",
+        description="发布终态自检：tag / Release 附件 / 留档三件套（留档按包版本发现）",
     )
     parser.add_argument("--online", action="store_true",
                         help="额外核对远端：仓库公开、tag 指向、CI 全绿、Release 附件与 sha256")

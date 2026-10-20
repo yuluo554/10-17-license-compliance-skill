@@ -1,7 +1,7 @@
 # licaudit — 输入依赖清单，判定开源许可证会不会传染
 
 [![CI](https://github.com/yuluo554/10-17-license-compliance-skill/actions/workflows/ci.yml/badge.svg)](https://github.com/yuluo554/10-17-license-compliance-skill/actions/workflows/ci.yml)
-![Python](https://img.shields.io/badge/python-3.8%2B-blue)
+![Python](https://img.shields.io/badge/python-3.12%2B-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 ![licaudit 实跑：status → scan → assess → report（14 秒，真实终端输出）](docs/images/demo.gif)
@@ -18,7 +18,7 @@
 ## 30 秒跑起来
 
 ```bash
-pip install licaudit                     # 要求 Python ≥ 3.8，运行时零第三方依赖
+pip install licaudit                     # 要求 Python ≥ 3.12，运行时零第三方依赖
 licaudit scan requirements.txt --out-dir out
 licaudit assess --inventory out/inventory.json --scenario saas \
   --network-interaction yes --outbound-license MIT --out-dir out
@@ -49,7 +49,7 @@ licaudit report --out-dir out --format md   # → out/license-report.md
 | --- | --- | --- | --- | --- |
 | SPDX License List 快照（`references/spdx/`） | 3.29.0 | 2023-11-30 发布；快照采集 2026-10-17 | 2026-10-19（2027-10-19） | 现行；本仓以「随包冻结 + `--check` 逐字节比对」代替运行时联网，刷新需人工执行 |
 | 规则包 `ruleset_version`（`references/ruleset/`） | r0.1.0 | 2026-10-17 | 2026-10-19（2027-10-19） | 现行；档位/义务/锚点由该快照的许可证原文 + curated 人工表推导，本轮只补复核元数据 |
-| 门禁：契约块三方断言 + AST 零判定守门 + 七个生成器 `--check` 位级一致 | v0.1.1 | 2026-10-19 | 2026-10-19（2027-10-19） | 现行；随代码版本走 |
+| 门禁：契约块三方断言 + AST 零判定守门 + 七个生成器 `--check` 位级一致 | v0.1.2 | 2026-10-19 | 2026-10-19（2027-10-19） | 现行；随代码版本走 |
 
 复核结论与权威出处以 `references/ruleset/manifest.json` 的 `meta.review` 为准（字段规范见
 [DEVELOPMENT.md](DEVELOPMENT.md)），本节与之保持一致。规则包与快照都是**随仓库冻结**的生成物
@@ -85,6 +85,10 @@ licaudit report --out-dir out --format md   # → out/license-report.md
 
 ---
 
+> 当前版本 **0.1.2**（M6 发布里程碑之后的修复版：wheel 自带规则包 + 安装态资源定位修复 +
+> PEP 639 许可证元数据 / Python floor 3.12；双解释器 457 passed）。
+> 里程碑与当前状态见 [plan/00-README总览.md](plan/00-README总览.md)，发布留档见
+> [plan/RELEASE-v0.1.2.md](plan/RELEASE-v0.1.2.md)。
 > 架构分层、CI 矩阵、规则包生成流程与发布对账见 [DEVELOPMENT.md](DEVELOPMENT.md)。
 > 变更记录（含规则集版本）见 [CHANGELOG.md](CHANGELOG.md)。
 > 本工具同时是一个 Agent Skill：agent 直接读仓库时的入口与契约块见 [SKILL.md](SKILL.md)；

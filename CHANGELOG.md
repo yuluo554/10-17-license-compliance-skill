@@ -8,6 +8,44 @@ licaudit 的版本分两层：
 > 规则判定逻辑发生变化时，主版本号 +1，并在发布说明中提示「历史报告需重跑」。
 > 本仓判定逻辑的载体是规则包 `references/ruleset/`（`ruleset_version`）与 SPDX 快照版本。
 
+## [0.1.2] - 2026-10-20
+
+本轮不动判定逻辑、不动规则包与 SPDX 快照，只修元数据 / CI / 文档事实
+（**发布形态改变**：Python floor 从 3.8 抬到 3.12）。
+
+### 变更
+
+- **`license` 改用 PEP 639 形式**：`license = "MIT"` + `license-files = ["LICENSE"]`，
+  删掉 `License :: OSI Approved :: MIT License` classifier，`build-system.requires` 抬到
+  `setuptools>=77`。实测 `prepare_metadata_for_build_wheel` 的 `SetuptoolsDeprecationWarning`
+  从 **3 条降到 0 条**，元数据升到 2.4 并带 `License-Expression: MIT`（口径见 `plan/06` D39）。
+- **Python floor 3.8 → 3.12**（`requires-python = ">=3.12"`，classifiers 同步），CI 矩阵收为
+  `3.12` × 双 OS（2 个 job），actions 升 `actions/checkout@v7` / `actions/setup-python@v7`。
+  原因：PEP 639 的 license 表达式需要 setuptools≥77，而 setuptools 77 起要求 Python≥3.9，
+  3.8 腿无法构建元数据（实测：3.8 + 可装的最新 setuptools 75.3.0 下 `license = "MIT"` 直接
+  `ValueError`）。**3.8 用户请留在 `v0.1.1`。**
+- 文档事实修正：`SKILL.md` 的 `metadata.version` 由 `0.1.0`（v0.1.1 时漏改）改为 `0.1.2`、
+  限制段去掉「不支持 wheel 安装后直接使用」（D38 起 wheel 已自带规则包）、README 补当前版本与
+  M6 说明、`plan/00`·`plan/02`·`plan/05`·`plan/06` 同步写清 floor 与矩阵的新口径。
+- `tools/check_release.py` 的发布留档不再写死 `plan/RELEASE-M6.md`：改为按包版本匹配
+  `plan/RELEASE-*.md` 的 `tag` 字段（`--online` 的 CI 检查本就是「该提交所有 job success」，
+  与新矩阵 2 个 job 兼容）。
+
+### 测试
+
+- **457 passed, 0 skipped**（`py -3.12 -X utf8 -m pytest -o addopts= -q`）；`licaudit selftest`
+  rc=0；七个生成器 `--check` 全部 rc=0；`licaudit bench` m1–m5 全绿。
+- 干净 venv 装 wheel 后 `licaudit status` / `selftest` 均 rc=0（wheel 含 `licaudit` 30 /
+  `references` 65 / `data` 39 个文件）。
+
+### 规则集
+
+- 无变更。当前依据：**SPDX License List 3.29.0**（快照采集日 2026-10-17），规则包 **r0.1.0**。
+
+### 是否需要重跑历史报告
+
+**否。** 判定结果与 0.1.1 一致（本轮只改元数据、文档与打包面）。
+
 ## [0.1.1] - 2026-10-19
 
 ### 新增
@@ -39,6 +77,15 @@ licaudit 的版本分两层：
 - 无变更。当前依据：**SPDX License List 3.29.0**（2023-11-30 发布，快照采集日 2026-10-17），
   规则包 **r0.1.0**。
 - 本次只补记复核元数据与打包形态，不改任何档位 / 义务 / 锚点 / 冲突对 / 决策表。
+
+### 测试
+
+- 本版实测 **457 passed, 0 skipped**（`py -3.8` 与 `py -3.12` 各跑一次，命令
+  `-X utf8 -m pytest -o addopts= -q`；复核时点 `8173867` = tag `v0.1.1`）；
+  干净 venv 装 wheel 后 `licaudit status` / `licaudit selftest` 均 rc=0。
+- 457 比 M5/M6 的 467 少 20 项，原因是 README 改成产品页后 `tests/test_readme_surface.py`
+  的参数化样本减少（不是删断言）；成因与代价记在 `plan/06` §五。
+  里程碑时点的 467 按纪律保留在 `plan/05` §二之五/二之六、`plan/RELEASE-M6.md`、`plan/HANDOFF-M6.md`。
 
 ### 是否需要重跑历史报告
 
